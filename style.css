@@ -1,0 +1,804 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: nasa;
+  src: url(./fonts/Nasalization\ Rg.otf);
+}
+@font-face {
+  font-family: ceta;
+  src: url(./fonts/5ceta_mono.ttf);
+}
+@font-face {
+  font-family: Syne;
+  src: url(./fonts/Syne-Extra.otf);
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+main {
+  height: 100vh;
+  width: 100%;
+  --c-0: hsla(266.99999999999983, 1%, 12%, 1);
+  --y-0: 80%;
+  --x-0: 85%;
+  --x-1: 60%;
+  --c-1: hsla(335.9999999999997, 2%, 22%, 1);
+  --y-1: 24%;
+  --x-2: 13%;
+  --y-2: 82%;
+  --c-2: hsla(53.999999999999886, 0%, 0%, 0.49);
+  --c-3: hsla(299, 4%, 36%, 1);
+  --y-3: 7%;
+  --x-3: 24%;
+  background-color: hsl(0, 0%, 0%);
+  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
+  animation: hero-gradient-animation 10s linear infinite alternate;
+  background-blend-mode: normal, normal, normal, normal;
+  padding: 25px 50px;
+  position: relative;
+}
+
+#container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+#container .todo-page {
+  position: absolute;
+  background-color: red;
+  height: 100%;
+  width: 100%;
+  z-index: 5;
+  display: none;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+}
+#container .todo-page .right p {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(128, 128, 128, 0.418);
+}
+#container .todo-page .right p i {
+  pointer-events: none;
+}
+#container .dailyplanner-page {
+  position: absolute;
+  background-color: red;
+  height: 100%;
+  width: 100%;
+  z-index: 5;
+  display: none;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+}
+#container .dailyplanner-page .right p {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(128, 128, 128, 0.418);
+}
+#container .dailyplanner-page .right p i {
+  pointer-events: none;
+}
+#container .motivational-page {
+  position: absolute;
+  background-color: red;
+  height: 100%;
+  width: 100%;
+  z-index: 5;
+  display: none;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+}
+#container .motivational-page .right p {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(128, 128, 128, 0.418);
+}
+#container .motivational-page .right p i {
+  pointer-events: none;
+}
+#container .pomodoro-page {
+  position: absolute;
+  background-color: red;
+  height: 100%;
+  width: 100%;
+  z-index: 5;
+  display: none;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+}
+#container .pomodoro-page .right p {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(128, 128, 128, 0.418);
+}
+#container .pomodoro-page .right p i {
+  pointer-events: none;
+}
+#container .kanban-page {
+  position: absolute;
+  background-color: red;
+  height: 100%;
+  width: 100%;
+  z-index: 5;
+  display: none;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+}
+#container .kanban-page .right p {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(128, 128, 128, 0.418);
+}
+#container .kanban-page .right p i {
+  pointer-events: none;
+}
+#container #bot-section {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.043);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1.5fr 1.5fr 1fr;
+  grid-template-areas: "top-left top-mid top-mid top-top-right " "top-left top-mid top-mid top-bot-right" "bot-top-left bot-mid-left bot-mid-right bot-right" "bot-bot-left bot-mid-left bot-mid-right bot-right ";
+  gap: 10px;
+  padding: 10px;
+}
+#container #bot-section .top-left {
+  border-top: 1px solid rgba(128, 128, 128, 0.417);
+  border-radius: 20px;
+  grid-area: top-left;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+}
+#container #bot-section .top-mid {
+  border-top: 1px solid rgba(128, 128, 128, 0.417);
+  border-radius: 20px;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  grid-area: top-mid;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background: url(https://i.pinimg.com/736x/de/83/f1/de83f1ab512f3188b36468f5aa79512b.jpg);
+}
+#container #bot-section .top-mid .div1 {
+  height: 100%;
+  width: 50%;
+}
+#container #bot-section .top-mid .div1 div {
+  border-radius: 15px;
+  overflow: hidden;
+  height: 30%;
+  width: 100%;
+  border-top: 1px solid white;
+}
+#container #bot-section .top-mid .div1 div img {
+  height: 100%;
+  width: 100%;
+  -o-object-position: center;
+     object-position: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+  filter: saturate(80%) contrast(90%);
+}
+#container #bot-section .top-mid .div1 h1 {
+  text-shadow: 0px 0px 50px rgb(44, 44, 44);
+  text-align: justify;
+  line-height: 0.9;
+  align-self: flex-end;
+  width: 100%;
+  height: 70%;
+  text-transform: capitalize;
+  white-space: normal;
+  word-break: break-word;
+  font-size: 70px;
+  font-family: Syne;
+  color: white;
+  opacity: 1;
+}
+#container #bot-section .top-mid .div2 {
+  height: 100%;
+  width: 50%;
+}
+#container #bot-section .top-mid .div2 div {
+  border-radius: 15px;
+  overflow: hidden;
+  height: 60%;
+  width: 100%;
+  border-bottom: 1px solid white;
+}
+#container #bot-section .top-mid .div2 div img {
+  height: 100%;
+  width: 100%;
+  -o-object-position: center;
+     object-position: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+  filter: saturate(80%) contrast(90%);
+}
+#container #bot-section .top-mid .div2 h1 {
+  align-self: flex-end;
+  width: 100%;
+  height: 40%;
+  text-transform: capitalize;
+  white-space: normal;
+  word-break: break-word;
+  font-size: 62px;
+  font-family: Syne;
+  color: rgba(251, 251, 251, 0.025);
+  border-radius: 15px;
+  background: url(https://i.pinimg.com/736x/f8/ca/ab/f8caab76595123b860d0feab69e2f224.jpg);
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0);
+  -webkit-background-clip: text;
+          background-clip: text;
+  background-position: center;
+  line-height: 0.9;
+  filter: contrast(150%) brightness(150%);
+}
+#container #bot-section .top-top-right {
+  grid-area: top-top-right;
+  border-top: 1px solid rgba(128, 128, 128, 0.417);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  padding: 10px;
+  border-radius: 20px;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+}
+#container #bot-section .top-top-right .textdiv {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  pointer-events: none;
+  text-align: center;
+}
+#container #bot-section .top-top-right .textdiv h1 {
+  width: 70%;
+  color: white;
+  font-family: Syne;
+  font-size: 23px;
+  line-height: 1;
+  pointer-events: none;
+  text-transform: uppercase;
+}
+#container #bot-section .top-top-right .textdiv button {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  text-align: justify;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 10px 40px;
+  color: white;
+  border-radius: 5px;
+  margin-top: 10px;
+  background-color: rgba(101, 101, 101, 0.147);
+  border: none;
+  border: 1px solid rgba(128, 128, 128, 0.807);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  transition: all 0.5 ease;
+}
+#container #bot-section .top-top-right .textdiv button:hover {
+  background-color: rgba(101, 101, 101, 0.693);
+  transform: scale(0.99);
+}
+#container #bot-section .top-top-right .imgdiv {
+  overflow: hidden;
+  border-radius: 15px;
+  height: 100%;
+  width: 40%;
+  pointer-events: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.401);
+}
+#container #bot-section .top-top-right .imgdiv img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  pointer-events: none;
+  filter: saturate(50%);
+}
+#container #bot-section .top-bot-right {
+  grid-area: top-bot-right;
+  border-top: 1px solid rgba(128, 128, 128, 0.417);
+  display: flex;
+  padding: 10px;
+  border-radius: 20px;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+}
+#container #bot-section .top-bot-right .textdiv {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  overflow: hidden;
+}
+#container #bot-section .top-bot-right .textdiv h1 {
+  width: 100%;
+  color: white;
+  font-family: Syne;
+  font-size: 30px;
+  line-height: 0.9;
+  pointer-events: none;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  text-transform: uppercase;
+}
+#container #bot-section .top-bot-right .textdiv button {
+  align-self: start;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  text-align: justify;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 10px 30px;
+  color: white;
+  border-radius: 7px;
+  margin-top: 10px;
+  background-color: rgba(135, 192, 209, 0.067);
+  border: none;
+  border: 1px solid rgba(128, 128, 128, 0.807);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  transition: all 0.5 ease;
+}
+#container #bot-section .top-bot-right .textdiv button:hover {
+  background-color: rgba(101, 101, 101, 0.693);
+  transform: scale(0.99);
+}
+#container #bot-section .top-bot-right .imgdiv {
+  height: 100%;
+  width: 50%;
+  overflow: hidden;
+  border-radius: 15px;
+  height: 100%;
+  pointer-events: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.401);
+}
+#container #bot-section .top-bot-right .imgdiv img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  pointer-events: none;
+}
+#container #bot-section .bot-top-left {
+  border-radius: 20px;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  grid-area: bot-top-left;
+}
+#container #bot-section .bot-bot-left {
+  border-bottom: 1px solid rgb(67, 67, 67);
+  border-radius: 20px;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  grid-area: bot-bot-left;
+}
+#container #bot-section .bot-mid-left {
+  grid-area: bot-mid-left;
+  border-bottom: 1px solid rgb(67, 67, 67);
+  border-radius: 20px;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(128, 128, 128, 0.417);
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 10px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+#container #bot-section .bot-mid-left .textdiv {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  overflow: hidden;
+  gap: 5px;
+}
+#container #bot-section .bot-mid-left .textdiv h1 {
+  width: 80%;
+  color: white;
+  font-family: Syne;
+  font-size: 31px;
+  line-height: 1;
+  pointer-events: none;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  text-transform: uppercase;
+}
+#container #bot-section .bot-mid-left .textdiv button {
+  height: 90%;
+  width: 20%;
+  align-self: start;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  text-align: justify;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 10px;
+  color: white;
+  border-radius: 7px;
+  margin-top: 10px;
+  background-color: rgba(135, 192, 209, 0.067);
+  border: none;
+  border: 1px solid rgba(128, 128, 128, 0.807);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  transition: all 0.5 ease;
+}
+#container #bot-section .bot-mid-left .textdiv button:hover {
+  background-color: rgba(101, 101, 101, 0.693);
+  transform: scale(0.99);
+}
+#container #bot-section .bot-mid-left .imgdiv {
+  height: 10%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 15px;
+  height: 100%;
+  pointer-events: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.401);
+}
+#container #bot-section .bot-mid-left .imgdiv img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 50% 20%;
+     object-position: 50% 20%;
+  pointer-events: none;
+}
+#container #bot-section .bot-mid-right {
+  grid-area: bot-mid-right;
+  border-bottom: 1px solid rgb(67, 67, 67);
+  border-radius: 20px;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(128, 128, 128, 0.417);
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  gap: 10px;
+}
+#container #bot-section .bot-mid-right .textdiv {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  overflow: hidden;
+  gap: 5px;
+}
+#container #bot-section .bot-mid-right .textdiv h1 {
+  color: white;
+  font-family: Syne;
+  font-size: 30px;
+  line-height: 1;
+  pointer-events: none;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  text-transform: uppercase;
+}
+#container #bot-section .bot-mid-right .textdiv button {
+  height: 90%;
+  align-self: start;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  text-align: justify;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 10px;
+  color: white;
+  border-radius: 7px;
+  margin-top: 10px;
+  background-color: rgba(135, 192, 209, 0.067);
+  border: none;
+  border: 1px solid rgba(128, 128, 128, 0.807);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  transition: all 0.5 ease;
+}
+#container #bot-section .bot-mid-right .textdiv button:hover {
+  background-color: rgba(101, 101, 101, 0.693);
+  transform: scale(0.99);
+}
+#container #bot-section .bot-mid-right .imgdiv {
+  height: 20%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 15px;
+  height: 100%;
+  pointer-events: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.401);
+}
+#container #bot-section .bot-mid-right .imgdiv img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 50% 10%;
+     object-position: 50% 10%;
+  pointer-events: none;
+}
+#container #bot-section .bot-right {
+  grid-area: bot-right;
+  border-bottom: 1px solid rgb(67, 67, 67);
+  border-radius: 20px;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(128, 128, 128, 0.417);
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 10px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+#container #bot-section .bot-right .textdiv {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+  overflow: hidden;
+  gap: 5px;
+}
+#container #bot-section .bot-right .textdiv h1 {
+  color: white;
+  font-family: Syne;
+  font-size: 31px;
+  line-height: 1;
+  pointer-events: none;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  text-transform: uppercase;
+}
+#container #bot-section .bot-right .textdiv button {
+  height: 90%;
+  width: 20%;
+  align-self: start;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  text-align: justify;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 10px;
+  color: white;
+  border-radius: 7px;
+  margin-top: 10px;
+  background-color: rgba(135, 192, 209, 0.067);
+  border: none;
+  border: 1px solid rgba(128, 128, 128, 0.807);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  transition: all 0.5 ease;
+}
+#container #bot-section .bot-right .textdiv button:hover {
+  background-color: rgba(101, 101, 101, 0.693);
+  transform: scale(0.99);
+}
+#container #bot-section .bot-right .imgdiv {
+  height: 10%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 15px;
+  height: 100%;
+  pointer-events: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.401);
+}
+#container #bot-section .bot-right .imgdiv img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 50% 38%;
+     object-position: 50% 38%;
+  pointer-events: none;
+}
+
+@keyframes hero-gradient-animation {
+  0% {
+    --c-0: hsla(266.99999999999983, 1%, 12%, 1);
+    --s-start-0: 9%;
+    --s-end-0: 55%;
+    --y-0: 80%;
+    --x-0: 85%;
+    --x-1: 60%;
+    --c-1: hsla(335.9999999999997, 2%, 22%, 1);
+    --s-start-1: 5%;
+    --s-end-1: 72%;
+    --y-1: 24%;
+    --x-2: 13%;
+    --y-2: 82%;
+    --c-2: hsla(53.999999999999886, 0%, 0%, 0.49);
+    --s-start-2: 5%;
+    --s-end-2: 52%;
+    --c-3: hsla(299, 4%, 36%, 1);
+    --y-3: 7%;
+    --x-3: 24%;
+    --s-start-3: 13%;
+    --s-end-3: 68%;
+  }
+  100% {
+    --c-0: hsla(266.99999999999943, 0%, 12%, 1);
+    --s-start-0: 9%;
+    --s-end-0: 55%;
+    --y-0: 94%;
+    --x-0: 31%;
+    --x-1: 2%;
+    --c-1: hsla(0, 4%, 19%, 1);
+    --s-start-1: 5%;
+    --s-end-1: 72%;
+    --y-1: 25%;
+    --x-2: 98%;
+    --y-2: 20%;
+    --c-2: hsla(54.000000000000036, 0%, 0%, 0.49);
+    --s-start-2: 5%;
+    --s-end-2: 52%;
+    --c-3: hsla(298.99999999999994, 3%, 41%, 1);
+    --y-3: 92%;
+    --x-3: 95%;
+    --s-start-3: 13%;
+    --s-end-3: 68%;
+  }
+}
+@property --c-0 {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: hsl(267, 1%, 12%);
+}
+@property --s-start-0 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 9%;
+}
+@property --s-end-0 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 55%;
+}
+@property --y-0 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 80%;
+}
+@property --x-0 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 85%;
+}
+@property --x-1 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 60%;
+}
+@property --c-1 {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: hsl(336, 2%, 22%);
+}
+@property --s-start-1 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 5%;
+}
+@property --s-end-1 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 72%;
+}
+@property --y-1 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 24%;
+}
+@property --x-2 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 13%;
+}
+@property --y-2 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 82%;
+}
+@property --c-2 {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: hsla(54, 0%, 0%, 0.49);
+}
+@property --s-start-2 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 5%;
+}
+@property --s-end-2 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 52%;
+}
+@property --c-3 {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: hsl(299, 4%, 36%);
+}
+@property --y-3 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 7%;
+}
+@property --x-3 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 24%;
+}
+@property --s-start-3 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 13%;
+}
+@property --s-end-3 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 68%;
+}/*# sourceMappingURL=style.css.map */

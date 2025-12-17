@@ -1,0 +1,138 @@
+@mixin pages() {
+  .todo-page {
+    position: absolute;
+    background-color: red;
+    height: 100%;
+    width: 100%;
+    z-index: 5;
+    // display: none;
+    display: none;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+    .left {
+    }
+    .right {
+      p {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(128, 128, 128, 0.418);
+        i {
+          pointer-events: none;
+        }
+      }
+    }
+  }
+  .dailyplanner-page {
+    position: absolute;
+    background-color: red;
+    height: 100%;
+    width: 100%;
+    z-index: 5;
+    display: none;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+    .left {
+    }
+    .right {
+      p {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(128, 128, 128, 0.418);
+        i {
+          pointer-events: none;
+        }
+      }
+    }
+  }
+  .motivational-page {
+    position: absolute;
+    background-color: red;
+    height: 100%;
+    width: 100%;
+    z-index: 5;
+    display: none;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+    .left {
+    }
+    .right {
+      p {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(128, 128, 128, 0.418);
+        i {
+          pointer-events: none;
+        }
+      }
+    }
+  }
+  .pomodoro-page {
+    position: absolute;
+    background-color: red;
+    height: 100%;
+    width: 100%;
+    z-index: 5;
+    display: none;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+    .left {
+    }
+    .right {
+      p {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(128, 128, 128, 0.418);
+        i {
+          pointer-events: none;
+        }
+      }
+    }
+  }
+  .kanban-page {
+    position: absolute;
+    background-color: red;
+    height: 100%;
+    width: 100%;
+    z-index: 5;
+    display: none;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+    .left {
+    }
+    .right {
+      p {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(128, 128, 128, 0.418);
+        i {
+          pointer-events: none;
+        }
+      }
+    }
+  }
+}
