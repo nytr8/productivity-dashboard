@@ -15,13 +15,34 @@
     <main>
         <div id="container">
             <div class="pages todo-page" id="0">
-                <div class="left">
-                    todo page
-                </div>
-                <div class="right">
+                <div class="top">
+                    <h1>todo app</h1>
                     <p>
                         <i class="ri-close-large-line"></i>
                     </p>
+                </div>
+                <div class="bot">
+                    <div class="left">
+                        <form>
+                            <input class="inp" type="text" placeholder="Enter your title" required />
+                            <textarea placeholder="Write your message" rows="4" required></textarea>
+                            <label class="checkbox">
+                                <input type="checkbox" required />
+                                <p>mark as important</p>
+                            </label>
+                            <button type="submit">add to list</button>
+                        </form>
+                    </div>
+                    <div class="right">
+                        <div class="list">
+                            <div class="listitems">
+                                <p class="text">go to the gym</p>
+                                <p class="completed">mark as completed</p>
+                                <p class="delete">delete</p>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="pages dailyplanner-page" id="1">

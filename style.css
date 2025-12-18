@@ -55,27 +55,235 @@ main {
   gap: 10px;
 }
 #container .todo-page {
+  --c-0: hsla(266.99999999999983, 1%, 12%, 1);
+  --y-0: 80%;
+  --x-0: 85%;
+  --x-1: 60%;
+  --c-1: hsla(335.9999999999997, 2%, 22%, 1);
+  --y-1: 24%;
+  --x-2: 13%;
+  --y-2: 82%;
+  --c-2: hsla(53.999999999999886, 0%, 0%, 0.49);
+  --c-3: hsla(299, 4%, 36%, 1);
+  --y-3: 7%;
+  --x-3: 24%;
+  background-color: hsl(0, 0%, 0%);
+  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
+  animation: hero-gradient-animation 10s linear infinite alternate;
+  background-blend-mode: normal, normal, normal, normal;
   position: absolute;
-  background-color: red;
+  background-color: rgb(255, 0, 0);
   height: 100%;
   width: 100%;
   z-index: 5;
-  display: none;
+  display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: space-around;
-  gap: 20px;
+  padding: 10px;
+  gap: 10px;
 }
-#container .todo-page .right p {
+#container .todo-page .top {
+  height: 15%;
+  width: 100%;
+  background-color: rgba(202, 202, 202, 0.089);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Syne;
+  text-transform: uppercase;
+  position: relative;
+}
+#container .todo-page .top h1 {
+  font-size: 100px;
+  color: rgb(19, 19, 19);
+}
+#container .todo-page .top p {
+  position: absolute;
+  top: 10%;
+  right: 2%;
   height: 50px;
   width: 50px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(128, 128, 128, 0.418);
+  background-color: rgba(27, 27, 27, 0.418);
 }
-#container .todo-page .right p i {
+#container .todo-page .top p i {
+  color: white;
   pointer-events: none;
+}
+#container .todo-page .bot {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 85%;
+  gap: 10px;
+  overflow: hidden;
+}
+#container .todo-page .bot .left {
+  width: 40%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.089);
+  border-radius: 5px;
+}
+#container .todo-page .bot .left .inp,
+#container .todo-page .bot .left textarea,
+#container .todo-page .bot .left select {
+  all: unset;
+  box-sizing: border-box;
+  font-family: inherit;
+  color: inherit;
+}
+#container .todo-page .bot .left .inp,
+#container .todo-page .bot .left textarea {
+  caret-color: rgb(255, 255, 255); /* any color */
+  color: white;
+}
+#container .todo-page .bot .left form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  gap: 10px;
+  padding: 10px;
+}
+#container .todo-page .bot .left form .inp {
+  width: 80%;
+  padding: 10px;
+  font-size: 20px;
+  height: 50px;
+  font-family: nasa;
+  border-radius: 5px;
+  background-color: rgba(19, 19, 19, 0.329);
+}
+#container .todo-page .bot .left form textarea {
+  width: 80%;
+  height: 200px;
+  padding: 10px;
+  font-size: 20px;
+  font-family: nasa;
+  border-radius: 5px;
+  background-color: rgba(19, 19, 19, 0.329);
+}
+#container .todo-page .bot .left form label {
+  width: 80%;
+  font-size: 20px;
+  font-family: nasa;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: rgb(217, 217, 217);
+  padding: 20px;
+}
+#container .todo-page .bot .left form label input {
+  height: 25px;
+  width: 25px;
+}
+#container .todo-page .bot .left form label p {
+  -moz-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+#container .todo-page .bot .left form button {
+  all: unset;
+  box-sizing: border-box;
+  font-family: inherit;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 80%;
+  font-family: nasa;
+  font-weight: bold;
+  font-size: 30px;
+  border-radius: 5px;
+  color: rgb(19, 19, 19);
+  background-color: rgb(217, 217, 217);
+  transition: all 0.3s ease;
+}
+#container .todo-page .bot .left form button:hover {
+  background-color: rgb(19, 19, 19);
+  color: white;
+  border-top: 1px solid rgba(255, 255, 255, 0.364);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.364);
+}
+#container .todo-page .bot .right::-webkit-scrollbar {
+  display: none;
+}
+#container .todo-page .bot .right {
+  height: 100%;
+  width: 60%;
+  display: flex;
+  position: relative;
+  border-radius: 5px;
+  overflow-y: auto;
+}
+#container .todo-page .bot .right .list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  padding: 10px;
+  gap: 10px;
+}
+#container .todo-page .bot .right .list .listitems {
+  flex-shrink: 0;
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  overflow: hidden;
+  font-family: nasa;
+}
+#container .todo-page .bot .right .list .listitems .text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  height: 100%;
+  background-color: rgb(217, 217, 217);
+  font-size: 50px;
+}
+#container .todo-page .bot .right .list .listitems .completed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 25%;
+  background-color: rgb(58, 130, 58);
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+#container .todo-page .bot .right .list .listitems .delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 58, 58);
+  height: 100%;
+  width: 15%;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+#container .todo-page .bot .right .list .listitems .delete:hover {
+  background-color: maroon;
+  color: white;
+}
+#container .todo-page .bot .right .list .listitems .completed:hover {
+  background-color: rgb(1, 77, 1);
+  color: white;
 }
 #container .dailyplanner-page {
   position: absolute;
@@ -278,7 +486,7 @@ main {
   line-height: 0.9;
   filter: contrast(150%) brightness(150%);
 }
-#container #bot-section .top-top-right {
+#container #bot-section .top-top-right.todo-card {
   grid-area: top-top-right;
   border-top: 1px solid rgba(128, 128, 128, 0.417);
   display: flex;
@@ -290,7 +498,7 @@ main {
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
 }
-#container #bot-section .top-top-right .textdiv {
+#container #bot-section .top-top-right.todo-card .textdiv {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -299,7 +507,7 @@ main {
   pointer-events: none;
   text-align: center;
 }
-#container #bot-section .top-top-right .textdiv h1 {
+#container #bot-section .top-top-right.todo-card .textdiv h1 {
   width: 70%;
   color: white;
   font-family: Syne;
@@ -308,7 +516,7 @@ main {
   pointer-events: none;
   text-transform: uppercase;
 }
-#container #bot-section .top-top-right .textdiv button {
+#container #bot-section .top-top-right.todo-card .textdiv button {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   text-align: justify;
   text-transform: uppercase;
@@ -324,11 +532,11 @@ main {
           backdrop-filter: blur(10px);
   transition: all 0.5 ease;
 }
-#container #bot-section .top-top-right .textdiv button:hover {
+#container #bot-section .top-top-right.todo-card .textdiv button:hover {
   background-color: rgba(101, 101, 101, 0.693);
   transform: scale(0.99);
 }
-#container #bot-section .top-top-right .imgdiv {
+#container #bot-section .top-top-right.todo-card .imgdiv {
   overflow: hidden;
   border-radius: 15px;
   height: 100%;
@@ -336,7 +544,7 @@ main {
   pointer-events: none;
   border-right: 1px solid rgba(255, 255, 255, 0.401);
 }
-#container #bot-section .top-top-right .imgdiv img {
+#container #bot-section .top-top-right.todo-card .imgdiv img {
   height: 100%;
   width: 100%;
   -o-object-fit: cover;

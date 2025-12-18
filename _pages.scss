@@ -1,28 +1,253 @@
 @mixin pages() {
   .todo-page {
+    --c-0: hsla(266.99999999999983, 1%, 12%, 1);
+    --y-0: 80%;
+    --x-0: 85%;
+    --x-1: 60%;
+    --c-1: hsla(335.9999999999997, 2%, 22%, 1);
+    --y-1: 24%;
+    --x-2: 13%;
+    --y-2: 82%;
+    --c-2: hsla(53.999999999999886, 0%, 0%, 0.49);
+    --c-3: hsla(299, 4%, 36%, 1);
+    --y-3: 7%;
+    --x-3: 24%;
+    background-color: hsla(0, 0%, 0%, 1);
+    background-image: radial-gradient(
+        circle at var(--x-0) var(--y-0),
+        var(--c-0) var(--s-start-0),
+        transparent var(--s-end-0)
+      ),
+      radial-gradient(
+        circle at var(--x-1) var(--y-1),
+        var(--c-1) var(--s-start-1),
+        transparent var(--s-end-1)
+      ),
+      radial-gradient(
+        circle at var(--x-2) var(--y-2),
+        var(--c-2) var(--s-start-2),
+        transparent var(--s-end-2)
+      ),
+      radial-gradient(
+        circle at var(--x-3) var(--y-3),
+        var(--c-3) var(--s-start-3),
+        transparent var(--s-end-3)
+      );
+    animation: hero-gradient-animation 10s linear infinite alternate;
+    background-blend-mode: normal, normal, normal, normal;
     position: absolute;
-    background-color: red;
+    background-color: rgb(255, 0, 0);
     height: 100%;
     width: 100%;
     z-index: 5;
     // display: none;
-    display: none;
+    display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: space-around;
-    gap: 20px;
-    .left {
-    }
-    .right {
+    padding: 10px;
+    gap: 10px;
+    .top {
+      height: 15%;
+      width: 100%;
+      background-color: rgba(202, 202, 202, 0.089);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Syne;
+      text-transform: uppercase;
+      position: relative;
+      h1 {
+        font-size: 100px;
+        color: rgb(19, 19, 19);
+      }
       p {
+        position: absolute;
+        top: 10%;
+        right: 2%;
         height: 50px;
         width: 50px;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: rgba(128, 128, 128, 0.418);
+        background-color: rgba(27, 27, 27, 0.418);
         i {
+          color: white;
           pointer-events: none;
+        }
+      }
+    }
+    .bot {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 85%;
+      gap: 10px;
+      overflow: hidden;
+      .left {
+        width: 40%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.089);
+        border-radius: 5px;
+        .inp,
+        textarea,
+        select {
+          all: unset;
+          box-sizing: border-box;
+          font-family: inherit;
+          color: inherit;
+        }
+        .inp,
+        textarea {
+          caret-color: rgb(255, 255, 255); /* any color */
+          color: white;
+        }
+
+        form {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+          width: 100%;
+          gap: 10px;
+          padding: 10px;
+          // font-family: Syne;
+          .inp {
+            width: 80%;
+            padding: 10px;
+            font-size: 20px;
+            height: 50px;
+            font-family: nasa;
+            border-radius: 5px;
+            background-color: rgba(19, 19, 19, 0.329);
+          }
+          textarea {
+            width: 80%;
+            height: 200px;
+            padding: 10px;
+            font-size: 20px;
+            font-family: nasa;
+            border-radius: 5px;
+            background-color: rgba(19, 19, 19, 0.329);
+          }
+          label {
+            width: 80%;
+            font-size: 20px;
+            font-family: nasa;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: rgb(217, 217, 217);
+            padding: 20px;
+            input {
+              height: 25px;
+              width: 25px;
+            }
+            p {
+              user-select: none;
+              -webkit-user-select: none;
+              -ms-user-select: none;
+            }
+          }
+          button {
+            all: unset;
+            box-sizing: border-box;
+            font-family: inherit;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50px;
+            width: 80%;
+            font-family: nasa;
+            font-weight: bold;
+            font-size: 30px;
+            border-radius: 5px;
+            color: rgb(19, 19, 19);
+            background-color: rgb(217, 217, 217);
+            transition: all 0.3s ease;
+          }
+          button:hover {
+            background-color: rgb(19, 19, 19);
+            color: white;
+            border-top: 1px solid rgba(255, 255, 255, 0.364);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.364);
+          }
+        }
+      }
+      .right::-webkit-scrollbar {
+        display: none;
+      }
+      .right {
+        // background-color: blue;
+        height: 100%;
+        width: 60%;
+        display: flex;
+        position: relative;
+        border-radius: 5px;
+        overflow-y: auto;
+        .list {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: start;
+          padding: 10px;
+          gap: 10px;
+          .listitems {
+            flex-shrink: 0;
+            height: 100px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            overflow: hidden;
+            font-family: nasa;
+            .text {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 60%;
+              height: 100%;
+              background-color: rgb(217, 217, 217);
+              font-size: 50px;
+            }
+            .completed {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              height: 100%;
+              width: 25%;
+              background-color: rgb(58, 130, 58);
+              font-size: 20px;
+              transition: all 0.3s ease;
+            }
+            .delete {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              background-color: rgb(255, 58, 58);
+              height: 100%;
+              width: 15%;
+              font-size: 20px;
+              transition: all 0.3s ease;
+            }
+            .delete:hover {
+              background-color: maroon;
+              color: white;
+            }
+            .completed:hover {
+              background-color: rgb(1, 77, 1);
+              color: white;
+            }
+          }
         }
       }
     }
