@@ -16,6 +16,11 @@
   font-family: Syne;
   src: url(./fonts/Syne-Extra.otf);
 }
+.done {
+  color: grey;
+  text-decoration: line-through;
+}
+
 html,
 body {
   height: 100%;
@@ -154,6 +159,7 @@ main {
   padding: 10px;
 }
 #container .todo-page .bot .left form .inp {
+  transition: all 0.5s ease;
   width: 80%;
   padding: 10px;
   font-size: 20px;
@@ -249,6 +255,8 @@ main {
   font-family: nasa;
 }
 #container .todo-page .bot .right .list .listitems .text {
+  position: relative;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -256,6 +264,21 @@ main {
   height: 100%;
   background-color: rgb(217, 217, 217);
   font-size: 50px;
+}
+#container .todo-page .bot .right .list .listitems .text .imp {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  font-size: 20px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: rgb(29, 29, 29) !important;
+  background-color: red;
+}
+#container .todo-page .bot .right .list .listitems .text .grey {
+  background-color: gray;
 }
 #container .todo-page .bot .right .list .listitems .completed {
   display: flex;
