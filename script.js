@@ -93,7 +93,7 @@ function dailyPlanner() {
     let cluster = "";
 
     function formatTime(hour) {
-      const period = hour >= 12 ? "am" : "pm";
+      const period = hour >= 12 ? "pm" : "am";
       const formattedHour = hour % 12 === 0 ? 12 : hour % 12;
       return `${formattedHour}:${period}`;
     }
@@ -109,7 +109,7 @@ function dailyPlanner() {
       let str = dayplanData[idx] || "";
       cluster += ` <div class="items" id=${idx}>
                      <p>${elem}</p>
-                     <input id=${idx} type="text"  placeholder="add your plan..." value=${str}>
+                     <input id=${idx} type="text"  placeholder="add your plan..." value="${str}">
                   </div>`;
     });
     listConatiner.innerHTML = cluster;
@@ -124,6 +124,33 @@ function dailyPlanner() {
   });
 }
 
+function motivationalQuote() {
+  let textDiv = document.querySelector(
+    ".motivational-page .bot .quoteDiv .quote"
+  );
+  let authorName = document.querySelector(
+    ".motivational-page .bot .quoteDiv .name"
+  );
+  let btn = document.querySelector(".motivational-page .bot .inside .btn");
+
+  async function fetchQuote() {
+    let response = await fetch(
+      "https://random-quotes-freeapi.vercel.app/api/random"
+    );
+    let val = await response.json();
+    // quote author
+    quote = val.quote;
+    author = val.author;
+    console.log(quote, author);
+    textDiv.innerHTML = quote;
+    authorName.innerHTML = `"${author}"`;
+  }
+  btn.addEventListener("click", () => {
+    fetchQuote();
+  });
+}
+
 pages();
+motivationalQuote();
 dailyPlanner();
 todo();
