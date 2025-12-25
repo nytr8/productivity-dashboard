@@ -263,6 +263,7 @@ main {
       padding: 10px;
       border-radius: 20px;
       backdrop-filter: blur(10px);
+      transition: all 0.2s ease;
       .textdiv {
         width: 50%;
         height: 100%;
@@ -270,7 +271,6 @@ main {
         justify-content: space-evenly;
         flex-direction: column;
         align-items: center;
-        pointer-events: none;
         overflow: hidden;
         h1 {
           width: 100%;
@@ -278,7 +278,6 @@ main {
           font-family: Syne;
           font-size: 42px;
           line-height: 1;
-          pointer-events: none;
           white-space: normal;
           word-break: break-word;
           overflow-wrap: break-word;
@@ -300,7 +299,6 @@ main {
           border: none;
           border: 1px solid rgba(128, 128, 128, 0.807);
           backdrop-filter: blur(10px);
-          // pointer-events: none;
           transition: all 0.5 ease;
         }
         button:hover {
@@ -325,6 +323,9 @@ main {
           pointer-events: none;
         }
       }
+    }
+    .dailyplanner-card:hover {
+      scale: 0.99;
     }
     .bot-top-left {
       border-radius: 20px;

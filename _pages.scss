@@ -316,8 +316,8 @@
     width: 100%;
     z-index: 5;
 
-    // display: none;
-    display: flex;
+    display: none;
+    // display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: space-around;
@@ -385,7 +385,8 @@
           border-radius: 5px;
           border: 1px solid rgba(255, 255, 255, 0.31);
           p {
-            font-size: 15px;
+            width: 20%;
+            font-size: 13px;
             text-align: center;
             border-right: 1px solid rgb(255, 255, 255);
             font-family: ceta;
@@ -404,6 +405,7 @@
             color: rgba(254, 254, 230, 0.918);
             text-transform: capitalize;
             font-weight: 200;
+            overflow-x: auto;
           }
           input::placeholder {
             color: rgba(166, 166, 166, 0.246);

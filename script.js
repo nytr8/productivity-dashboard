@@ -1,21 +1,21 @@
-// function pages() {
-//   let cards = document.querySelectorAll(".elem");
-//   let pages = document.querySelectorAll(".pages");
-//   cards.forEach((card) => {
-//     card.addEventListener("click", (e) => {
-//       const cardId = e.currentTarget.id;
-//       pages.forEach((page) => {
-//         page.style.display = page.id === cardId ? "flex" : "";
-//       });
-//     });
-//   });
-//   pages.forEach((e) => {
-//     let p = e.querySelector("p");
-//     p.addEventListener("click", () => {
-//       e.style.display = "none";
-//     });
-//   });
-// }
+function pages() {
+  let cards = document.querySelectorAll(".elem");
+  let pages = document.querySelectorAll(".pages");
+  cards.forEach((card) => {
+    card.addEventListener("click", (e) => {
+      const cardId = e.currentTarget.id;
+      pages.forEach((page) => {
+        page.style.display = page.id === cardId ? "flex" : "";
+      });
+    });
+  });
+  pages.forEach((e) => {
+    let p = e.querySelector("p");
+    p.addEventListener("click", () => {
+      e.style.display = "none";
+    });
+  });
+}
 
 function todo() {
   let inputTitle = document.querySelector("form .inp");
@@ -81,13 +81,49 @@ function todo() {
 }
 function dailyPlanner() {
   let listConatiner = document.querySelector(".dailyplanner-page .bot .inside");
-  let items = document.querySelector(".dailyplanner-page .bot .inside .items");
-  let time = document.querySelector(".dailyplanner-page .bot .inside .items p");
+  let items = document.querySelectorAll(
+    ".dailyplanner-page .bot .inside .items"
+  );
   let inputText = document.querySelector(
     ".dailyplanner-page .bot .inside .items input"
   );
-  
+  let dayplanData = JSON.parse(localStorage.getItem("dailyplanData")) || {};
+
+  function renderTime() {
+    let cluster = "";
+
+    function formatTime(hour) {
+      const period = hour >= 12 ? "am" : "pm";
+      const formattedHour = hour % 12 === 0 ? 12 : hour % 12;
+      return `${formattedHour}:${period}`;
+    }
+
+    let hours = Array.from({ length: 18 }, (_, idx) => {
+      const startHour = 5 + idx;
+      const endHour = startHour + 1;
+
+      return `${formatTime(startHour)}--${formatTime(endHour)}`;
+    });
+
+    hours.forEach((elem, idx) => {
+      let str = dayplanData[idx] || "";
+      cluster += ` <div class="items" id=${idx}>
+                     <p>${elem}</p>
+                     <input id=${idx} type="text"  placeholder="add your plan..." value=${str}>
+                  </div>`;
+    });
+    listConatiner.innerHTML = cluster;
+  }
+  renderTime();
+
+  listConatiner.addEventListener("input", (e) => {
+    console.log(e.target.id);
+    dayplanData[e.target.id] = e.target.value;
+    localStorage.setItem("dailyplanData", JSON.stringify(dayplanData));
+    // console.log(dayplanData);
+  });
 }
 
 pages();
+dailyPlanner();
 todo();

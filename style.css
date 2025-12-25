@@ -328,7 +328,7 @@ main {
   height: 100%;
   width: 100%;
   z-index: 5;
-  display: flex;
+  display: none;
   align-items: center;
   flex-direction: column;
   justify-content: space-around;
@@ -399,7 +399,8 @@ main {
   border: 1px solid rgba(255, 255, 255, 0.31);
 }
 #container .dailyplanner-page .bot .inside .items p {
-  font-size: 15px;
+  width: 20%;
+  font-size: 13px;
   text-align: center;
   border-right: 1px solid rgb(255, 255, 255);
   font-family: ceta;
@@ -418,6 +419,7 @@ main {
   color: rgba(254, 254, 230, 0.918);
   text-transform: capitalize;
   font-weight: 200;
+  overflow-x: auto;
 }
 #container .dailyplanner-page .bot .inside .items input::-moz-placeholder {
   color: rgba(166, 166, 166, 0.246);
@@ -697,6 +699,7 @@ main {
   border-radius: 20px;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
 }
 #container #bot-section .top-bot-right.dailyplanner-card .textdiv {
   width: 50%;
@@ -705,7 +708,6 @@ main {
   justify-content: space-evenly;
   flex-direction: column;
   align-items: center;
-  pointer-events: none;
   overflow: hidden;
 }
 #container #bot-section .top-bot-right.dailyplanner-card .textdiv h1 {
@@ -714,7 +716,6 @@ main {
   font-family: Syne;
   font-size: 42px;
   line-height: 1;
-  pointer-events: none;
   white-space: normal;
   word-break: break-word;
   overflow-wrap: break-word;
@@ -758,6 +759,9 @@ main {
   -o-object-position: center;
      object-position: center;
   pointer-events: none;
+}
+#container #bot-section .dailyplanner-card:hover {
+  scale: 0.99;
 }
 #container #bot-section .bot-top-left {
   border-radius: 20px;
