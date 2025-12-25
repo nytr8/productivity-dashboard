@@ -141,7 +141,7 @@ main {
           text-transform: capitalize;
           white-space: normal;
           word-break: break-word;
-          font-size: 70px;
+          font-size: 95px;
           font-family: Syne;
           color: white;
           opacity: 1;
@@ -172,16 +172,17 @@ main {
           text-transform: capitalize;
           white-space: normal;
           word-break: break-word;
-          font-size: 62px;
+          font-size: 85px;
           font-family: Syne;
-          color: rgba(251, 251, 251, 0.025);
+          color: rgba(251, 251, 251, 0);
           border-radius: 15px;
           background: url(https://i.pinimg.com/736x/f8/ca/ab/f8caab76595123b860d0feab69e2f224.jpg);
-          -webkit-text-stroke: 1px rgba(255, 255, 255, 0);
+          -webkit-text-stroke: 1px rgba(255, 0, 200, 0);
           background-clip: text;
-          background-position: center;
+          background-position: 90% 50%;
           line-height: 0.9;
-          filter: contrast(150%) brightness(150%);
+          text-align: justify;
+          filter: contrast(100%) brightness(150%) saturate(200%);
         }
       }
     }
@@ -196,23 +197,21 @@ main {
       padding: 10px;
       border-radius: 20px;
       backdrop-filter: blur(10px);
-      // gap: 5px;
+      transition: all 0.2s ease;
       .textdiv {
-        // width: 70%;
+        width: 60%;
         height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
-        pointer-events: none;
         text-align: center;
         h1 {
           width: 70%;
           color: white;
           font-family: Syne;
-          font-size: 23px;
+          font-size: 30px;
           line-height: 1;
-          pointer-events: none;
           text-transform: uppercase;
         }
         button {
@@ -230,7 +229,6 @@ main {
           border: none;
           border: 1px solid rgba(128, 128, 128, 0.807);
           backdrop-filter: blur(10px);
-          // pointer-events: none;
           transition: all 0.5 ease;
         }
         button:hover {
@@ -251,12 +249,14 @@ main {
           width: 100%;
           object-fit: cover;
           object-position: center;
-          pointer-events: none;
           filter: saturate(50%);
         }
       }
     }
-    .top-bot-right {
+    .todo-card:hover {
+      scale: 0.99;
+    }
+    .top-bot-right.dailyplanner-card {
       grid-area: top-bot-right;
       border-top: 1px solid rgba(128, 128, 128, 0.417);
       display: flex;
@@ -267,7 +267,7 @@ main {
         width: 50%;
         height: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: space-evenly;
         flex-direction: column;
         align-items: center;
         pointer-events: none;
@@ -276,8 +276,8 @@ main {
           width: 100%;
           color: white;
           font-family: Syne;
-          font-size: 30px;
-          line-height: 0.9;
+          font-size: 42px;
+          line-height: 1;
           pointer-events: none;
           white-space: normal;
           word-break: break-word;
@@ -285,18 +285,18 @@ main {
           text-transform: uppercase;
         }
         button {
-          align-self: start;
+          align-self: flex-start;
           font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
             Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
             sans-serif;
-          text-align: justify;
+          text-align: center;
           text-transform: uppercase;
           font-weight: bold;
-          padding: 10px 30px;
+          padding: 10px 40px;
           color: white;
-          border-radius: 7px;
+          border-radius: 5px;
           margin-top: 10px;
-          background-color: rgba(135, 192, 209, 0.067);
+          background-color: rgba(101, 101, 101, 0.147);
           border: none;
           border: 1px solid rgba(128, 128, 128, 0.807);
           backdrop-filter: blur(10px);
@@ -337,7 +337,7 @@ main {
       backdrop-filter: blur(10px);
       grid-area: bot-bot-left;
     }
-    .bot-mid-left {
+    .bot-mid-left.moti-card {
       grid-area: bot-mid-left;
       border-bottom: 1px solid rgb(67, 67, 67);
       border-radius: 20px;
@@ -356,13 +356,12 @@ main {
         align-items: center;
         pointer-events: none;
         overflow: hidden;
-        gap: 5px;
 
         h1 {
           width: 80%;
           color: white;
           font-family: Syne;
-          font-size: 31px;
+          font-size: 50px;
           line-height: 1;
           pointer-events: none;
           white-space: normal;
@@ -371,13 +370,12 @@ main {
           text-transform: uppercase;
         }
         button {
-          height: 90%;
+          height: 80%;
           width: 20%;
-          align-self: start;
+          text-align: center;
           font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
             Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
             sans-serif;
-          text-align: justify;
           text-transform: uppercase;
           font-weight: bold;
           padding: 10px;
@@ -414,33 +412,33 @@ main {
         }
       }
     }
-    .bot-mid-right {
+    .bot-mid-right.pomo-card {
       grid-area: bot-mid-right;
       border-bottom: 1px solid rgb(67, 67, 67);
       border-radius: 20px;
       backdrop-filter: blur(10px);
       border-top: 1px solid rgba(128, 128, 128, 0.417);
       display: flex;
+      justify-content: space-between;
       flex-direction: column;
       padding: 10px;
       border-radius: 20px;
       backdrop-filter: blur(10px);
-      gap: 10px;
       .textdiv {
         width: 100%;
-        height: 80%;
+        height: 90%;
         display: flex;
         justify-content: center;
         align-items: center;
         pointer-events: none;
         overflow: hidden;
-        gap: 5px;
 
         h1 {
-          // width: 80%;
+          height: 90%;
+          width: 80%;
           color: white;
           font-family: Syne;
-          font-size: 30px;
+          font-size: 50px;
           line-height: 1;
           pointer-events: none;
           white-space: normal;
@@ -449,18 +447,18 @@ main {
           text-transform: uppercase;
         }
         button {
-          height: 90%;
-          align-self: start;
+          height: 80%;
+          width: 20%;
+          text-align: center;
           font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
             Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
             sans-serif;
-          text-align: justify;
           text-transform: uppercase;
           font-weight: bold;
           padding: 10px;
           color: white;
           border-radius: 7px;
-          margin-top: 10px;
+          // margin-top: 10px;
           background-color: rgba(135, 192, 209, 0.067);
           border: none;
           border: 1px solid rgba(128, 128, 128, 0.807);
@@ -475,23 +473,23 @@ main {
       }
 
       .imgdiv {
-        height: 20%;
+        height: 10%;
         width: 100%;
         overflow: hidden;
         border-radius: 15px;
         height: 100%;
         pointer-events: none;
-        border-top: 1px solid rgba(255, 255, 255, 0.401);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.401);
         img {
           height: 100%;
           width: 100%;
           object-fit: cover;
-          object-position: 50% 10%;
+          object-position: 50% 20%;
           pointer-events: none;
         }
       }
     }
-    .bot-right {
+    .bot-right.kanban-card {
       grid-area: bot-right;
       border-bottom: 1px solid rgb(67, 67, 67);
       border-radius: 20px;
@@ -506,17 +504,16 @@ main {
         width: 100%;
         height: 90%;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         pointer-events: none;
         overflow: hidden;
-        gap: 5px;
 
         h1 {
-          // width: 55%;
+          width: 80%;
           color: white;
           font-family: Syne;
-          font-size: 31px;
+          font-size: 50px;
           line-height: 1;
           pointer-events: none;
           white-space: normal;
@@ -525,13 +522,12 @@ main {
           text-transform: uppercase;
         }
         button {
-          height: 90%;
+          height: 80%;
           width: 20%;
-          align-self: start;
+          text-align: center;
           font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
             Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
             sans-serif;
-          text-align: justify;
           text-transform: uppercase;
           font-weight: bold;
           padding: 10px;

@@ -77,11 +77,11 @@ main {
   animation: hero-gradient-animation 10s linear infinite alternate;
   background-blend-mode: normal, normal, normal, normal;
   position: absolute;
-  background-color: rgb(255, 0, 0);
+  background-color: rgb(200, 52, 52);
   height: 100%;
   width: 100%;
   z-index: 5;
-  display: flex;
+  display: none;
   align-items: center;
   flex-direction: column;
   justify-content: space-around;
@@ -91,7 +91,7 @@ main {
 #container .todo-page .top {
   height: 15%;
   width: 100%;
-  background-color: rgba(202, 202, 202, 0.089);
+  background-color: rgba(254, 254, 230, 0.918);
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -102,7 +102,7 @@ main {
 }
 #container .todo-page .top h1 {
   font-size: 100px;
-  color: rgb(19, 19, 19);
+  color: rgb(23, 23, 23);
 }
 #container .todo-page .top p {
   position: absolute;
@@ -214,14 +214,12 @@ main {
   font-size: 30px;
   border-radius: 5px;
   color: rgb(19, 19, 19);
-  background-color: rgb(217, 217, 217);
+  background-color: rgba(254, 254, 230, 0.918);
   transition: all 0.3s ease;
 }
 #container .todo-page .bot .left form button:hover {
-  background-color: rgb(19, 19, 19);
+  background-color: rgb(145, 145, 145);
   color: white;
-  border-top: 1px solid rgba(255, 255, 255, 0.364);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.364);
 }
 #container .todo-page .bot .right::-webkit-scrollbar {
   display: none;
@@ -262,7 +260,7 @@ main {
   justify-content: center;
   width: 60%;
   height: 100%;
-  background-color: rgb(217, 217, 217);
+  background-color: rgba(254, 254, 230, 0.918);
   font-size: 50px;
 }
 #container .todo-page .bot .right .list .listitems .text .imp {
@@ -309,27 +307,138 @@ main {
   color: white;
 }
 #container .dailyplanner-page {
+  --c-0: hsla(266.99999999999983, 1%, 12%, 1);
+  --y-0: 80%;
+  --x-0: 85%;
+  --x-1: 60%;
+  --c-1: hsla(335.9999999999997, 2%, 22%, 1);
+  --y-1: 24%;
+  --x-2: 13%;
+  --y-2: 82%;
+  --c-2: hsla(53.999999999999886, 0%, 0%, 0.49);
+  --c-3: hsla(299, 4%, 36%, 1);
+  --y-3: 7%;
+  --x-3: 24%;
+  background-color: hsl(0, 0%, 0%);
+  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
+  animation: hero-gradient-animation 10s linear infinite alternate;
+  background-blend-mode: normal, normal, normal, normal;
   position: absolute;
-  background-color: red;
+  background-color: rgb(52, 78, 110);
   height: 100%;
   width: 100%;
   z-index: 5;
-  display: none;
+  display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: space-around;
-  gap: 20px;
+  padding: 10px;
+  gap: 10px;
 }
-#container .dailyplanner-page .right p {
+#container .dailyplanner-page .top {
+  height: 15%;
+  width: 100%;
+  background-color: rgba(254, 254, 230, 0.918);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Syne;
+  text-transform: uppercase;
+  position: relative;
+}
+#container .dailyplanner-page .top h1 {
+  font-size: 100px;
+  color: rgb(23, 23, 23);
+}
+#container .dailyplanner-page .top p {
+  position: absolute;
+  top: 10%;
+  right: 2%;
   height: 50px;
   width: 50px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(128, 128, 128, 0.418);
+  background-color: rgba(27, 27, 27, 0.418);
 }
-#container .dailyplanner-page .right p i {
+#container .dailyplanner-page .top p i {
+  color: white;
   pointer-events: none;
+}
+#container .dailyplanner-page .bot {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 85%;
+  gap: 10px;
+}
+#container .dailyplanner-page .bot .inside {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.089);
+  border-radius: 5px;
+  padding: 30px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  overflow: auto;
+}
+#container .dailyplanner-page .bot .inside .items {
+  height: 70px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  width: 45%;
+  overflow: hidden;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.31);
+}
+#container .dailyplanner-page .bot .inside .items p {
+  font-size: 15px;
+  text-align: center;
+  border-right: 1px solid rgb(255, 255, 255);
+  font-family: ceta;
+  padding: 10px;
+  color: rgba(254, 254, 230, 0.918);
+  white-space: nowrap;
+}
+#container .dailyplanner-page .bot .inside .items input {
+  all: unset;
+  flex: 1;
+  box-sizing: border-box;
+  font-family: ceta;
+  padding: 10px;
+  font-size: 15px;
+  line-height: 40px;
+  color: rgba(254, 254, 230, 0.918);
+  text-transform: capitalize;
+  font-weight: 200;
+}
+#container .dailyplanner-page .bot .inside .items input::-moz-placeholder {
+  color: rgba(166, 166, 166, 0.246);
+  font-family: ceta;
+  text-transform: capitalize;
+  opacity: 1;
+  -moz-transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease;
+}
+#container .dailyplanner-page .bot .inside .items input::placeholder {
+  color: rgba(166, 166, 166, 0.246);
+  font-family: ceta;
+  text-transform: capitalize;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+#container .dailyplanner-page .bot .inside .items input:focus::-moz-placeholder {
+  opacity: 0;
+}
+#container .dailyplanner-page .bot .inside .items input:focus::placeholder {
+  opacity: 0;
 }
 #container .motivational-page {
   position: absolute;
@@ -465,7 +574,7 @@ main {
   text-transform: capitalize;
   white-space: normal;
   word-break: break-word;
-  font-size: 70px;
+  font-size: 95px;
   font-family: Syne;
   color: white;
   opacity: 1;
@@ -497,17 +606,18 @@ main {
   text-transform: capitalize;
   white-space: normal;
   word-break: break-word;
-  font-size: 62px;
+  font-size: 85px;
   font-family: Syne;
-  color: rgba(251, 251, 251, 0.025);
+  color: rgba(251, 251, 251, 0);
   border-radius: 15px;
   background: url(https://i.pinimg.com/736x/f8/ca/ab/f8caab76595123b860d0feab69e2f224.jpg);
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0);
+  -webkit-text-stroke: 1px rgba(255, 0, 200, 0);
   -webkit-background-clip: text;
           background-clip: text;
-  background-position: center;
+  background-position: 90% 50%;
   line-height: 0.9;
-  filter: contrast(150%) brightness(150%);
+  text-align: justify;
+  filter: contrast(100%) brightness(150%) saturate(200%);
 }
 #container #bot-section .top-top-right.todo-card {
   grid-area: top-top-right;
@@ -520,23 +630,23 @@ main {
   border-radius: 20px;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
 }
 #container #bot-section .top-top-right.todo-card .textdiv {
+  width: 60%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  pointer-events: none;
   text-align: center;
 }
 #container #bot-section .top-top-right.todo-card .textdiv h1 {
   width: 70%;
   color: white;
   font-family: Syne;
-  font-size: 23px;
+  font-size: 30px;
   line-height: 1;
-  pointer-events: none;
   text-transform: uppercase;
 }
 #container #bot-section .top-top-right.todo-card .textdiv button {
@@ -574,10 +684,12 @@ main {
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
-  pointer-events: none;
   filter: saturate(50%);
 }
-#container #bot-section .top-bot-right {
+#container #bot-section .todo-card:hover {
+  scale: 0.99;
+}
+#container #bot-section .top-bot-right.dailyplanner-card {
   grid-area: top-bot-right;
   border-top: 1px solid rgba(128, 128, 128, 0.417);
   display: flex;
@@ -586,50 +698,50 @@ main {
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
 }
-#container #bot-section .top-bot-right .textdiv {
+#container #bot-section .top-bot-right.dailyplanner-card .textdiv {
   width: 50%;
   height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-direction: column;
   align-items: center;
   pointer-events: none;
   overflow: hidden;
 }
-#container #bot-section .top-bot-right .textdiv h1 {
+#container #bot-section .top-bot-right.dailyplanner-card .textdiv h1 {
   width: 100%;
   color: white;
   font-family: Syne;
-  font-size: 30px;
-  line-height: 0.9;
+  font-size: 42px;
+  line-height: 1;
   pointer-events: none;
   white-space: normal;
   word-break: break-word;
   overflow-wrap: break-word;
   text-transform: uppercase;
 }
-#container #bot-section .top-bot-right .textdiv button {
-  align-self: start;
+#container #bot-section .top-bot-right.dailyplanner-card .textdiv button {
+  align-self: flex-start;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  text-align: justify;
+  text-align: center;
   text-transform: uppercase;
   font-weight: bold;
-  padding: 10px 30px;
+  padding: 10px 40px;
   color: white;
-  border-radius: 7px;
+  border-radius: 5px;
   margin-top: 10px;
-  background-color: rgba(135, 192, 209, 0.067);
+  background-color: rgba(101, 101, 101, 0.147);
   border: none;
   border: 1px solid rgba(128, 128, 128, 0.807);
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
   transition: all 0.5 ease;
 }
-#container #bot-section .top-bot-right .textdiv button:hover {
+#container #bot-section .top-bot-right.dailyplanner-card .textdiv button:hover {
   background-color: rgba(101, 101, 101, 0.693);
   transform: scale(0.99);
 }
-#container #bot-section .top-bot-right .imgdiv {
+#container #bot-section .top-bot-right.dailyplanner-card .imgdiv {
   height: 100%;
   width: 50%;
   overflow: hidden;
@@ -638,7 +750,7 @@ main {
   pointer-events: none;
   border-left: 1px solid rgba(255, 255, 255, 0.401);
 }
-#container #bot-section .top-bot-right .imgdiv img {
+#container #bot-section .top-bot-right.dailyplanner-card .imgdiv img {
   height: 100%;
   width: 100%;
   -o-object-fit: cover;
@@ -660,7 +772,7 @@ main {
           backdrop-filter: blur(10px);
   grid-area: bot-bot-left;
 }
-#container #bot-section .bot-mid-left {
+#container #bot-section .bot-mid-left.moti-card {
   grid-area: bot-mid-left;
   border-bottom: 1px solid rgb(67, 67, 67);
   border-radius: 20px;
@@ -673,7 +785,7 @@ main {
   border-radius: 20px;
   backdrop-filter: blur(10px);
 }
-#container #bot-section .bot-mid-left .textdiv {
+#container #bot-section .bot-mid-left.moti-card .textdiv {
   width: 100%;
   height: 90%;
   display: flex;
@@ -681,13 +793,12 @@ main {
   align-items: center;
   pointer-events: none;
   overflow: hidden;
-  gap: 5px;
 }
-#container #bot-section .bot-mid-left .textdiv h1 {
+#container #bot-section .bot-mid-left.moti-card .textdiv h1 {
   width: 80%;
   color: white;
   font-family: Syne;
-  font-size: 31px;
+  font-size: 50px;
   line-height: 1;
   pointer-events: none;
   white-space: normal;
@@ -695,12 +806,11 @@ main {
   overflow-wrap: break-word;
   text-transform: uppercase;
 }
-#container #bot-section .bot-mid-left .textdiv button {
-  height: 90%;
+#container #bot-section .bot-mid-left.moti-card .textdiv button {
+  height: 80%;
   width: 20%;
-  align-self: start;
+  text-align: center;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  text-align: justify;
   text-transform: uppercase;
   font-weight: bold;
   padding: 10px;
@@ -714,11 +824,11 @@ main {
           backdrop-filter: blur(10px);
   transition: all 0.5 ease;
 }
-#container #bot-section .bot-mid-left .textdiv button:hover {
+#container #bot-section .bot-mid-left.moti-card .textdiv button:hover {
   background-color: rgba(101, 101, 101, 0.693);
   transform: scale(0.99);
 }
-#container #bot-section .bot-mid-left .imgdiv {
+#container #bot-section .bot-mid-left.moti-card .imgdiv {
   height: 10%;
   width: 100%;
   overflow: hidden;
@@ -727,7 +837,7 @@ main {
   pointer-events: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.401);
 }
-#container #bot-section .bot-mid-left .imgdiv img {
+#container #bot-section .bot-mid-left.moti-card .imgdiv img {
   height: 100%;
   width: 100%;
   -o-object-fit: cover;
@@ -736,7 +846,7 @@ main {
      object-position: 50% 20%;
   pointer-events: none;
 }
-#container #bot-section .bot-mid-right {
+#container #bot-section .bot-mid-right.pomo-card {
   grid-area: bot-mid-right;
   border-bottom: 1px solid rgb(67, 67, 67);
   border-radius: 20px;
@@ -744,26 +854,27 @@ main {
           backdrop-filter: blur(10px);
   border-top: 1px solid rgba(128, 128, 128, 0.417);
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
   padding: 10px;
   border-radius: 20px;
   backdrop-filter: blur(10px);
-  gap: 10px;
 }
-#container #bot-section .bot-mid-right .textdiv {
+#container #bot-section .bot-mid-right.pomo-card .textdiv {
   width: 100%;
-  height: 80%;
+  height: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
   pointer-events: none;
   overflow: hidden;
-  gap: 5px;
 }
-#container #bot-section .bot-mid-right .textdiv h1 {
+#container #bot-section .bot-mid-right.pomo-card .textdiv h1 {
+  height: 90%;
+  width: 80%;
   color: white;
   font-family: Syne;
-  font-size: 30px;
+  font-size: 50px;
   line-height: 1;
   pointer-events: none;
   white-space: normal;
@@ -771,17 +882,16 @@ main {
   overflow-wrap: break-word;
   text-transform: uppercase;
 }
-#container #bot-section .bot-mid-right .textdiv button {
-  height: 90%;
-  align-self: start;
+#container #bot-section .bot-mid-right.pomo-card .textdiv button {
+  height: 80%;
+  width: 20%;
+  text-align: center;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  text-align: justify;
   text-transform: uppercase;
   font-weight: bold;
   padding: 10px;
   color: white;
   border-radius: 7px;
-  margin-top: 10px;
   background-color: rgba(135, 192, 209, 0.067);
   border: none;
   border: 1px solid rgba(128, 128, 128, 0.807);
@@ -789,29 +899,29 @@ main {
           backdrop-filter: blur(10px);
   transition: all 0.5 ease;
 }
-#container #bot-section .bot-mid-right .textdiv button:hover {
+#container #bot-section .bot-mid-right.pomo-card .textdiv button:hover {
   background-color: rgba(101, 101, 101, 0.693);
   transform: scale(0.99);
 }
-#container #bot-section .bot-mid-right .imgdiv {
-  height: 20%;
+#container #bot-section .bot-mid-right.pomo-card .imgdiv {
+  height: 10%;
   width: 100%;
   overflow: hidden;
   border-radius: 15px;
   height: 100%;
   pointer-events: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.401);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.401);
 }
-#container #bot-section .bot-mid-right .imgdiv img {
+#container #bot-section .bot-mid-right.pomo-card .imgdiv img {
   height: 100%;
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  -o-object-position: 50% 10%;
-     object-position: 50% 10%;
+  -o-object-position: 50% 20%;
+     object-position: 50% 20%;
   pointer-events: none;
 }
-#container #bot-section .bot-right {
+#container #bot-section .bot-right.kanban-card {
   grid-area: bot-right;
   border-bottom: 1px solid rgb(67, 67, 67);
   border-radius: 20px;
@@ -824,20 +934,20 @@ main {
   border-radius: 20px;
   backdrop-filter: blur(10px);
 }
-#container #bot-section .bot-right .textdiv {
+#container #bot-section .bot-right.kanban-card .textdiv {
   width: 100%;
   height: 90%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   pointer-events: none;
   overflow: hidden;
-  gap: 5px;
 }
-#container #bot-section .bot-right .textdiv h1 {
+#container #bot-section .bot-right.kanban-card .textdiv h1 {
+  width: 80%;
   color: white;
   font-family: Syne;
-  font-size: 31px;
+  font-size: 50px;
   line-height: 1;
   pointer-events: none;
   white-space: normal;
@@ -845,12 +955,11 @@ main {
   overflow-wrap: break-word;
   text-transform: uppercase;
 }
-#container #bot-section .bot-right .textdiv button {
-  height: 90%;
+#container #bot-section .bot-right.kanban-card .textdiv button {
+  height: 80%;
   width: 20%;
-  align-self: start;
+  text-align: center;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  text-align: justify;
   text-transform: uppercase;
   font-weight: bold;
   padding: 10px;
@@ -864,11 +973,11 @@ main {
           backdrop-filter: blur(10px);
   transition: all 0.5 ease;
 }
-#container #bot-section .bot-right .textdiv button:hover {
+#container #bot-section .bot-right.kanban-card .textdiv button:hover {
   background-color: rgba(101, 101, 101, 0.693);
   transform: scale(0.99);
 }
-#container #bot-section .bot-right .imgdiv {
+#container #bot-section .bot-right.kanban-card .imgdiv {
   height: 10%;
   width: 100%;
   overflow: hidden;
@@ -877,7 +986,7 @@ main {
   pointer-events: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.401);
 }
-#container #bot-section .bot-right .imgdiv img {
+#container #bot-section .bot-right.kanban-card .imgdiv img {
   height: 100%;
   width: 100%;
   -o-object-fit: cover;

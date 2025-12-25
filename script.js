@@ -1,15 +1,11 @@
 // function pages() {
 //   let cards = document.querySelectorAll(".elem");
 //   let pages = document.querySelectorAll(".pages");
-
 //   cards.forEach((card) => {
-//     //   console.log(elem);
 //     card.addEventListener("click", (e) => {
-//       console.log(e.target);
+//       const cardId = e.currentTarget.id;
 //       pages.forEach((page) => {
-//         if (e.target.id == page.id) {
-//           page.style.display = "flex";
-//         }
+//         page.style.display = page.id === cardId ? "flex" : "";
 //       });
 //     });
 //   });
@@ -20,7 +16,6 @@
 //     });
 //   });
 // }
-// pages();
 
 function todo() {
   let inputTitle = document.querySelector("form .inp");
@@ -84,4 +79,15 @@ function todo() {
     render();
   });
 }
+function dailyPlanner() {
+  let listConatiner = document.querySelector(".dailyplanner-page .bot .inside");
+  let items = document.querySelector(".dailyplanner-page .bot .inside .items");
+  let time = document.querySelector(".dailyplanner-page .bot .inside .items p");
+  let inputText = document.querySelector(
+    ".dailyplanner-page .bot .inside .items input"
+  );
+  
+}
+
+pages();
 todo();
