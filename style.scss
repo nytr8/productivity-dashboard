@@ -349,13 +349,13 @@ main {
       padding: 10px;
       border-radius: 20px;
       backdrop-filter: blur(10px);
+      transition: all 0.2s ease;
       .textdiv {
         width: 100%;
         height: 90%;
         display: flex;
         justify-content: center;
         align-items: center;
-        pointer-events: none;
         overflow: hidden;
 
         h1 {
@@ -364,7 +364,6 @@ main {
           font-family: Syne;
           font-size: 50px;
           line-height: 1;
-          pointer-events: none;
           white-space: normal;
           word-break: break-word;
           overflow-wrap: break-word;
@@ -387,7 +386,6 @@ main {
           border: none;
           border: 1px solid rgba(128, 128, 128, 0.807);
           backdrop-filter: blur(10px);
-          // pointer-events: none;
           transition: all 0.5 ease;
         }
         button:hover {
@@ -412,6 +410,9 @@ main {
           pointer-events: none;
         }
       }
+    }
+    .moti-card:hover {
+      scale: 0.99;
     }
     .bot-mid-right.pomo-card {
       grid-area: bot-mid-right;

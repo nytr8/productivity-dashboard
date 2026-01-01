@@ -945,6 +945,7 @@ main {
   padding: 10px;
   border-radius: 20px;
   backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
 }
 #container #bot-section .bot-mid-left.moti-card .textdiv {
   width: 100%;
@@ -952,7 +953,6 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  pointer-events: none;
   overflow: hidden;
 }
 #container #bot-section .bot-mid-left.moti-card .textdiv h1 {
@@ -961,7 +961,6 @@ main {
   font-family: Syne;
   font-size: 50px;
   line-height: 1;
-  pointer-events: none;
   white-space: normal;
   word-break: break-word;
   overflow-wrap: break-word;
@@ -1006,6 +1005,9 @@ main {
   -o-object-position: 50% 20%;
      object-position: 50% 20%;
   pointer-events: none;
+}
+#container #bot-section .moti-card:hover {
+  scale: 0.99;
 }
 #container #bot-section .bot-mid-right.pomo-card {
   grid-area: bot-mid-right;
