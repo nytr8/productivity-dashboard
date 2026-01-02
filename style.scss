@@ -95,12 +95,38 @@ main {
     gap: 10px;
     padding: 10px;
 
-    .top-left {
+    .top-left.topData {
       border-top: 1px solid rgba(128, 128, 128, 0.417);
       border-radius: 20px;
-
       grid-area: top-left;
       backdrop-filter: blur(10px);
+      padding: 20px;
+      color: white;
+      font-family: helvetica neue, open sans, Helvetica, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      text-align: center;
+      .top {
+        h1 {
+          font-size: 80px;
+          font-family: nasa;
+          border-bottom: 1px solid white;
+        }
+        h2 {
+          font-size: 150px;
+          font-family: nasa;
+        }
+      }
+      .bot {
+        h2 {
+          line-height: 1.5;
+          font-size: 25px;
+          letter-spacing: 10px;
+        }
+      }
     }
     .top-mid {
       border-top: 1px solid rgba(128, 128, 128, 0.417);
@@ -328,9 +354,32 @@ main {
       scale: 0.99;
     }
     .bot-top-left {
+      font-family: helvetica neue, open sans, Helvetica, Arial, sans-serif;
       border-radius: 20px;
       backdrop-filter: blur(10px);
       grid-area: bot-top-left;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      gap: 20px;
+      color: white;
+      .left {
+        p {
+          font-size: 25px;
+          padding: 10px;
+          margin: 5px;
+          background-color: red;
+        }
+      }
+      .right {
+        p {
+          margin: 5px;
+          background-color: red;
+          font-size: 25px;
+          padding: 10px;
+        }
+      }
     }
     .bot-bot-left {
       border-bottom: 1px solid rgb(67, 67, 67);

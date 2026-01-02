@@ -258,6 +258,28 @@ function pomoDoro() {
     reset(activeTimer);
   });
 }
+
+function weather() {
+  let apiKey = "e14e105c8eb24b31b0a155937260201";
+  let city = "India";
+  async function getWeather() {
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+
+      const response = await fetch(
+        `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}&aqi=yes`
+      );
+
+      const data = await response.json();
+      console.log(data.location);
+      console.log(data.current);
+    });
+  }
+
+  getWeather();
+}
+weather();
 pomoDoro();
 pages();
 motivationalQuote();
