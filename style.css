@@ -623,27 +623,195 @@ main {
   }
 }
 #container .pomodoro-page {
+  --c-0: hsla(266.99999999999983, 1%, 12%, 1);
+  --y-0: 80%;
+  --x-0: 85%;
+  --x-1: 60%;
+  --c-1: hsla(335.9999999999997, 2%, 22%, 1);
+  --y-1: 24%;
+  --x-2: 13%;
+  --y-2: 82%;
+  --c-2: hsla(53.999999999999886, 0%, 0%, 0.49);
+  --c-3: hsla(299, 4%, 36%, 1);
+  --y-3: 7%;
+  --x-3: 24%;
+  background-color: hsl(0, 0%, 0%);
+  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
+  animation: hero-gradient-animation 10s linear infinite alternate;
+  background-blend-mode: normal, normal, normal, normal;
   position: absolute;
-  background-color: red;
   height: 100%;
   width: 100%;
   z-index: 5;
-  display: none;
+  background-color: rgb(120, 0, 160);
+  display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: space-around;
-  gap: 20px;
+  padding: 10px;
+  gap: 10px;
 }
-#container .pomodoro-page .right p {
+#container .pomodoro-page .top {
+  height: 15%;
+  width: 100%;
+  background-color: rgba(254, 254, 230, 0.918);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Syne;
+  text-transform: uppercase;
+  position: relative;
+}
+#container .pomodoro-page .top h1 {
+  font-size: 100px;
+  color: rgb(23, 23, 23);
+}
+#container .pomodoro-page .top p {
+  position: absolute;
+  top: 10%;
+  right: 2%;
   height: 50px;
   width: 50px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(128, 128, 128, 0.418);
+  background-color: rgba(27, 27, 27, 0.418);
 }
-#container .pomodoro-page .right p i {
+#container .pomodoro-page .top p i {
+  color: white;
   pointer-events: none;
+}
+#container .pomodoro-page .bot {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 85%;
+  gap: 10px;
+}
+#container .pomodoro-page .bot .inside {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.089);
+  border-radius: 5px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+#container .pomodoro-page .bot .inside .timerDiv {
+  border-radius: 10px;
+  -webkit-backdrop-filter: blur(50px);
+          backdrop-filter: blur(50px);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  overflow: hidden;
+  width: 50%;
+}
+#container .pomodoro-page .bot .inside .timerDiv .tabs {
+  width: 100%;
+  background-color: black;
+  font-size: 30px;
+  font-family: nasa;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+#container .pomodoro-page .bot .inside .timerDiv .tabs .pomo {
+  background-color: rgb(145, 0, 193);
+}
+#container .pomodoro-page .bot .inside .timerDiv .tabs .longBreak {
+  background-color: rgb(209, 72, 255);
+}
+#container .pomodoro-page .bot .inside .timerDiv .tabs .shortBreak {
+  background-color: rgb(225, 134, 255);
+}
+#container .pomodoro-page .bot .inside .timerDiv .tabs .longBreak,
+#container .pomodoro-page .bot .inside .timerDiv .tabs .pomo,
+#container .pomodoro-page .bot .inside .timerDiv .tabs .shortBreak {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  padding: 20px;
+  transition: all 0.3s ease-in-out;
+  border-bottom: 1px solid transparent;
+  width: 33.3%;
+  text-align: center;
+}
+#container .pomodoro-page .bot .inside .timerDiv .tabs .shortBreak:hover,
+#container .pomodoro-page .bot .inside .timerDiv .tabs .pomo:hover,
+#container .pomodoro-page .bot .inside .timerDiv .tabs .longBreak:hover {
+  color: rgba(254, 254, 230, 0.918);
+  background-color: rgb(34, 34, 34);
+  border-bottom: 1px solid rgb(255, 255, 255);
+}
+#container .pomodoro-page .bot .inside .timerDiv .tabs .shortBreak:active,
+#container .pomodoro-page .bot .inside .timerDiv .tabs .pomo:active,
+#container .pomodoro-page .bot .inside .timerDiv .tabs .longBreak:active {
+  transform: scale(0.9);
+  background-color: rgb(92, 92, 92);
+}
+#container .pomodoro-page .bot .inside .timerDiv .timer {
+  width: 100%;
+  height: 300px;
+  font-size: 250px;
+  font-family: nasa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid rgba(191, 0, 255, 0.267);
+  border-right: 1px solid rgba(191, 0, 255, 0.267);
+}
+#container .pomodoro-page .bot .inside .timerDiv .timer span {
+  display: flex;
+  flex-direction: column;
+  font-size: 30px;
+  gap: 20px;
+}
+#container .pomodoro-page .bot .inside .timerDiv .btn {
+  background-color: black;
+  width: 100%;
+  display: flex;
+  gap: 1px;
+}
+#container .pomodoro-page .bot .inside .timerDiv .btn .btn1 {
+  width: 50%;
+  border: none;
+  padding: 20px 50px;
+  font-size: 50px;
+  font-family: nasa;
+  transition: all 0.3s ease;
+  background-color: rgba(254, 254, 230, 0.918);
+  cursor: pointer;
+}
+#container .pomodoro-page .bot .inside .timerDiv .btn .btn2 {
+  width: 50%;
+  border: none;
+  padding: 20px 50px;
+  font-size: 50px;
+  font-family: nasa;
+  transition: all 0.3s ease;
+  background-color: rgb(200, 52, 52);
+  cursor: pointer;
+}
+#container .pomodoro-page .bot .inside .timerDiv .btn .btn1:hover,
+#container .pomodoro-page .bot .inside .timerDiv .btn .btn2:hover {
+  color: rgba(254, 254, 230, 0.918);
+  background-color: rgb(34, 34, 34);
+}
+#container .pomodoro-page .bot .inside .timerDiv .btn .btn1:active,
+#container .pomodoro-page .bot .inside .timerDiv .btn .btn2:active {
+  transform: scale(0.95);
+  background-color: rgb(92, 92, 92);
 }
 #container .kanban-page {
   position: absolute;

@@ -1,21 +1,21 @@
-function pages() {
-  let cards = document.querySelectorAll(".elem");
-  let pages = document.querySelectorAll(".pages");
-  cards.forEach((card) => {
-    card.addEventListener("click", (e) => {
-      const cardId = e.currentTarget.id;
-      pages.forEach((page) => {
-        page.style.display = page.id === cardId ? "flex" : "";
-      });
-    });
-  });
-  pages.forEach((e) => {
-    let p = e.querySelector("p");
-    p.addEventListener("click", () => {
-      e.style.display = "none";
-    });
-  });
-}
+// function pages() {
+//   let cards = document.querySelectorAll(".elem");
+//   let pages = document.querySelectorAll(".pages");
+//   cards.forEach((card) => {
+//     card.addEventListener("click", (e) => {
+//       const cardId = e.currentTarget.id;
+//       pages.forEach((page) => {
+//         page.style.display = page.id === cardId ? "flex" : "";
+//       });
+//     });
+//   });
+//   pages.forEach((e) => {
+//     let p = e.querySelector("p");
+//     p.addEventListener("click", () => {
+//       e.style.display = "none";
+//     });
+//   });
+// }
 
 function todo() {
   let inputTitle = document.querySelector("form .inp");
@@ -150,7 +150,34 @@ function motivationalQuote() {
   });
 }
 
-pages();
-motivationalQuote();
-dailyPlanner();
-todo();
+function pomoDoro() {
+  let pomodoroTab = document.querySelector(
+    ".pomodoro-page .bot .timerDiv .tabs .pomo"
+  );
+  let shortBreakTab = document.querySelector(
+    ".pomodoro-page .bot .timerDiv .tabs .shortBreak"
+  );
+  let longBreakTab = document.querySelector(
+    ".pomodoro-page .bot .timerDiv .tabs .longBreak"
+  );
+  let timerDiv = document.querySelector(".pomodoro-page .bot .timerDiv .timer");
+  let startBtn = document.querySelector(
+    ".pomodoro-page .bot .timerDiv .btn .btn1"
+  );
+  let resetBtn = document.querySelector(
+    ".pomodoro-page .bot .timerDiv .btn .btn2"
+  );
+
+  pomodoroTotaltime = 1500;
+  longBreakTotaltime = 900;
+  shortBreakTotaltime = 300;
+
+  startBtn.addEventListener("click", () => {
+    console.log("clicked");
+  });
+}
+pomoDoro();
+// pages();
+// motivationalQuote();
+// dailyPlanner();
+// todo();
