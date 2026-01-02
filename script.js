@@ -168,12 +168,94 @@ function pomoDoro() {
     ".pomodoro-page .bot .timerDiv .btn .btn2"
   );
 
-  pomodoroTotaltime = 1500;
-  longBreakTotaltime = 900;
-  shortBreakTotaltime = 300;
+  //timers
+  const timer1 = {
+    minutes: 25,
+    seconds: 0,
+    startMinutes: 25,
+    intervalId: null,
+  };
+  const timer2 = {
+    minutes: 5,
+    seconds: 0,
+    startMinutes: 5,
+    intervalId: null,
+  };
+  const timer3 = {
+    minutes: 10,
+    seconds: 0,
+    startMinutes: 10,
+    intervalId: null,
+  };
+
+  let activeTimer = timer1;
+
+  //reset the time
+  function reset(timer) {
+    clearInterval(timer.intervalId);
+    timer.intervalId = null;
+    timer.minutes = timer.startMinutes;
+    timer.seconds = 0;
+    render(timer);
+  }
+
+  //render on screen
+  function render(timer) {
+    timerDiv.innerHTML = `${timer.minutes} 
+    <span><i class="ri-circle-fill"></i><i class="ri-circle-fill"></i></span>
+    ${timer.seconds.toString().padStart(2, "0")}`;
+  }
+
+  //updateds the time
+  function updateTimer(timer) {
+    if (timer.intervalId) return;
+
+    timer.intervalId = setInterval(() => {
+      if (timer.minutes === 0 && timer.seconds === 0) {
+        clearInterval(timer.intervalId);
+        timer.intervalId = null;
+        return;
+      }
+
+      if (timer.seconds === 0) {
+        timer.minutes--;
+        timer.seconds = 59;
+      } else {
+        timer.seconds--;
+      }
+
+      render(timer);
+    }, 1000);
+  }
+  // switch timer and resets the old timer instantly
+  function switchTimer(newTimer) {
+    // 1️⃣ Reset the currently active timer
+    reset(activeTimer);
+
+    // 2️⃣ Switch active timer
+    activeTimer = newTimer;
+
+    // 3️⃣ Render the new timer
+    render(activeTimer);
+  }
+
+  pomodoroTab.addEventListener("click", () => {
+    switchTimer(timer1);
+  });
+
+  shortBreakTab.addEventListener("click", () => {
+    switchTimer(timer2);
+  });
+  longBreakTab.addEventListener("click", () => {
+    switchTimer(timer3);
+  });
 
   startBtn.addEventListener("click", () => {
-    console.log("clicked");
+    updateTimer(activeTimer);
+  });
+
+  resetBtn.addEventListener("click", () => {
+    reset(activeTimer);
   });
 }
 pomoDoro();
