@@ -1,21 +1,21 @@
-// function pages() {
-//   let cards = document.querySelectorAll(".elem");
-//   let pages = document.querySelectorAll(".pages");
-//   cards.forEach((card) => {
-//     card.addEventListener("click", (e) => {
-//       const cardId = e.currentTarget.id;
-//       pages.forEach((page) => {
-//         page.style.display = page.id === cardId ? "flex" : "";
-//       });
-//     });
-//   });
-//   pages.forEach((e) => {
-//     let p = e.querySelector("p");
-//     p.addEventListener("click", () => {
-//       e.style.display = "none";
-//     });
-//   });
-// }
+function pages() {
+  let cards = document.querySelectorAll(".elem");
+  let pages = document.querySelectorAll(".pages");
+  cards.forEach((card) => {
+    card.addEventListener("click", (e) => {
+      const cardId = e.currentTarget.id;
+      pages.forEach((page) => {
+        page.style.display = page.id === cardId ? "flex" : "";
+      });
+    });
+  });
+  pages.forEach((e) => {
+    let p = e.querySelector("p");
+    p.addEventListener("click", () => {
+      e.style.display = "none";
+    });
+  });
+}
 
 function todo() {
   let inputTitle = document.querySelector("form .inp");
@@ -102,7 +102,7 @@ function dailyPlanner() {
       const startHour = 5 + idx;
       const endHour = startHour + 1;
 
-      return `${formatTime(startHour)}--${formatTime(endHour)}`;
+      return `${formatTime(startHour)}-${formatTime(endHour)}`;
     });
 
     hours.forEach((elem, idx) => {
@@ -259,7 +259,7 @@ function pomoDoro() {
   });
 }
 pomoDoro();
-// pages();
-// motivationalQuote();
-// dailyPlanner();
-// todo();
+pages();
+motivationalQuote();
+dailyPlanner();
+todo();

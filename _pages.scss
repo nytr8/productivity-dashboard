@@ -311,11 +311,10 @@
     animation: hero-gradient-animation 10s linear infinite alternate;
     background-blend-mode: normal, normal, normal, normal;
     position: absolute;
-    background-color: rgb(52, 78, 110);
+    background-color: rgb(13, 78, 158);
     height: 100%;
     width: 100%;
     z-index: 5;
-
     display: none;
     // display: flex;
     align-items: center;
@@ -382,14 +381,19 @@
           align-items: center;
           width: 45%;
           overflow: hidden;
-          border-radius: 5px;
-          border: 1px solid rgba(255, 255, 255, 0.31);
+          border-radius: 10px;
+          border: 1px solid rgb(13, 78, 158);
+          background: linear-gradient(
+            45deg,
+            rgba(0, 115, 255, 0),
+            rgba(22, 22, 22, 0.397)
+          );
           p {
-            width: 20%;
-            font-size: 13px;
+            width: 25%;
+            font-size: 25px;
             text-align: center;
             border-right: 1px solid rgb(255, 255, 255);
-            font-family: ceta;
+            font-family: nasa;
             padding: 10px;
             color: rgba(254, 254, 230, 0.918);
             white-space: nowrap;
@@ -398,20 +402,21 @@
             all: unset;
             flex: 1;
             box-sizing: border-box;
-            font-family: ceta;
+            font-family: nasa;
             padding: 10px;
-            font-size: 15px;
+            font-size: 25px;
             line-height: 40px;
             color: rgba(254, 254, 230, 0.918);
-            text-transform: capitalize;
+
             font-weight: 200;
             overflow-x: auto;
           }
           input::placeholder {
             color: rgba(166, 166, 166, 0.246);
-            font-family: ceta;
-            text-transform: capitalize;
+            font-family: nasa;
+
             opacity: 1;
+            font-size: 20px;
             transition: opacity 0.2s ease;
           }
           input:focus::placeholder {
@@ -665,8 +670,8 @@
     width: 100%;
     z-index: 5;
     background-color: rgb(120, 0, 160);
-    // display: none;
-    display: flex;
+    display: none;
+    // display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: space-around;
