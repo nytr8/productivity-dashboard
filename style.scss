@@ -95,11 +95,12 @@ main {
     gap: 10px;
     padding: 10px;
 
-    .top-left.topData {
+    .top-left.weather-sec1 {
       border-top: 1px solid rgba(128, 128, 128, 0.417);
       border-radius: 20px;
       grid-area: top-left;
       backdrop-filter: blur(10px);
+      overflow: hidden;
       padding: 20px;
       color: white;
       font-family: helvetica neue, open sans, Helvetica, Arial, sans-serif;
@@ -109,6 +110,8 @@ main {
       align-items: center;
       gap: 20px;
       text-align: center;
+      position: relative;
+      z-index: 1;
       .top {
         h1 {
           font-size: 80px;
@@ -123,11 +126,23 @@ main {
       .bot {
         h2 {
           line-height: 1.5;
-          font-size: 25px;
+          font-size: 20px;
           letter-spacing: 10px;
         }
       }
     }
+    .top-left.weather-sec1::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 100%; /* height of background */
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1799 1799' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      background-blend-mode: screen;
+      z-index: 3;
+      opacity: 0.2;
+    }
+
     .top-mid {
       border-top: 1px solid rgba(128, 128, 128, 0.417);
       border-radius: 20px;
@@ -208,7 +223,7 @@ main {
           background-position: 90% 50%;
           line-height: 0.9;
           text-align: justify;
-          filter: contrast(100%) brightness(150%) saturate(200%);
+          filter: contrast(100%) brightness(150%) saturate(150%);
         }
       }
     }
@@ -353,39 +368,80 @@ main {
     .dailyplanner-card:hover {
       scale: 0.99;
     }
-    .bot-top-left {
+    .bot-top-left.weather-sec2 {
       font-family: helvetica neue, open sans, Helvetica, Arial, sans-serif;
       border-radius: 20px;
       backdrop-filter: blur(10px);
       grid-area: bot-top-left;
-      padding: 20px;
+      overflow: hidden;
+      gap: 10px;
       display: flex;
       align-items: center;
-      justify-content: space-around;
-      gap: 20px;
+      justify-content: space-between;
       color: white;
       .left {
+        width: 75%;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        background: linear-gradient(to right, #202020, #3e005969);
+        box-shadow: inset -8px 0px 10px 0.2px #e9b5e8;
         p {
           font-size: 25px;
-          padding: 10px;
+          padding: 10px 30px;
           margin: 5px;
-          background-color: red;
+          border-radius: 8px;
         }
       }
       .right {
+        width: 25%;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        background: linear-gradient(to left, #202020d2, #3e005969);
+        box-shadow: inset 8px 0px 10px 0.2px #e9b5e8;
         p {
+          border-radius: 8px;
           margin: 5px;
-          background-color: red;
           font-size: 25px;
           padding: 10px;
         }
       }
     }
-    .bot-bot-left {
+    .bot-top-left::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 100%; /* height of background */
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1799 1799' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      background-blend-mode: screen;
+      z-index: 3;
+      opacity: 0.2;
+    }
+    .bot-bot-left.weather-sec3 {
       border-bottom: 1px solid rgb(67, 67, 67);
       border-radius: 20px;
       backdrop-filter: blur(10px);
       grid-area: bot-bot-left;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      h1 {
+        font-size: 100px;
+        color: white;
+        font-family: nasa;
+      }
+    }
+    .bot-bot-left::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 100%; /* height of background */
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1799 1799' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      background-blend-mode: screen;
+      z-index: 3;
+      opacity: 0.2;
     }
     .bot-mid-left.moti-card {
       grid-area: bot-mid-left;
@@ -395,111 +451,40 @@ main {
       border-top: 1px solid rgba(128, 128, 128, 0.417);
       display: flex;
       flex-direction: column-reverse;
+      justify-content: space-between;
       padding: 10px;
       border-radius: 20px;
       backdrop-filter: blur(10px);
       transition: all 0.2s ease;
       .textdiv {
-        width: 100%;
-        height: 90%;
+        // background-color: red;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         overflow: hidden;
 
-        h1 {
-          width: 80%;
-          color: white;
-          font-family: Syne;
-          font-size: 50px;
-          line-height: 1;
-          white-space: normal;
-          word-break: break-word;
-          overflow-wrap: break-word;
-          text-transform: uppercase;
+        div {
+          h1,
+          h2 {
+            color: white;
+            font-family: Syne;
+            line-height: 1;
+            pointer-events: none;
+            white-space: normal;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            text-transform: uppercase;
+          }
+          h1 {
+            font-size: 40px;
+          }
+          h2 {
+            font-size: 50px;
+          }
         }
         button {
-          height: 80%;
-          width: 20%;
-          text-align: center;
-          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-            Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-            sans-serif;
-          text-transform: uppercase;
-          font-weight: bold;
-          padding: 10px;
-          color: white;
-          border-radius: 7px;
-          margin-top: 10px;
-          background-color: rgba(135, 192, 209, 0.067);
-          border: none;
-          border: 1px solid rgba(128, 128, 128, 0.807);
-          backdrop-filter: blur(10px);
-          transition: all 0.5 ease;
-        }
-        button:hover {
-          background-color: rgba(101, 101, 101, 0.693);
-          transform: scale(0.99);
-        }
-      }
-
-      .imgdiv {
-        height: 10%;
-        width: 100%;
-        overflow: hidden;
-        border-radius: 15px;
-        height: 100%;
-        pointer-events: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.401);
-        img {
-          height: 100%;
-          width: 100%;
-          object-fit: cover;
-          object-position: 50% 20%;
-          pointer-events: none;
-        }
-      }
-    }
-    .moti-card:hover {
-      scale: 0.99;
-    }
-    .bot-mid-right.pomo-card {
-      grid-area: bot-mid-right;
-      border-bottom: 1px solid rgb(67, 67, 67);
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      border-top: 1px solid rgba(128, 128, 128, 0.417);
-      display: flex;
-      justify-content: space-between;
-      flex-direction: column;
-      padding: 10px;
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      .textdiv {
-        width: 100%;
-        height: 90%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        pointer-events: none;
-        overflow: hidden;
-
-        h1 {
-          height: 90%;
-          width: 80%;
-          color: white;
-          font-family: Syne;
-          font-size: 50px;
-          line-height: 1;
-          pointer-events: none;
-          white-space: normal;
-          word-break: break-word;
-          overflow-wrap: break-word;
-          text-transform: uppercase;
-        }
-        button {
-          height: 80%;
-          width: 20%;
+          height: 85%;
+          margin-right: 3px;
           text-align: center;
           font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
             Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
@@ -522,15 +507,13 @@ main {
           transform: scale(0.99);
         }
       }
-
       .imgdiv {
-        height: 10%;
         width: 100%;
-        overflow: hidden;
+        height: 70%;
         border-radius: 15px;
-        height: 100%;
         pointer-events: none;
         border-bottom: 1px solid rgba(255, 255, 255, 0.401);
+        overflow: hidden;
         img {
           height: 100%;
           width: 100%;
@@ -540,41 +523,52 @@ main {
         }
       }
     }
-    .bot-right.kanban-card {
-      grid-area: bot-right;
+    .moti-card:hover {
+      scale: 0.99;
+    }
+    .bot-mid-right.pomo-card {
+      grid-area: bot-mid-right;
       border-bottom: 1px solid rgb(67, 67, 67);
       border-radius: 20px;
       backdrop-filter: blur(10px);
       border-top: 1px solid rgba(128, 128, 128, 0.417);
       display: flex;
+      justify-content: space-between;
       flex-direction: column-reverse;
       padding: 10px;
       border-radius: 20px;
       backdrop-filter: blur(10px);
-      .textdiv {
-        width: 100%;
-        height: 90%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        pointer-events: none;
-        overflow: hidden;
+      transition: all 0.2s ease;
 
-        h1 {
-          width: 80%;
-          color: white;
-          font-family: Syne;
-          font-size: 50px;
-          line-height: 1;
-          pointer-events: none;
-          white-space: normal;
-          word-break: break-word;
-          overflow-wrap: break-word;
-          text-transform: uppercase;
+      .textdiv {
+        // background-color: red;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        overflow: hidden;
+        gap: 10px;
+        div {
+          h1,
+          h2 {
+            color: white;
+            font-family: Syne;
+            line-height: 1;
+            pointer-events: none;
+            white-space: normal;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            text-transform: uppercase;
+          }
+          h1 {
+            font-size: 40px;
+          }
+          h2 {
+            font-size: 50px;
+          }
         }
         button {
-          height: 80%;
-          width: 20%;
+          height: 85%;
+          margin-right: 3px;
           text-align: center;
           font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
             Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
@@ -584,7 +578,7 @@ main {
           padding: 10px;
           color: white;
           border-radius: 7px;
-          margin-top: 10px;
+          // margin-top: 10px;
           background-color: rgba(135, 192, 209, 0.067);
           border: none;
           border: 1px solid rgba(128, 128, 128, 0.807);
@@ -597,23 +591,107 @@ main {
           transform: scale(0.99);
         }
       }
-
       .imgdiv {
-        height: 10%;
         width: 100%;
-        overflow: hidden;
+        height: 70%;
         border-radius: 15px;
-        height: 100%;
         pointer-events: none;
         border-bottom: 1px solid rgba(255, 255, 255, 0.401);
+        overflow: hidden;
         img {
           height: 100%;
           width: 100%;
           object-fit: cover;
-          object-position: 50% 38%;
+          object-position: 50% 20%;
           pointer-events: none;
         }
       }
+    }
+    .pomo-card:hover {
+      scale: 0.99;
+    }
+    .bot-right.kanban-card {
+      grid-area: bot-right;
+      border-bottom: 1px solid rgb(67, 67, 67);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(128, 128, 128, 0.417);
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: space-between;
+      padding: 10px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      transition: all 0.2s ease;
+      .textdiv {
+        // background-color: red;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        overflow: hidden;
+
+        div {
+          h1,
+          h2 {
+            color: white;
+            font-family: Syne;
+            line-height: 1;
+            pointer-events: none;
+            white-space: normal;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            text-transform: uppercase;
+          }
+          h1 {
+            font-size: 40px;
+          }
+          h2 {
+            font-size: 50px;
+          }
+        }
+        button {
+          height: 85%;
+          margin-right: 3px;
+          text-align: center;
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+            Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+            sans-serif;
+          text-transform: uppercase;
+          font-weight: bold;
+          padding: 10px;
+          color: white;
+          border-radius: 7px;
+          // margin-top: 10px;
+          background-color: rgba(135, 192, 209, 0.067);
+          border: none;
+          border: 1px solid rgba(128, 128, 128, 0.807);
+          backdrop-filter: blur(10px);
+          // pointer-events: none;
+          transition: all 0.5 ease;
+        }
+        button:hover {
+          background-color: rgba(101, 101, 101, 0.693);
+          transform: scale(0.99);
+        }
+      }
+      .imgdiv {
+        width: 100%;
+        height: 70%;
+        border-radius: 15px;
+        pointer-events: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.401);
+        overflow: hidden;
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          object-position: 50% 20%;
+          pointer-events: none;
+        }
+      }
+    }
+    .kanban-card:hover {
+      scale: 0.99;
     }
   }
 }
