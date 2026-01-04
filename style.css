@@ -39,7 +39,7 @@ main {
   --x-2: 13%;
   --y-2: 82%;
   --c-2: hsla(53.999999999999886, 0%, 0%, 0.49);
-  --c-3: hsla(299, 4%, 36%, 1);
+  --c-3: rgb(89, 88, 95);
   --y-3: 7%;
   --x-3: 24%;
   background-color: hsl(0, 0%, 0%);
@@ -843,9 +843,6 @@ main {
   height: 100%;
   width: 100%;
   border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.043);
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1.5fr 1.5fr 1fr;
@@ -854,37 +851,53 @@ main {
   padding: 10px;
 }
 #container #bot-section .top-left.weather-sec1 {
-  border-top: 1px solid rgba(128, 128, 128, 0.417);
+  border: 1px solid rgba(128, 128, 128, 0.417);
   border-radius: 20px;
   grid-area: top-left;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
   overflow: hidden;
-  padding: 20px;
+  padding: 40px;
   color: white;
   font-family: helvetica neue, open sans, Helvetica, Arial, sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
   text-align: center;
   position: relative;
   z-index: 1;
 }
 #container #bot-section .top-left.weather-sec1 .top h1 {
-  font-size: 80px;
-  font-family: nasa;
+  font-size: 50px;
+  padding: 10px;
   border-bottom: 1px solid white;
 }
 #container #bot-section .top-left.weather-sec1 .top h2 {
   font-size: 150px;
   font-family: nasa;
 }
-#container #bot-section .top-left.weather-sec1 .bot h2 {
+#container #bot-section .top-left.weather-sec1 .bot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+#container #bot-section .top-left.weather-sec1 .bot img {
+  width: 110px;
+}
+#container #bot-section .top-left.weather-sec1 .bot div {
   line-height: 1.5;
-  font-size: 20px;
-  letter-spacing: 10px;
+  padding: 10px;
+  border-left: 1px solid white;
+}
+#container #bot-section .top-left.weather-sec1 .bot div h2 {
+  font-size: 30px;
+  letter-spacing: 3px;
+}
+#container #bot-section .top-left.weather-sec1 .bot div h3 {
+  font-size: 15px;
+  letter-spacing: 3px;
 }
 #container #bot-section .top-left.weather-sec1::before {
   content: "";
@@ -898,7 +911,6 @@ main {
   opacity: 0.2;
 }
 #container #bot-section .top-mid {
-  border-top: 1px solid rgba(128, 128, 128, 0.417);
   border-radius: 20px;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
@@ -908,7 +920,8 @@ main {
   justify-content: center;
   align-items: center;
   gap: 10px;
-  background: url(https://i.pinimg.com/736x/de/83/f1/de83f1ab512f3188b36468f5aa79512b.jpg);
+  background-color: black;
+  border: 1px solid rgba(178, 178, 178, 0.417);
 }
 #container #bot-section .top-mid .div1 {
   height: 100%;
@@ -919,13 +932,12 @@ main {
   overflow: hidden;
   height: 30%;
   width: 100%;
-  border-top: 1px solid white;
 }
 #container #bot-section .top-mid .div1 div img {
   height: 100%;
   width: 100%;
-  -o-object-position: center;
-     object-position: center;
+  -o-object-position: 50% 20%;
+     object-position: 50% 20%;
   -o-object-fit: cover;
      object-fit: cover;
   filter: saturate(80%) contrast(90%);
@@ -940,10 +952,21 @@ main {
   text-transform: capitalize;
   white-space: normal;
   word-break: break-word;
-  font-size: 95px;
+  font-size: 85px;
   font-family: Syne;
   color: white;
   opacity: 1;
+  position: relative;
+}
+#container #bot-section .top-mid .div1 h1::after {
+  content: "";
+  position: absolute;
+  bottom: 20%;
+  right: 0;
+  width: 100px; /* length of the corner */
+  height: 100px;
+  border-right: 3px solid rgb(255, 255, 255);
+  border-bottom: 3px solid rgb(255, 255, 255);
 }
 #container #bot-section .top-mid .div2 {
   height: 100%;
@@ -954,16 +977,15 @@ main {
   overflow: hidden;
   height: 60%;
   width: 100%;
-  border-bottom: 1px solid white;
 }
 #container #bot-section .top-mid .div2 div img {
   height: 100%;
-  width: 100%;
-  -o-object-position: center;
-     object-position: center;
+  width: 150%;
+  -o-object-position: 0% 80%;
+     object-position: 0% 80%;
   -o-object-fit: cover;
      object-fit: cover;
-  filter: saturate(80%) contrast(90%);
+  filter: grayscale(100%);
 }
 #container #bot-section .top-mid .div2 h1 {
   align-self: flex-end;
@@ -974,20 +996,20 @@ main {
   word-break: break-word;
   font-size: 85px;
   font-family: Syne;
-  color: rgba(251, 251, 251, 0);
+  color: rgb(251, 251, 251);
   border-radius: 15px;
-  background: url(https://i.pinimg.com/736x/f8/ca/ab/f8caab76595123b860d0feab69e2f224.jpg);
   -webkit-text-stroke: 1px rgba(255, 0, 200, 0);
   -webkit-background-clip: text;
           background-clip: text;
-  background-position: 90% 50%;
+  background-position: center;
+  background-size: 800px;
   line-height: 0.9;
   text-align: justify;
   filter: contrast(100%) brightness(150%) saturate(150%);
 }
 #container #bot-section .top-top-right.todo-card {
   grid-area: top-top-right;
-  border-top: 1px solid rgba(128, 128, 128, 0.417);
+  border: 1px solid rgba(128, 128, 128, 0.417);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -996,7 +1018,7 @@ main {
   border-radius: 20px;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 #container #bot-section .top-top-right.todo-card .textdiv {
   width: 60%;
@@ -1050,20 +1072,20 @@ main {
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
-  filter: saturate(50%);
+  filter: contrast(150%) saturate(-50%);
 }
 #container #bot-section .todo-card:hover {
-  scale: 0.99;
+  scale: 0.98;
 }
 #container #bot-section .top-bot-right.dailyplanner-card {
   grid-area: top-bot-right;
-  border-top: 1px solid rgba(128, 128, 128, 0.417);
+  border: 1px solid rgba(128, 128, 128, 0.417);
   display: flex;
   padding: 10px;
   border-radius: 20px;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 #container #bot-section .top-bot-right.dailyplanner-card .textdiv {
   width: 50%;
@@ -1125,9 +1147,10 @@ main {
   pointer-events: none;
 }
 #container #bot-section .dailyplanner-card:hover {
-  scale: 0.99;
+  scale: 0.98;
 }
 #container #bot-section .bot-top-left.weather-sec2 {
+  border: 1px solid rgba(128, 128, 128, 0.417);
   font-family: helvetica neue, open sans, Helvetica, Arial, sans-serif;
   border-radius: 20px;
   -webkit-backdrop-filter: blur(10px);
@@ -1139,36 +1162,41 @@ main {
   align-items: center;
   justify-content: space-between;
   color: white;
+  font-weight: bold;
 }
 #container #bot-section .bot-top-left.weather-sec2 .left {
-  width: 75%;
+  width: 70%;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
-  background: linear-gradient(to right, #202020, rgba(62, 0, 89, 0.4117647059));
-  box-shadow: inset -8px 0px 10px 0.2px #e9b5e8;
+  background: linear-gradient(to right, #202020, rgba(87, 6, 120, 0.368627451));
+  box-shadow: inset -8px 0px 10px 0.2px rgb(255, 160, 255);
 }
 #container #bot-section .bot-top-left.weather-sec2 .left p {
-  font-size: 25px;
-  padding: 10px 30px;
+  letter-spacing: 3px;
+  font-size: 20px;
+  padding: 10px;
+  padding-left: 50px;
   margin: 5px;
   border-radius: 8px;
 }
 #container #bot-section .bot-top-left.weather-sec2 .right {
-  width: 25%;
+  width: 30%;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
-  background: linear-gradient(to left, rgba(32, 32, 32, 0.8235294118), rgba(62, 0, 89, 0.4117647059));
-  box-shadow: inset 8px 0px 10px 0.2px #e9b5e8;
+  background: linear-gradient(to left, rgba(32, 32, 32, 0.8235294118), rgba(87, 6, 120, 0.368627451) 50%);
+  box-shadow: inset 8px 0px 10px 0.2px rgb(255, 160, 255);
 }
 #container #bot-section .bot-top-left.weather-sec2 .right p {
+  letter-spacing: 3px;
   border-radius: 8px;
   margin: 5px;
-  font-size: 25px;
-  padding: 10px;
+  font-size: 20px;
+  padding: 10px 20px;
 }
 #container #bot-section .bot-top-left::before {
   content: "";
   position: absolute;
+  top: 0%;
   left: 0;
   width: 100%;
   height: 100%; /* height of background */
@@ -1178,7 +1206,7 @@ main {
   opacity: 0.2;
 }
 #container #bot-section .bot-bot-left.weather-sec3 {
-  border-bottom: 1px solid rgb(67, 67, 67);
+  border: 1px solid #b562d6;
   border-radius: 20px;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
@@ -1193,6 +1221,10 @@ main {
   color: white;
   font-family: nasa;
 }
+#container #bot-section .bot-bot-left.weather-sec3 h1 .seconds {
+  font-family: helvetica neue, open sans, Helvetica, Arial, sans-serif;
+  font-size: 50px;
+}
 #container #bot-section .bot-bot-left::before {
   content: "";
   position: absolute;
@@ -1206,18 +1238,17 @@ main {
 }
 #container #bot-section .bot-mid-left.moti-card {
   grid-area: bot-mid-left;
-  border-bottom: 1px solid rgb(67, 67, 67);
+  border: 1px solid rgba(128, 128, 128, 0.417);
   border-radius: 20px;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(128, 128, 128, 0.417);
   display: flex;
   flex-direction: column-reverse;
   justify-content: space-between;
   padding: 10px;
   border-radius: 20px;
   backdrop-filter: blur(10px);
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 #container #bot-section .bot-mid-left.moti-card .textdiv {
   display: flex;
@@ -1279,24 +1310,24 @@ main {
   -o-object-position: 50% 20%;
      object-position: 50% 20%;
   pointer-events: none;
+  filter: contrast(150%);
 }
 #container #bot-section .moti-card:hover {
-  scale: 0.99;
+  scale: 0.98;
 }
 #container #bot-section .bot-mid-right.pomo-card {
   grid-area: bot-mid-right;
-  border-bottom: 1px solid rgb(67, 67, 67);
+  border: 1px solid rgba(128, 128, 128, 0.417);
   border-radius: 20px;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(128, 128, 128, 0.417);
   display: flex;
   justify-content: space-between;
   flex-direction: column-reverse;
   padding: 10px;
   border-radius: 20px;
   backdrop-filter: blur(10px);
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 #container #bot-section .bot-mid-right.pomo-card .textdiv {
   display: flex;
@@ -1356,20 +1387,19 @@ main {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  -o-object-position: 50% 20%;
-     object-position: 50% 20%;
+  -o-object-position: 50% 50%;
+     object-position: 50% 50%;
   pointer-events: none;
 }
 #container #bot-section .pomo-card:hover {
-  scale: 0.99;
+  scale: 0.98;
 }
 #container #bot-section .bot-right.kanban-card {
   grid-area: bot-right;
-  border-bottom: 1px solid rgb(67, 67, 67);
+  border: 1px solid rgba(128, 128, 128, 0.417);
   border-radius: 20px;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(128, 128, 128, 0.417);
   display: flex;
   flex-direction: column-reverse;
   justify-content: space-between;
@@ -1440,7 +1470,7 @@ main {
   pointer-events: none;
 }
 #container #bot-section .kanban-card:hover {
-  scale: 0.99;
+  scale: 0.98;
 }
 
 @keyframes hero-gradient-animation {

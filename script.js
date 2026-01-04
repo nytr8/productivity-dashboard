@@ -261,7 +261,41 @@ function pomoDoro() {
 
 function weather() {
   let apiKey = "e14e105c8eb24b31b0a155937260201";
-  let city = "India";
+  let placeDiv = document.querySelector(".weather-sec1 .place");
+  let tempDiv = document.querySelector(".weather-sec1 .temp");
+  let conditionDiv = document.querySelector(".weather-sec1 .condition");
+  let dateDiv = document.querySelector(".weather-sec1 .date");
+  let icon = document.querySelector(".weather-sec1 .icon");
+  let timeDiv = document.querySelector(".weather-sec3 h1");
+  let humidity = document.querySelector(".weather-sec2 .Humidity");
+  let wind = document.querySelector(".weather-sec2 .wind");
+  let feelLike = document.querySelector(".weather-sec2 .feelLike");
+
+  function getDate() {
+    const now = new Date();
+    const dayName = now.toLocaleString("en-US", { weekday: "long" });
+
+    const formattedDate = `${dayName}, ${now.getFullYear()}-${String(
+      now.getMonth() + 1
+    ).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+
+    // console.log(formattedDate);
+    dateDiv.innerHTML = formattedDate;
+  }
+  function updateClock() {
+    const now = new Date();
+
+    const hours = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+    const seconds = String(now.getSeconds()).padStart(2, "0");
+
+    timeDiv.innerHTML = `${hours}:${minutes}<span class="seconds">:${seconds}</span> `;
+  }
+  document.addEventListener("DOMContentLoaded", () => {
+    updateClock(); // show immediately
+    setInterval(updateClock, 1000); // update every second
+  });
+
   async function getWeather() {
     navigator.geolocation.getCurrentPosition(async (position) => {
       const lat = position.coords.latitude;
@@ -274,6 +308,14 @@ function weather() {
       const data = await response.json();
       console.log(data.location);
       console.log(data.current);
+      icon.src = data.current.condition.icon;
+      conditionDiv.innerHTML = data.current.condition.text;
+      placeDiv.innerHTML = data.location.name;
+      tempDiv.innerHTML = `${Math.floor(data.current.temp_c)}°C`;
+      humidity.innerHTML = `${Math.floor(data.current.humidity)}`;
+      wind.innerHTML = `${Math.floor(data.current.wind_kph)}km/h`;
+      feelLike.innerHTML = `${Math.floor(data.current.feelslike_c)}°C`;
+      getDate();
     });
   }
 
