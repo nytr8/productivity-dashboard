@@ -5,14 +5,16 @@ function pages() {
     card.addEventListener("click", (e) => {
       const cardId = e.currentTarget.id;
       pages.forEach((page) => {
-        page.style.display = page.id === cardId ? "flex" : "";
+        // page.style.display = page.id === cardId ? "flex" : "";
+        // page.style.transform = page.id === cardId ? "scale(1)" : "none";
+        page.classList.toggle("active", page.id === cardId);
       });
     });
   });
   pages.forEach((e) => {
     let p = e.querySelector("p");
     p.addEventListener("click", () => {
-      e.style.display = "none";
+      e.classList.remove("active");
     });
   });
 }
@@ -321,6 +323,7 @@ function weather() {
 
   getWeather();
 }
+
 weather();
 pomoDoro();
 pages();

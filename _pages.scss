@@ -33,20 +33,23 @@
         var(--c-3) var(--s-start-3),
         transparent var(--s-end-3)
       );
-    animation: hero-gradient-animation 10s linear infinite alternate;
+    animation: hero-gradient-animation 8s linear infinite alternate;
     background-blend-mode: normal, normal, normal, normal;
     position: absolute;
-    background-color: rgb(200, 52, 52);
+    background-color: rgb(103, 20, 20);
     height: 100%;
     width: 100%;
     z-index: 5;
-    display: none;
-    // display: flex;
+    display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: space-around;
     padding: 10px;
     gap: 10px;
+    transition: all 0.4s ease, opacity 0.3s ease;
+    transform: scale(0.5);
+    opacity: 0;
+    pointer-events: none;
     .top {
       height: 15%;
       width: 100%;
@@ -274,6 +277,11 @@
       }
     }
   }
+  .todo-page.active {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
   .dailyplanner-page {
     --c-0: hsla(266.99999999999983, 1%, 12%, 1);
     --y-0: 80%;
@@ -315,8 +323,13 @@
     height: 100%;
     width: 100%;
     z-index: 5;
-    display: none;
-    // display: flex;
+
+    display: flex;
+    transition: all 0.4s ease, opacity 0.3s ease;
+    transform: scale(0.5);
+    opacity: 0;
+    pointer-events: none;
+
     align-items: center;
     flex-direction: column;
     justify-content: space-around;
@@ -426,6 +439,11 @@
       }
     }
   }
+  .dailyplanner-page.active {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
   .motivational-page {
     --c-0: hsla(266.99999999999983, 1%, 12%, 1);
     --y-0: 80%;
@@ -460,16 +478,18 @@
         var(--c-3) var(--s-start-3),
         transparent var(--s-end-3)
       );
-    animation: hero-gradient-animation 10s linear infinite alternate;
+    animation: hero-gradient-animation 8s linear infinite alternate;
     background-blend-mode: normal, normal, normal, normal;
     position: absolute;
-    background-color: #b89b5b;
+    background-color: #504120;
     height: 100%;
     width: 100%;
     z-index: 5;
-
-    display: none;
-    // display: flex;
+    display: flex;
+    transition: all 0.4s ease, opacity 0.3s ease;
+    transform: scale(0.5);
+    opacity: 0;
+    pointer-events: none;
     align-items: center;
     flex-direction: column;
     justify-content: space-around;
@@ -629,6 +649,11 @@
       }
     }
   }
+  .motivational-page.active {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
   .pomodoro-page {
     --c-0: hsla(266.99999999999983, 1%, 12%, 1);
     --y-0: 80%;
@@ -663,15 +688,18 @@
         var(--c-3) var(--s-start-3),
         transparent var(--s-end-3)
       );
-    animation: hero-gradient-animation 10s linear infinite alternate;
+    animation: hero-gradient-animation 8s linear infinite alternate;
     background-blend-mode: normal, normal, normal, normal;
     position: absolute;
     height: 100%;
     width: 100%;
     z-index: 5;
-    background-color: rgb(120, 0, 160);
-    display: none;
-    // display: flex;
+    background-color: rgb(87, 0, 116);
+    display: flex;
+    transition: all 0.4s ease, opacity 0.3s ease;
+    transform: scale(0.5);
+    opacity: 0;
+    pointer-events: none;
     align-items: center;
     flex-direction: column;
     justify-content: space-around;
@@ -841,13 +869,22 @@
       }
     }
   }
+  .pomodoro-page.active {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
   .kanban-page {
     position: absolute;
     background-color: red;
     height: 100%;
     width: 100%;
     z-index: 5;
-    display: none;
+    display: flex;
+    transition: all 0.4s ease, opacity 0.3s ease;
+    transform: scale(0.5);
+    opacity: 0;
+    pointer-events: none;
     align-items: center;
     justify-content: space-around;
     gap: 20px;
@@ -867,5 +904,10 @@
         }
       }
     }
+  }
+  .kanban-page.active {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
   }
 }

@@ -44,7 +44,7 @@ main {
   --x-3: 24%;
   background-color: hsl(0, 0%, 0%);
   background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
-  animation: hero-gradient-animation 10s linear infinite alternate;
+  animation: hero-gradient-animation 8s linear infinite alternate;
   background-blend-mode: normal, normal, normal, normal;
   padding: 25px 50px;
   position: relative;
@@ -74,19 +74,23 @@ main {
   --x-3: 24%;
   background-color: hsl(0, 0%, 0%);
   background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
-  animation: hero-gradient-animation 10s linear infinite alternate;
+  animation: hero-gradient-animation 8s linear infinite alternate;
   background-blend-mode: normal, normal, normal, normal;
   position: absolute;
-  background-color: rgb(200, 52, 52);
+  background-color: rgb(103, 20, 20);
   height: 100%;
   width: 100%;
   z-index: 5;
-  display: none;
+  display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: space-around;
   padding: 10px;
   gap: 10px;
+  transition: all 0.4s ease, opacity 0.3s ease;
+  transform: scale(0.5);
+  opacity: 0;
+  pointer-events: none;
 }
 #container .todo-page .top {
   height: 15%;
@@ -306,6 +310,11 @@ main {
   background-color: rgb(1, 77, 1);
   color: white;
 }
+#container .todo-page.active {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
 #container .dailyplanner-page {
   --c-0: hsla(266.99999999999983, 1%, 12%, 1);
   --y-0: 80%;
@@ -328,7 +337,11 @@ main {
   height: 100%;
   width: 100%;
   z-index: 5;
-  display: none;
+  display: flex;
+  transition: all 0.4s ease, opacity 0.3s ease;
+  transform: scale(0.5);
+  opacity: 0;
+  pointer-events: none;
   align-items: center;
   flex-direction: column;
   justify-content: space-around;
@@ -442,6 +455,11 @@ main {
 #container .dailyplanner-page .bot .inside .items input:focus::placeholder {
   opacity: 0;
 }
+#container .dailyplanner-page.active {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
 #container .motivational-page {
   --c-0: hsla(266.99999999999983, 1%, 12%, 1);
   --y-0: 80%;
@@ -457,14 +475,18 @@ main {
   --x-3: 24%;
   background-color: hsl(0, 0%, 0%);
   background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
-  animation: hero-gradient-animation 10s linear infinite alternate;
+  animation: hero-gradient-animation 8s linear infinite alternate;
   background-blend-mode: normal, normal, normal, normal;
   position: absolute;
-  background-color: #b89b5b;
+  background-color: #504120;
   height: 100%;
   width: 100%;
   z-index: 5;
-  display: none;
+  display: flex;
+  transition: all 0.4s ease, opacity 0.3s ease;
+  transform: scale(0.5);
+  opacity: 0;
+  pointer-events: none;
   align-items: center;
   flex-direction: column;
   justify-content: space-around;
@@ -622,6 +644,11 @@ main {
     box-shadow: 0 0 0px #fdd264;
   }
 }
+#container .motivational-page.active {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
 #container .pomodoro-page {
   --c-0: hsla(266.99999999999983, 1%, 12%, 1);
   --y-0: 80%;
@@ -637,14 +664,18 @@ main {
   --x-3: 24%;
   background-color: hsl(0, 0%, 0%);
   background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
-  animation: hero-gradient-animation 10s linear infinite alternate;
+  animation: hero-gradient-animation 8s linear infinite alternate;
   background-blend-mode: normal, normal, normal, normal;
   position: absolute;
   height: 100%;
   width: 100%;
   z-index: 5;
-  background-color: rgb(120, 0, 160);
-  display: none;
+  background-color: rgb(87, 0, 116);
+  display: flex;
+  transition: all 0.4s ease, opacity 0.3s ease;
+  transform: scale(0.5);
+  opacity: 0;
+  pointer-events: none;
   align-items: center;
   flex-direction: column;
   justify-content: space-around;
@@ -815,13 +846,22 @@ main {
   transform: scale(0.95);
   background-color: rgb(92, 92, 92);
 }
+#container .pomodoro-page.active {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
 #container .kanban-page {
   position: absolute;
   background-color: red;
   height: 100%;
   width: 100%;
   z-index: 5;
-  display: none;
+  display: flex;
+  transition: all 0.4s ease, opacity 0.3s ease;
+  transform: scale(0.5);
+  opacity: 0;
+  pointer-events: none;
   align-items: center;
   justify-content: space-around;
   gap: 20px;
@@ -838,6 +878,11 @@ main {
 #container .kanban-page .right p i {
   pointer-events: none;
 }
+#container .kanban-page.active {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
 #container #bot-section {
   overflow: hidden;
   height: 100%;
@@ -849,6 +894,7 @@ main {
   grid-template-areas: "top-left top-mid top-mid top-top-right " "top-left top-mid top-mid top-bot-right" "bot-top-left bot-mid-left bot-mid-right bot-right" "bot-bot-left bot-mid-left bot-mid-right bot-right ";
   gap: 10px;
   padding: 10px;
+  /* 3. The rotation animation */
 }
 #container #bot-section .top-left.weather-sec1 {
   border: 1px solid rgba(128, 128, 128, 0.417);
@@ -911,17 +957,17 @@ main {
   opacity: 0.2;
 }
 #container #bot-section .top-mid {
-  border-radius: 20px;
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
   grid-area: top-mid;
-  padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
-  background-color: black;
-  border: 1px solid rgba(178, 178, 178, 0.417);
+  padding: 10px;
+  border-radius: 20px;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  background-color: rgb(0, 0, 0);
 }
 #container #bot-section .top-mid .div1 {
   height: 100%;
@@ -1006,6 +1052,35 @@ main {
   line-height: 0.9;
   text-align: justify;
   filter: contrast(100%) brightness(150%) saturate(150%);
+}
+#container #bot-section .top-mid::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(120deg, #48128c, #e2b7e4, #48128c, black);
+  background-size: 300% 300%;
+  animation: borderMove 6s linear infinite;
+  z-index: -1;
+}
+#container #bot-section .top-mid::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: black;
+  z-index: -1;
+}
+@keyframes borderMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 #container #bot-section .top-top-right.todo-card {
   grid-area: top-top-right;
@@ -1206,7 +1281,7 @@ main {
   opacity: 0.2;
 }
 #container #bot-section .bot-bot-left.weather-sec3 {
-  border: 1px solid #b562d6;
+  border: 1px solid #8f2bbd;
   border-radius: 20px;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
