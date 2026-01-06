@@ -1,23 +1,23 @@
-function pages() {
-  let cards = document.querySelectorAll(".elem");
-  let pages = document.querySelectorAll(".pages");
-  cards.forEach((card) => {
-    card.addEventListener("click", (e) => {
-      const cardId = e.currentTarget.id;
-      pages.forEach((page) => {
-        // page.style.display = page.id === cardId ? "flex" : "";
-        // page.style.transform = page.id === cardId ? "scale(1)" : "none";
-        page.classList.toggle("active", page.id === cardId);
-      });
-    });
-  });
-  pages.forEach((e) => {
-    let p = e.querySelector("p");
-    p.addEventListener("click", () => {
-      e.classList.remove("active");
-    });
-  });
-}
+// function pages() {
+//   let cards = document.querySelectorAll(".elem");
+//   let pages = document.querySelectorAll(".pages");
+//   cards.forEach((card) => {
+//     card.addEventListener("click", (e) => {
+//       const cardId = e.currentTarget.id;
+//       pages.forEach((page) => {
+//         // page.style.display = page.id === cardId ? "flex" : "";
+//         // page.style.transform = page.id === cardId ? "scale(1)" : "none";
+//         page.classList.toggle("active", page.id === cardId);
+//       });
+//     });
+//   });
+//   pages.forEach((e) => {
+//     let p = e.querySelector("p");
+//     p.addEventListener("click", () => {
+//       e.classList.remove("active");
+//     });
+//   });
+// }
 
 function todo() {
   let inputTitle = document.querySelector("form .inp");
@@ -272,6 +272,9 @@ function weather() {
   let humidity = document.querySelector(".weather-sec2 .Humidity");
   let wind = document.querySelector(".weather-sec2 .wind");
   let feelLike = document.querySelector(".weather-sec2 .feelLike");
+  let pm2 = document.querySelector(".weather-sec2 .pm2");
+  let uv = document.querySelector(".weather-sec2 .uv");
+  let visibility = document.querySelector(".weather-sec2 .visibility");
 
   function getDate() {
     const now = new Date();
@@ -315,8 +318,15 @@ function weather() {
       placeDiv.innerHTML = data.location.name;
       tempDiv.innerHTML = `${Math.floor(data.current.temp_c)}°C`;
       humidity.innerHTML = `${Math.floor(data.current.humidity)}`;
-      wind.innerHTML = `${Math.floor(data.current.wind_kph)}km/h`;
-      feelLike.innerHTML = `${Math.floor(data.current.feelslike_c)}°C`;
+      wind.innerHTML = `${Math.floor(
+        data.current.wind_kph
+      )}<span class="km">km/h</span> `;
+      feelLike.innerHTML = `${Math.floor(
+        data.current.feelslike_c
+      )}<span class="celcius">°C</span>`;
+      pm2.innerHTML = `${Math.floor(data.current.air_quality.pm2_5)}`;
+      uv.innerHTML = data.current.uv;
+      visibility.innerHTML = `${data.current.vis_km}<span class="km">km</span> `;
       getDate();
     });
   }
@@ -324,9 +334,88 @@ function weather() {
   getWeather();
 }
 
+function kanbanBoard() {
+  let todoDiv = document.querySelector(
+    ".kanban-page .bot .todo-sec .bottom-sec "
+  );
+  let addTaskBtn = document.querySelector(".kanban-page .bot .add-taskbtn");
+  let formDiv = document.querySelector(".kanban-page .bot .add-form");
+  let form = document.querySelector(".kanban-page .bot .add-form form");
+  let inputText = document.querySelector(
+    ".kanban-page .bot .add-form .task-input"
+  );
+  let inputDesc = document.querySelector(
+    ".kanban-page .bot .add-form .desc-input"
+  );
+  let submitBtn = document.querySelector(
+    ".kanban-page .bot .add-form .submit-btn"
+  );
+  let closeFormBtn = document.querySelector(
+    ".kanban-page .bot .add-form .close-form"
+  );
+  let inprogressDiv = document.querySelector(
+    ".kanban-page  .bot .inprogress-sec .bottom-sec"
+  );
+  let doneDiv = document.querySelector(
+    ".kanban-page  .bot .done-sec .bottom-sec"
+  );
+  let taskColumns = document.querySelectorAll(
+    ".kanban-page  .bot .task-column"
+  );
+  let items = document.querySelectorAll(
+    ".kanban-page .bot .bottom-sec .todo-items"
+  );
+
+  let dragItem = null;
+
+  //formopen close
+  addTaskBtn.addEventListener("click", () => {
+    formDiv.classList.add("active");
+  });
+  closeFormBtn.addEventListener("click", () => {
+    formDiv.classList.remove("active");
+  });
+  //formopen close
+
+  items.forEach((elem) => {
+    elem.addEventListener("drag", (e) => {
+      //save items to dragItem
+      dragItem = elem;
+    });
+  });
+
+  function dragFunctionality(columns) {
+    columns.addEventListener("dragenter", (e) => {
+      e.preventDefault();
+      // console.log("entered");
+      columns.classList.add("hover-over");
+    });
+    columns.addEventListener("dragleave", (e) => {
+      e.preventDefault();
+      // console.log("left");
+      columns.classList.remove("hover-over");
+    });
+    columns.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      console.log(e);
+    });
+    columns.addEventListener("drop", (e) => {
+      e.preventDefault();
+      console.log("drag element", dragItem, columns);
+      columns.classList.remove("hover-over");
+      columns.appendChild(dragItem);
+    });
+  }
+
+  dragFunctionality(inprogressDiv);
+  dragFunctionality(doneDiv);
+  dragFunctionality(todoDiv);
+}
+kanbanBoard();
+
 weather();
 pomoDoro();
-pages();
+// pages();
 motivationalQuote();
 dailyPlanner();
 todo();

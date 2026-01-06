@@ -101,13 +101,66 @@
                 </div>
             </div>
             <div class="pages kanban-page" id="4">
-                <div class="left">
-                    kanban page
-                </div>
-                <div class="right">
+
+                <div class="top">
+                    <h1>kanban</h1>
                     <p>
                         <i class="ri-close-large-line"></i>
                     </p>
+                </div>
+                <div class="bot">
+                    <div class="add-form">
+                        <p class="close-form">
+                            <i class="ri-close-large-line"></i>
+                        </p>
+                        <form>
+                            <input required type="text" placeholder="Add task title" class="task-input" />
+
+                            <input required type="text" placeholder="Add description" class="desc-input" />
+
+                            <button type="submit" class="submit-btn">Add Task</button>
+                        </form>
+
+                    </div>
+
+                    <button class="add-taskbtn">
+                        add task
+                    </button>
+                    <div>
+                        <div id="todo" class="todo-sec task-column">
+                            <div class="upper">
+                                <p class="name">todo</p>
+                                <p class="count">task count</p>
+                            </div>
+                            <div class="bottom-sec">
+                                <div draggable="true" class="todo-items ">
+                                    <div class="text-wrapper">
+                                        <div class="task">Task1</div>
+                                        <div class="decription">descriptin of the task1</div>
+                                    </div>
+                                    <p class="delete-btn">delete</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="progress" class="inprogress-sec task-column">
+                            <div class="upper">
+                                <p class="name">inprogress</p>
+                                <p class="count">task count</p>
+                            </div>
+                            <div class="bottom-sec">
+
+                            </div>
+                        </div>
+                        <div id="done" class="done-sec task-column">
+                            <div class="upper">
+                                <p class="name">done</p>
+                                <p class="count">task count</p>
+                            </div>
+                            <div class="bottom-sec">
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -161,14 +214,32 @@
                 </div>
                 <div class="bot-top-left weather-sec2">
                     <div class="left">
-                        <p>Feels like</p>
-                        <p>Humidity</p>
-                        <p>wind</p>
+                        <div>
+                            <p>Feels like</p>
+                            <p class="feelLike data"> 0%</p>
+                        </div>
+                        <div>
+                            <p>Humidity</p>
+                            <p class="Humidity data"> 0%</p>
+                        </div>
+                        <div>
+                            <p>wind speed</p>
+                            <p class="wind data"> 0%</p>
+                        </div>
                     </div>
                     <div class="right">
-                        <p class="feelLike"> 0%</p>
-                        <p class="Humidity"> 0%</p>
-                        <p class="wind"> 0%</p>
+                        <div>
+                            <p>Visibility</p>
+                            <p class="visibility data"> 0km/h</p>
+                        </div>
+                        <div>
+                            <p>PM 2.5</p>
+                            <p class="pm2 data"> 0</p>
+                        </div>
+                        <div>
+                            <p>UV</p>
+                            <p class="uv data"> 0%</p>
+                        </div>
                     </div>
 
                 </div>
