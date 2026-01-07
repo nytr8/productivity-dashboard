@@ -109,7 +109,7 @@
           color: white;
         }
 
-        form {
+        .form {
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -561,9 +561,9 @@
           animation: opa 5s ease-in-out infinite alternate;
 
           .left {
-            height: 100%;
-            width: 100%;
-            font-size: 35px;
+            height: 80%;
+            width: 80%;
+            font-size: 30px;
             font-family: Syne;
             text-transform: uppercase;
             display: flex;
@@ -923,9 +923,9 @@
     padding: 10px;
     gap: 10px;
     transition: all 0.4s ease, opacity 0.3s ease;
-    // transform: scale(0.5);
-    // opacity: 0;
-    // pointer-events: none;
+    transform: scale(0.5);
+    opacity: 0;
+    pointer-events: none;
 
     .top {
       height: 10%;
@@ -1038,24 +1038,24 @@
       }
 
       .add-taskbtn {
-        height: 8%;
-        padding: 15px;
+        height: 7%;
+        padding: 5px 10px;
         font-size: 20px;
         font-weight: bolder;
         text-transform: uppercase;
         font-family: Syne;
-        background-color: rgba(254, 254, 230, 0.918);
-        color: rgb(0, 0, 0);
+        background-color: rgba(90, 90, 90, 0.918);
+        color: rgb(255, 255, 255);
         border-radius: 8px;
-        border: none;
+        border: 1px solid white;
         // transition: all 0.3s ease;
       }
       .add-taskbtn:hover {
-        background-color: rgb(168, 168, 168);
+        background-color: rgb(119, 119, 119);
         transform: scale(1.02);
       }
       div {
-        height: 92%;
+        height: 93%;
         width: 100%;
         display: flex;
         align-items: center;
@@ -1105,39 +1105,63 @@
               border-radius: 5px;
               border: 1px solid rgba(255, 255, 255, 0.17);
               overflow: hidden;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
               cursor: grab;
+              background: linear-gradient(
+                rgba(255, 255, 255, 0.095),
+                rgba(255, 255, 255, 0.095)
+              );
+
               .text-wrapper {
-                background: linear-gradient(
-                  rgba(255, 255, 255, 0.095),
-                  rgba(255, 255, 255, 0.095)
-                );
                 width: 90%;
                 height: 100%;
-                font-size: 30px;
+                padding: 20px;
                 display: flex;
                 flex-direction: column;
+                justify-content: center;
+                gap: 8px;
                 overflow: hidden;
+                margin-left: 20px;
                 .task {
                   color: white;
                   font-family: nasa;
-                  font-size: 30px;
+                  font-size: 35px;
+                  margin: 0;
+                  justify-content: flex-start;
                 }
+
                 .decription {
-                  padding: 0px 20px;
-                  color: white;
-                  font-size: 20px;
+                  justify-content: flex-start;
+                  color: rgb(162, 162, 162);
+                  font-size: 18px;
                   font-family: nasa;
+                  margin: 0;
+                  text-align: left; // Align to left
                 }
               }
+
               .delete-btn {
                 font-family: nasa;
                 height: 100%;
                 width: 12%;
                 padding: 10px;
+                margin: 0;
+                font-size: 20px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background-color: rgb(181, 0, 0);
+                background-color: #ededd7;
+                color: rgb(255, 0, 0);
+                transition: all 0.3s ease;
+                box-sizing: inset 0px 10px 10px black;
+                &:hover {
+                  cursor: pointer;
+                  background-color: rgb(220, 0, 0);
+                  color: white;
+                  scale: 1.02;
+                }
               }
             }
           }

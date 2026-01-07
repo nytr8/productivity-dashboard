@@ -1,23 +1,23 @@
-// function pages() {
-//   let cards = document.querySelectorAll(".elem");
-//   let pages = document.querySelectorAll(".pages");
-//   cards.forEach((card) => {
-//     card.addEventListener("click", (e) => {
-//       const cardId = e.currentTarget.id;
-//       pages.forEach((page) => {
-//         // page.style.display = page.id === cardId ? "flex" : "";
-//         // page.style.transform = page.id === cardId ? "scale(1)" : "none";
-//         page.classList.toggle("active", page.id === cardId);
-//       });
-//     });
-//   });
-//   pages.forEach((e) => {
-//     let p = e.querySelector("p");
-//     p.addEventListener("click", () => {
-//       e.classList.remove("active");
-//     });
-//   });
-// }
+function pages() {
+  let cards = document.querySelectorAll(".elem");
+  let pages = document.querySelectorAll(".pages");
+  cards.forEach((card) => {
+    card.addEventListener("click", (e) => {
+      const cardId = e.currentTarget.id;
+      pages.forEach((page) => {
+        // page.style.display = page.id === cardId ? "flex" : "";
+        // page.style.transform = page.id === cardId ? "scale(1)" : "none";
+        page.classList.toggle("active", page.id === cardId);
+      });
+    });
+  });
+  pages.forEach((e) => {
+    let p = e.querySelector("p");
+    p.addEventListener("click", () => {
+      e.classList.remove("active");
+    });
+  });
+}
 
 function todo() {
   let inputTitle = document.querySelector("form .inp");
@@ -28,7 +28,7 @@ function todo() {
   let form = document.querySelector(".todo-page form");
   let listitems = document.querySelectorAll(".todo-page .list .listitems");
 
-  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  let tasks = JSON.parse(localStorage.getItem("todoList")) || [];
 
   function render() {
     let sum = "";
@@ -58,7 +58,7 @@ function todo() {
       completed: false,
     });
     // console.log(tasks);
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("todoList", JSON.stringify(tasks));
     inputTitle.value = "";
     inputDetails.value = "";
     check.checked = false;
@@ -77,7 +77,7 @@ function todo() {
       tasks[Number(e.target.id)].completed =
         !tasks[Number(e.target.id)].completed;
     }
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("todoList", JSON.stringify(tasks));
     render();
   });
 }
@@ -336,86 +336,186 @@ function weather() {
 
 function kanbanBoard() {
   let todoDiv = document.querySelector(
-    ".kanban-page .bot .todo-sec .bottom-sec "
+    ".kanban-page .bot .todo-sec .bottom-sec"
   );
   let addTaskBtn = document.querySelector(".kanban-page .bot .add-taskbtn");
   let formDiv = document.querySelector(".kanban-page .bot .add-form");
   let form = document.querySelector(".kanban-page .bot .add-form form");
-  let inputText = document.querySelector(
-    ".kanban-page .bot .add-form .task-input"
-  );
-  let inputDesc = document.querySelector(
-    ".kanban-page .bot .add-form .desc-input"
-  );
-  let submitBtn = document.querySelector(
-    ".kanban-page .bot .add-form .submit-btn"
-  );
   let closeFormBtn = document.querySelector(
     ".kanban-page .bot .add-form .close-form"
   );
   let inprogressDiv = document.querySelector(
-    ".kanban-page  .bot .inprogress-sec .bottom-sec"
+    ".kanban-page .bot .inprogress-sec .bottom-sec"
   );
   let doneDiv = document.querySelector(
-    ".kanban-page  .bot .done-sec .bottom-sec"
-  );
-  let taskColumns = document.querySelectorAll(
-    ".kanban-page  .bot .task-column"
-  );
-  let items = document.querySelectorAll(
-    ".kanban-page .bot .bottom-sec .todo-items"
+    ".kanban-page .bot .done-sec .bottom-sec"
   );
 
   let dragItem = null;
+  let taskData = {};
 
-  //formopen close
-  addTaskBtn.addEventListener("click", () => {
-    formDiv.classList.add("active");
-  });
-  closeFormBtn.addEventListener("click", () => {
-    formDiv.classList.remove("active");
-  });
-  //formopen close
+  // Load tasks from localStorage
+  function loadTasks() {
+    if (localStorage.getItem("tasks")) {
+      const data = JSON.parse(localStorage.getItem("tasks"));
+      console.log("Loading tasks:", data);
 
-  items.forEach((elem) => {
-    elem.addEventListener("drag", (e) => {
-      //save items to dragItem
-      dragItem = elem;
-    });
-  });
+      for (const colId in data) {
+        // Find column by its parent's id
+        let targetDiv = document.querySelector(`#${colId} .bottom-sec`);
 
-  function dragFunctionality(columns) {
-    columns.addEventListener("dragenter", (e) => {
-      e.preventDefault();
-      // console.log("entered");
-      columns.classList.add("hover-over");
+        if (targetDiv && data[colId]) {
+          data[colId].forEach((task) => {
+            const item = createTaskElement(task.title, task.description);
+            targetDiv.appendChild(item);
+          });
+        }
+      }
+      updateTaskCounts();
+    }
+  }
+
+  // Create task element
+  function createTaskElement(title, description) {
+    const item = document.createElement("div");
+    item.className = "todo-items";
+    item.draggable = true;
+
+    item.innerHTML = `
+      <div class="text-wrapper">
+        <div class="task">${title}</div>
+        <div class="decription">${description}</div>
+      </div>
+      <p class="delete-btn">delete</p>
+    `;
+
+    // Add drag event listener
+    item.addEventListener("dragstart", (e) => {
+      dragItem = item;
     });
-    columns.addEventListener("dragleave", (e) => {
-      e.preventDefault();
-      // console.log("left");
-      columns.classList.remove("hover-over");
+
+    // Add delete functionality
+    const deleteBtn = item.querySelector(".delete-btn");
+    deleteBtn.addEventListener("click", () => {
+      item.remove();
+      saveTasksToLocalStorage();
+      updateTaskCounts();
     });
-    columns.addEventListener("dragover", (e) => {
-      e.preventDefault();
-      console.log(e);
-    });
-    columns.addEventListener("drop", (e) => {
-      e.preventDefault();
-      console.log("drag element", dragItem, columns);
-      columns.classList.remove("hover-over");
-      columns.appendChild(dragItem);
+
+    return item;
+  }
+
+  // Update task counts
+  function updateTaskCounts() {
+    document.querySelectorAll(".task-column").forEach((col) => {
+      let tasks = col.querySelectorAll(".todo-items");
+      let count = col.querySelector(".upper .count");
+      if (count) {
+        count.textContent = `task count : ${tasks.length}`;
+      }
     });
   }
 
+  // Save tasks to localStorage
+  function saveTasksToLocalStorage() {
+    taskData = {};
+
+    // Save todo tasks
+    const todoTasks = todoDiv.querySelectorAll(".todo-items");
+    taskData["todo"] = Array.from(todoTasks).map((t) => ({
+      title: t.querySelector(".task").textContent,
+      description: t.querySelector(".decription").textContent,
+    }));
+
+    // Save progress tasks
+    const progressTasks = inprogressDiv.querySelectorAll(".todo-items");
+    taskData["progress"] = Array.from(progressTasks).map((t) => ({
+      title: t.querySelector(".task").textContent,
+      description: t.querySelector(".decription").textContent,
+    }));
+
+    // Save done tasks
+    const doneTasks = doneDiv.querySelectorAll(".todo-items");
+    taskData["done"] = Array.from(doneTasks).map((t) => ({
+      title: t.querySelector(".task").textContent,
+      description: t.querySelector(".decription").textContent,
+    }));
+
+    console.log("Saving tasks:", taskData);
+    localStorage.setItem("tasks", JSON.stringify(taskData));
+  }
+
+  // Form features handling
+  function formHandling() {
+    addTaskBtn.addEventListener("click", () => {
+      formDiv.classList.add("active");
+    });
+
+    closeFormBtn.addEventListener("click", () => {
+      formDiv.classList.remove("active");
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const title = e.target.querySelector(".task-input").value;
+      const desc = e.target.querySelector(".desc-input").value;
+
+      const item = createTaskElement(title, desc);
+      todoDiv.appendChild(item);
+
+      saveTasksToLocalStorage();
+      updateTaskCounts();
+
+      formDiv.classList.remove("active");
+      e.target.reset();
+    });
+  }
+
+  // Drag functionality
+  function dragFunctionality(targetDiv) {
+    targetDiv.addEventListener("dragenter", (e) => {
+      e.preventDefault();
+      targetDiv.classList.add("hover-over");
+    });
+
+    targetDiv.addEventListener("dragleave", (e) => {
+      e.preventDefault();
+      targetDiv.classList.remove("hover-over");
+    });
+
+    targetDiv.addEventListener("dragover", (e) => {
+      e.preventDefault();
+    });
+
+    targetDiv.addEventListener("drop", (e) => {
+      e.preventDefault();
+      targetDiv.classList.remove("hover-over");
+
+      if (dragItem) {
+        targetDiv.appendChild(dragItem);
+        saveTasksToLocalStorage();
+        updateTaskCounts();
+      }
+    });
+  }
+
+  // Initialize drag functionality for all columns
   dragFunctionality(inprogressDiv);
   dragFunctionality(doneDiv);
   dragFunctionality(todoDiv);
-}
-kanbanBoard();
 
+  // Initialize form handling
+  formHandling();
+
+  // Load existing tasks
+  loadTasks();
+}
+
+pages();
+kanbanBoard();
 weather();
 pomoDoro();
-// pages();
 motivationalQuote();
 dailyPlanner();
 todo();
