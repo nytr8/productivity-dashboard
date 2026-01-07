@@ -163,7 +163,7 @@ main {
       justify-content: center;
       align-items: center;
       gap: 10px;
-      padding: 10px;
+      padding: 8px;
       border-radius: 22px;
       background-color: #000000;
       position: relative;
@@ -195,7 +195,7 @@ main {
           text-transform: capitalize;
           white-space: normal;
           word-break: break-word;
-          font-size: 92px;
+          font-size: 85px;
           font-family: Syne;
           color: white;
           opacity: 1;
@@ -237,7 +237,7 @@ main {
           text-transform: capitalize;
           white-space: normal;
           word-break: break-word;
-          font-size: 92px;
+          font-size: 85px;
           font-family: Syne;
           color: rgb(251, 251, 251);
           border-radius: 15px;
@@ -256,9 +256,9 @@ main {
       content: "";
       position: absolute;
       inset: 0;
-      padding: 3px; /* border thickness */
+      padding: 2px; /* border thickness */
       border-radius: 20px;
-      background: linear-gradient(270deg, black, #8f2bbd, black);
+      background: linear-gradient(270deg, black, #e1a0ff, #8f2bbd, black);
       background-size: 400% 400%;
       animation: borderMove 20s linear infinite;
 
