@@ -1,1813 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-@font-face {
-  font-family: nasa;
-  src: url(./fonts/Nasalization\ Rg.otf);
-}
-@font-face {
-  font-family: ceta;
-  src: url(./fonts/5ceta_mono.ttf);
-}
-@font-face {
-  font-family: Syne;
-  src: url(./fonts/Syne-Extra.otf);
-}
-.done {
-  color: grey;
-  text-decoration: line-through;
-}
-
-html,
-body {
-  height: 100%;
-  width: 100%;
-}
-
-main {
-  height: 100vh;
-  width: 100%;
-  --c-0: hsla(266.99999999999983, 1%, 12%, 1);
-  --y-0: 80%;
-  --x-0: 85%;
-  --x-1: 60%;
-  --c-1: hsla(335.9999999999997, 2%, 22%, 1);
-  --y-1: 24%;
-  --x-2: 13%;
-  --y-2: 82%;
-  --c-2: hsla(53.999999999999886, 0%, 0%, 0.49);
-  --c-3: rgb(89, 88, 95);
-  --y-3: 7%;
-  --x-3: 24%;
-  background-color: hsl(0, 0%, 0%);
-  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
-  animation: hero-gradient-animation 8s linear infinite alternate;
-  background-blend-mode: normal, normal, normal, normal;
-  padding: 25px 50px;
-  position: relative;
-}
-
-#container {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 10px;
-}
-#container .todo-page {
-  --c-0: hsla(266.99999999999983, 1%, 12%, 1);
-  --y-0: 80%;
-  --x-0: 85%;
-  --x-1: 60%;
-  --c-1: hsla(335.9999999999997, 2%, 22%, 1);
-  --y-1: 24%;
-  --x-2: 13%;
-  --y-2: 82%;
-  --c-2: hsla(53.999999999999886, 0%, 0%, 0.49);
-  --c-3: hsla(299, 4%, 36%, 1);
-  --y-3: 7%;
-  --x-3: 24%;
-  background-color: hsl(0, 0%, 0%);
-  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
-  animation: hero-gradient-animation 8s linear infinite alternate;
-  background-blend-mode: normal, normal, normal, normal;
-  position: absolute;
-  background-color: rgb(103, 20, 20);
-  height: 100%;
-  width: 100%;
-  z-index: 5;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 10px;
-  gap: 10px;
-  transition: all 0.4s ease, opacity 0.3s ease;
-  transform: scale(0.5);
-  opacity: 0;
-  pointer-events: none;
-}
-#container .todo-page .top {
-  height: 15%;
-  width: 100%;
-  background-color: rgba(254, 254, 230, 0.918);
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: Syne;
-  text-transform: uppercase;
-  position: relative;
-}
-#container .todo-page .top h1 {
-  font-size: 100px;
-  color: rgb(23, 23, 23);
-}
-#container .todo-page .top p {
-  position: absolute;
-  top: 10%;
-  right: 2%;
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(27, 27, 27, 0.418);
-}
-#container .todo-page .top p i {
-  color: white;
-  pointer-events: none;
-}
-#container .todo-page .bot {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 85%;
-  gap: 10px;
-  overflow: hidden;
-}
-#container .todo-page .bot .left {
-  width: 40%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.089);
-  border-radius: 5px;
-}
-#container .todo-page .bot .left .inp,
-#container .todo-page .bot .left textarea,
-#container .todo-page .bot .left select {
-  all: unset;
-  box-sizing: border-box;
-  font-family: inherit;
-  color: inherit;
-}
-#container .todo-page .bot .left .inp,
-#container .todo-page .bot .left textarea {
-  caret-color: rgb(255, 255, 255); /* any color */
-  color: white;
-}
-#container .todo-page .bot .left .form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  gap: 10px;
-  padding: 10px;
-}
-#container .todo-page .bot .left .form .inp {
-  transition: all 0.5s ease;
-  width: 80%;
-  padding: 10px;
-  font-size: 20px;
-  height: 50px;
-  font-family: nasa;
-  border-radius: 5px;
-  background-color: rgba(19, 19, 19, 0.329);
-}
-#container .todo-page .bot .left .form textarea {
-  width: 80%;
-  height: 200px;
-  padding: 10px;
-  font-size: 20px;
-  font-family: nasa;
-  border-radius: 5px;
-  background-color: rgba(19, 19, 19, 0.329);
-}
-#container .todo-page .bot .left .form label {
-  width: 80%;
-  font-size: 20px;
-  font-family: nasa;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  color: rgb(217, 217, 217);
-  padding: 20px;
-}
-#container .todo-page .bot .left .form label input {
-  height: 25px;
-  width: 25px;
-}
-#container .todo-page .bot .left .form label p {
-  -moz-user-select: none;
-       user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
-#container .todo-page .bot .left .form button {
-  all: unset;
-  box-sizing: border-box;
-  font-family: inherit;
-  color: inherit;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 50px;
-  width: 80%;
-  font-family: nasa;
-  font-weight: bold;
-  font-size: 30px;
-  border-radius: 5px;
-  color: rgb(19, 19, 19);
-  background-color: rgba(254, 254, 230, 0.918);
-  transition: all 0.3s ease;
-}
-#container .todo-page .bot .left .form button:hover {
-  background-color: rgb(145, 145, 145);
-  color: white;
-}
-#container .todo-page .bot .right::-webkit-scrollbar {
-  display: none;
-}
-#container .todo-page .bot .right {
-  height: 100%;
-  width: 60%;
-  display: flex;
-  position: relative;
-  border-radius: 5px;
-  overflow-y: auto;
-}
-#container .todo-page .bot .right .list {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
-  padding: 10px;
-  gap: 10px;
-}
-#container .todo-page .bot .right .list .listitems {
-  flex-shrink: 0;
-  height: 100px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-  overflow: hidden;
-  font-family: nasa;
-}
-#container .todo-page .bot .right .list .listitems .text {
-  position: relative;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 60%;
-  height: 100%;
-  background-color: rgba(254, 254, 230, 0.918);
-  font-size: 50px;
-}
-#container .todo-page .bot .right .list .listitems .text .imp {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 50px;
-  font-size: 20px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  color: rgb(29, 29, 29) !important;
-  background-color: red;
-}
-#container .todo-page .bot .right .list .listitems .text .grey {
-  background-color: gray;
-}
-#container .todo-page .bot .right .list .listitems .completed {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 25%;
-  background-color: rgb(58, 130, 58);
-  font-size: 20px;
-  transition: all 0.3s ease;
-}
-#container .todo-page .bot .right .list .listitems .delete {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(255, 58, 58);
-  height: 100%;
-  width: 15%;
-  font-size: 20px;
-  transition: all 0.3s ease;
-}
-#container .todo-page .bot .right .list .listitems .delete:hover {
-  background-color: maroon;
-  color: white;
-}
-#container .todo-page .bot .right .list .listitems .completed:hover {
-  background-color: rgb(1, 77, 1);
-  color: white;
-}
-#container .todo-page.active {
-  transform: scale(1);
-  opacity: 1;
-  pointer-events: auto;
-}
-#container .dailyplanner-page {
-  --c-0: hsla(266.99999999999983, 1%, 12%, 1);
-  --y-0: 80%;
-  --x-0: 85%;
-  --x-1: 60%;
-  --c-1: hsla(335.9999999999997, 2%, 22%, 1);
-  --y-1: 24%;
-  --x-2: 13%;
-  --y-2: 82%;
-  --c-2: hsla(53.999999999999886, 0%, 0%, 0.49);
-  --c-3: hsla(299, 4%, 36%, 1);
-  --y-3: 7%;
-  --x-3: 24%;
-  background-color: hsl(0, 0%, 0%);
-  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
-  animation: hero-gradient-animation 10s linear infinite alternate;
-  background-blend-mode: normal, normal, normal, normal;
-  position: absolute;
-  background-color: rgb(13, 78, 158);
-  height: 100%;
-  width: 100%;
-  z-index: 5;
-  display: flex;
-  transition: all 0.4s ease, opacity 0.3s ease;
-  transform: scale(0.5);
-  opacity: 0;
-  pointer-events: none;
-  align-items: center;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 10px;
-  gap: 10px;
-}
-#container .dailyplanner-page .top {
-  height: 15%;
-  width: 100%;
-  background-color: rgba(254, 254, 230, 0.918);
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: Syne;
-  text-transform: uppercase;
-  position: relative;
-}
-#container .dailyplanner-page .top h1 {
-  font-size: 100px;
-  color: rgb(23, 23, 23);
-}
-#container .dailyplanner-page .top p {
-  position: absolute;
-  top: 10%;
-  right: 2%;
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(27, 27, 27, 0.418);
-}
-#container .dailyplanner-page .top p i {
-  color: white;
-  pointer-events: none;
-}
-#container .dailyplanner-page .bot {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 85%;
-  gap: 10px;
-}
-#container .dailyplanner-page .bot .inside {
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.089);
-  border-radius: 5px;
-  padding: 30px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  overflow: auto;
-}
-#container .dailyplanner-page .bot .inside .items {
-  height: 70px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  width: 45%;
-  overflow: hidden;
-  border-radius: 10px;
-  border: 1px solid rgb(13, 78, 158);
-  background: linear-gradient(45deg, rgba(0, 115, 255, 0), rgba(22, 22, 22, 0.397));
-}
-#container .dailyplanner-page .bot .inside .items p {
-  width: 25%;
-  font-size: 25px;
-  text-align: center;
-  border-right: 1px solid rgb(255, 255, 255);
-  font-family: nasa;
-  padding: 10px;
-  color: rgba(254, 254, 230, 0.918);
-  white-space: nowrap;
-}
-#container .dailyplanner-page .bot .inside .items input {
-  all: unset;
-  flex: 1;
-  box-sizing: border-box;
-  font-family: nasa;
-  padding: 10px;
-  font-size: 25px;
-  line-height: 40px;
-  color: rgba(254, 254, 230, 0.918);
-  font-weight: 200;
-  overflow-x: auto;
-}
-#container .dailyplanner-page .bot .inside .items input::-moz-placeholder {
-  color: rgba(166, 166, 166, 0.246);
-  font-family: nasa;
-  opacity: 1;
-  font-size: 20px;
-  -moz-transition: opacity 0.2s ease;
-  transition: opacity 0.2s ease;
-}
-#container .dailyplanner-page .bot .inside .items input::placeholder {
-  color: rgba(166, 166, 166, 0.246);
-  font-family: nasa;
-  opacity: 1;
-  font-size: 20px;
-  transition: opacity 0.2s ease;
-}
-#container .dailyplanner-page .bot .inside .items input:focus::-moz-placeholder {
-  opacity: 0;
-}
-#container .dailyplanner-page .bot .inside .items input:focus::placeholder {
-  opacity: 0;
-}
-#container .dailyplanner-page.active {
-  transform: scale(1);
-  opacity: 1;
-  pointer-events: auto;
-}
-#container .motivational-page {
-  --c-0: hsla(266.99999999999983, 1%, 12%, 1);
-  --y-0: 80%;
-  --x-0: 85%;
-  --x-1: 60%;
-  --c-1: hsla(335.9999999999997, 2%, 22%, 1);
-  --y-1: 24%;
-  --x-2: 13%;
-  --y-2: 82%;
-  --c-2: hsla(53.999999999999886, 0%, 0%, 0.49);
-  --c-3: hsla(299, 4%, 36%, 1);
-  --y-3: 7%;
-  --x-3: 24%;
-  background-color: hsl(0, 0%, 0%);
-  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
-  animation: hero-gradient-animation 8s linear infinite alternate;
-  background-blend-mode: normal, normal, normal, normal;
-  position: absolute;
-  background-color: #504120;
-  height: 100%;
-  width: 100%;
-  z-index: 5;
-  display: flex;
-  transition: all 0.4s ease, opacity 0.3s ease;
-  transform: scale(0.5);
-  opacity: 0;
-  pointer-events: none;
-  align-items: center;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 10px;
-  gap: 10px;
-}
-#container .motivational-page .top {
-  height: 15%;
-  width: 100%;
-  background-color: rgba(254, 254, 230, 0.918);
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: Syne;
-  text-transform: uppercase;
-  position: relative;
-}
-#container .motivational-page .top h1 {
-  font-size: 100px;
-  color: rgb(23, 23, 23);
-}
-#container .motivational-page .top p {
-  position: absolute;
-  top: 10%;
-  right: 2%;
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(27, 27, 27, 0.418);
-}
-#container .motivational-page .top p i {
-  color: white;
-  pointer-events: none;
-}
-#container .motivational-page .bot {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 85%;
-  gap: 10px;
-}
-#container .motivational-page .bot .inside {
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.089);
-  border-radius: 5px;
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-}
-#container .motivational-page .bot .inside .quoteDiv {
-  padding: 20px;
-  height: 400px;
-  width: 800px;
-  background-color: rgb(253, 210, 100);
-  border: 1px solid rgba(255, 255, 255, 0.419);
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  box-shadow: 0 0 200px #fdd264;
-  animation: opa 5s ease-in-out infinite alternate;
-}
-#container .motivational-page .bot .inside .quoteDiv .left {
-  height: 80%;
-  width: 80%;
-  font-size: 30px;
-  font-family: Syne;
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: space-evenly;
-  color: rgb(54, 54, 54);
-  border-top: 2px solid rgb(255, 255, 255);
-}
-#container .motivational-page .bot .inside .quoteDiv .left .name {
-  border-bottom: 2px solid rgb(255, 255, 255);
-}
-#container .motivational-page .bot .inside .quoteDiv .right1 {
-  position: absolute;
-  top: -10%;
-  right: 0%;
-  font-family: Syne;
-  font-size: 150px;
-  color: rgba(49, 49, 49, 0.283);
-  align-self: flex-start;
-  color: transparent;
-  -webkit-text-stroke: 5px rgba(49, 49, 49, 0.5);
-  background-color: rgba(255, 0, 0, 0);
-  -webkit-background-clip: text;
-  background-clip: text;
-}
-#container .motivational-page .bot .inside .quoteDiv .right2 {
-  position: absolute;
-  bottom: -10%;
-  left: 0%;
-  font-family: Syne;
-  font-size: 150px;
-  color: rgba(49, 49, 49, 0.283);
-  align-self: flex-start;
-  color: transparent;
-  -webkit-text-stroke: 5px rgba(49, 49, 49, 0.5);
-  background-color: rgba(255, 0, 0, 0);
-  -webkit-background-clip: text;
-  background-clip: text;
-  rotate: 180deg;
-}
-#container .motivational-page .bot .inside .quoteDiv::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: rgb(255, 215, 140);
-  border-radius: 10px;
-  z-index: -1;
-  filter: blur(100px);
-}
-#container .motivational-page .bot .inside .btn {
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
-  padding: 20px;
-  font-family: Syne;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: rgb(54, 54, 54);
-  background-color: rgba(254, 254, 230, 0.918);
-  border: 1px solid rgba(255, 255, 255, 0.419);
-  transition: all 0.3s ease;
-}
-#container .motivational-page .bot .inside .btn:active {
-  background-color: rgba(187, 187, 169, 0.918);
-  cursor: pointer;
-}
-#container .motivational-page .bot .inside .btn:hover {
-  cursor: pointer;
-  transform: scale(0.99);
-}
-@keyframes opa {
-  from {
-    box-shadow: 0 0 50px #fdd264;
-  }
-  to {
-    box-shadow: 0 0 0px #fdd264;
-  }
-}
-#container .motivational-page.active {
-  transform: scale(1);
-  opacity: 1;
-  pointer-events: auto;
-}
-#container .pomodoro-page {
-  --c-0: hsla(266.99999999999983, 1%, 12%, 1);
-  --y-0: 80%;
-  --x-0: 85%;
-  --x-1: 60%;
-  --c-1: hsla(335.9999999999997, 2%, 22%, 1);
-  --y-1: 24%;
-  --x-2: 13%;
-  --y-2: 82%;
-  --c-2: hsla(53.999999999999886, 0%, 0%, 0.49);
-  --c-3: hsla(299, 4%, 36%, 1);
-  --y-3: 7%;
-  --x-3: 24%;
-  background-color: hsl(0, 0%, 0%);
-  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
-  animation: hero-gradient-animation 8s linear infinite alternate;
-  background-blend-mode: normal, normal, normal, normal;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  z-index: 5;
-  background-color: rgb(87, 0, 116);
-  display: flex;
-  transition: all 0.4s ease, opacity 0.3s ease;
-  transform: scale(0.5);
-  opacity: 0;
-  pointer-events: none;
-  align-items: center;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 10px;
-  gap: 10px;
-}
-#container .pomodoro-page .top {
-  height: 15%;
-  width: 100%;
-  background-color: rgba(254, 254, 230, 0.918);
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: Syne;
-  text-transform: uppercase;
-  position: relative;
-}
-#container .pomodoro-page .top h1 {
-  font-size: 100px;
-  color: rgb(23, 23, 23);
-}
-#container .pomodoro-page .top p {
-  position: absolute;
-  top: 10%;
-  right: 2%;
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(27, 27, 27, 0.418);
-}
-#container .pomodoro-page .top p i {
-  color: white;
-  pointer-events: none;
-}
-#container .pomodoro-page .bot {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 85%;
-  gap: 10px;
-}
-#container .pomodoro-page .bot .inside {
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.089);
-  border-radius: 5px;
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-}
-#container .pomodoro-page .bot .inside .timerDiv {
-  border-radius: 10px;
-  -webkit-backdrop-filter: blur(50px);
-          backdrop-filter: blur(50px);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
-  overflow: hidden;
-  width: 50%;
-}
-#container .pomodoro-page .bot .inside .timerDiv .tabs {
-  width: 100%;
-  background-color: black;
-  font-size: 30px;
-  font-family: nasa;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  overflow: hidden;
-}
-#container .pomodoro-page .bot .inside .timerDiv .tabs .pomo {
-  background-color: rgb(145, 0, 193);
-}
-#container .pomodoro-page .bot .inside .timerDiv .tabs .longBreak {
-  background-color: rgb(209, 72, 255);
-}
-#container .pomodoro-page .bot .inside .timerDiv .tabs .shortBreak {
-  background-color: rgb(225, 134, 255);
-}
-#container .pomodoro-page .bot .inside .timerDiv .tabs .longBreak,
-#container .pomodoro-page .bot .inside .timerDiv .tabs .pomo,
-#container .pomodoro-page .bot .inside .timerDiv .tabs .shortBreak {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-  cursor: pointer;
-  padding: 20px;
-  transition: all 0.3s ease-in-out;
-  border-bottom: 1px solid transparent;
-  width: 33.3%;
-  text-align: center;
-}
-#container .pomodoro-page .bot .inside .timerDiv .tabs .shortBreak:hover,
-#container .pomodoro-page .bot .inside .timerDiv .tabs .pomo:hover,
-#container .pomodoro-page .bot .inside .timerDiv .tabs .longBreak:hover {
-  color: rgba(254, 254, 230, 0.918);
-  background-color: rgb(34, 34, 34);
-  border-bottom: 1px solid rgb(255, 255, 255);
-}
-#container .pomodoro-page .bot .inside .timerDiv .tabs .shortBreak:active,
-#container .pomodoro-page .bot .inside .timerDiv .tabs .pomo:active,
-#container .pomodoro-page .bot .inside .timerDiv .tabs .longBreak:active {
-  transform: scale(0.9);
-  background-color: rgb(92, 92, 92);
-}
-#container .pomodoro-page .bot .inside .timerDiv .timer {
-  width: 100%;
-  height: 300px;
-  font-size: 250px;
-  font-family: helvetica neue, open sans, Helvetica, Arial, sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 25px;
-  border-left: 1px solid rgba(191, 0, 255, 0.267);
-  border-right: 1px solid rgba(191, 0, 255, 0.267);
-  box-shadow: inset 0px 0px 100px rgba(120, 0, 160, 0.283);
-}
-#container .pomodoro-page .bot .inside .timerDiv .timer span {
-  display: flex;
-  flex-direction: column;
-  font-size: 30px;
-  gap: 50px;
-}
-#container .pomodoro-page .bot .inside .timerDiv .btn {
-  background-color: black;
-  width: 100%;
-  display: flex;
-  gap: 1px;
-}
-#container .pomodoro-page .bot .inside .timerDiv .btn .btn1 {
-  width: 50%;
-  border: none;
-  padding: 20px 50px;
-  font-size: 50px;
-  font-family: nasa;
-  transition: all 0.3s ease;
-  background-color: rgba(254, 254, 230, 0.918);
-  cursor: pointer;
-}
-#container .pomodoro-page .bot .inside .timerDiv .btn .btn2 {
-  width: 50%;
-  border: none;
-  padding: 20px 50px;
-  font-size: 50px;
-  font-family: nasa;
-  transition: all 0.3s ease;
-  background-color: rgb(200, 52, 52);
-  cursor: pointer;
-}
-#container .pomodoro-page .bot .inside .timerDiv .btn .btn1:hover,
-#container .pomodoro-page .bot .inside .timerDiv .btn .btn2:hover {
-  color: rgba(254, 254, 230, 0.918);
-  background-color: rgb(34, 34, 34);
-}
-#container .pomodoro-page .bot .inside .timerDiv .btn .btn1:active,
-#container .pomodoro-page .bot .inside .timerDiv .btn .btn2:active {
-  transform: scale(0.95);
-  background-color: rgb(92, 92, 92);
-}
-#container .pomodoro-page.active {
-  transform: scale(1);
-  opacity: 1;
-  pointer-events: auto;
-}
-#container .kanban-page {
-  --c-0: hsla(266.99999999999983, 1%, 12%, 1);
-  --y-0: 80%;
-  --x-0: 85%;
-  --x-1: 60%;
-  --c-1: hsla(335.9999999999997, 2%, 22%, 1);
-  --y-1: 24%;
-  --x-2: 13%;
-  --y-2: 82%;
-  --c-2: hsla(53.999999999999886, 0%, 0%, 0.49);
-  --c-3: hsla(299, 4%, 36%, 1);
-  --y-3: 7%;
-  --x-3: 24%;
-  background-color: hsl(0, 0%, 0%);
-  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
-  animation: hero-gradient-animation 8s linear infinite alternate;
-  background-blend-mode: normal, normal, normal, normal;
-  position: absolute;
-  background-color: #9a3b00;
-  height: 100%;
-  width: 100%;
-  z-index: 5;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 10px;
-  gap: 10px;
-  transition: all 0.4s ease, opacity 0.3s ease;
-  transform: scale(0.5);
-  opacity: 0;
-  pointer-events: none;
-}
-#container .kanban-page .top {
-  height: 10%;
-  width: 100%;
-  background-color: rgba(254, 254, 230, 0.918);
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: Syne;
-  text-transform: uppercase;
-  position: relative;
-  overflow: hidden;
-}
-#container .kanban-page .top h1 {
-  font-size: 100px;
-  color: rgb(23, 23, 23);
-}
-#container .kanban-page .top p {
-  position: absolute;
-  top: 10%;
-  right: 2%;
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(27, 27, 27, 0.418);
-}
-#container .kanban-page .top p i {
-  color: white;
-  pointer-events: none;
-}
-#container .kanban-page .bot {
-  width: 100%;
-  height: 90%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: space-evenly;
-  padding-top: 20px;
-}
-#container .kanban-page .bot .add-form {
-  background-color: rgba(0, 0, 0, 0.232);
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0%;
-  overflow: hidden;
-  display: flex;
-  transform: scale(0.5);
-  opacity: 0;
-  border-radius: 100%;
-  transition: all 0.4s ease, opacity 0.3s ease;
-  pointer-events: none;
-  align-items: center;
-  justify-content: center;
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-  z-index: 5;
-}
-#container .kanban-page .bot .add-form p {
-  padding: 20px;
-  border-radius: 50%;
-  top: 30%;
-  right: 35%;
-  background-color: #ff6200;
-  position: absolute;
-}
-#container .kanban-page .bot .add-form form {
-  height: 50%;
-  width: 30%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  border-radius: 10px;
-  gap: 20px;
-  background: linear-gradient(rgba(254, 254, 230, 0), rgba(255, 106, 0, 0.194));
-}
-#container .kanban-page .bot .add-form form input {
-  font-size: 20px;
-  border-radius: 8px;
-  width: 400px;
-  height: 20px;
-  padding: 20px;
-  font-family: Syne;
-}
-#container .kanban-page .bot .add-form form button {
-  background-color: #ff6200;
-  -webkit-backdrop-filter: blur(20px);
-          backdrop-filter: blur(20px);
-  border: none;
-  border-radius: 50px;
-  font-size: 20px;
-  padding: 10px 30px;
-  transition: all 0.3s ease;
-}
-#container .kanban-page .bot .add-form form button:hover {
-  background-color: #b89884;
-  color: white;
-}
-#container .kanban-page .bot .add-form.active {
-  transform: scale(1);
-  opacity: 1;
-  pointer-events: auto;
-  border-radius: 10px;
-}
-#container .kanban-page .bot .add-taskbtn {
-  height: 7%;
-  padding: 5px 10px;
-  font-size: 20px;
-  font-weight: bolder;
-  text-transform: uppercase;
-  font-family: Syne;
-  background-color: rgba(90, 90, 90, 0.918);
-  color: rgb(255, 255, 255);
-  border-radius: 8px;
-  border: 1px solid white;
-}
-#container .kanban-page .bot .add-taskbtn:hover {
-  background-color: rgb(119, 119, 119);
-  transform: scale(1.02);
-}
-#container .kanban-page .bot div {
-  height: 93%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
-#container .kanban-page .bot div .task-column {
-  width: 32%;
-  height: 95%;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-#container .kanban-page .bot div .task-column .upper {
-  background-color: rgba(254, 254, 230, 0.918);
-  overflow: hidden;
-  height: 8%;
-  border-radius: 8px;
-}
-#container .kanban-page .bot div .task-column .upper .name,
-#container .kanban-page .bot div .task-column .upper .count {
-  height: 100%;
-  font-size: 25px;
-  font-family: nasa;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#container .kanban-page .bot div .task-column .bottom-sec {
-  border-radius: 10px;
-  height: 92%;
-  background-color: rgba(27, 27, 27, 0.471);
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  gap: 15px;
-  overflow: hidden;
-  overflow-y: auto;
-  scrollbar-width: none;
-  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-}
-#container .kanban-page .bot div .task-column .bottom-sec .todo-items {
-  flex-shrink: 0;
-  width: 100%;
-  height: 120px;
-  border-radius: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.17);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: grab;
-  background: linear-gradient(rgba(255, 255, 255, 0.095), rgba(255, 255, 255, 0.095));
-}
-#container .kanban-page .bot div .task-column .bottom-sec .todo-items .text-wrapper {
-  width: 90%;
-  height: 100%;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 8px;
-  overflow: hidden;
-  margin-left: 20px;
-}
-#container .kanban-page .bot div .task-column .bottom-sec .todo-items .text-wrapper .task {
-  color: white;
-  font-family: nasa;
-  font-size: 35px;
-  margin: 0;
-  justify-content: flex-start;
-}
-#container .kanban-page .bot div .task-column .bottom-sec .todo-items .text-wrapper .decription {
-  justify-content: flex-start;
-  color: rgb(162, 162, 162);
-  font-size: 18px;
-  font-family: nasa;
-  margin: 0;
-  text-align: left;
-}
-#container .kanban-page .bot div .task-column .bottom-sec .todo-items .delete-btn {
-  font-family: nasa;
-  height: 100%;
-  width: 12%;
-  padding: 10px;
-  margin: 0;
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #ededd7;
-  color: rgb(255, 0, 0);
-  transition: all 0.3s ease;
-  box-sizing: inset 0px 10px 10px black;
-}
-#container .kanban-page .bot div .task-column .bottom-sec .todo-items .delete-btn:hover {
-  cursor: pointer;
-  background-color: rgb(220, 0, 0);
-  color: white;
-  scale: 1.02;
-}
-#container .kanban-page .bot div .task-column .bottom-sec.hover-over {
-  scale: 1.04;
-  border: 2px dashed white;
-}
-#container .kanban-page .bot div .todo-sec .name {
-  width: 50%;
-  background-color: rgb(181, 0, 0);
-}
-#container .kanban-page .bot div .todo-sec .count {
-  width: 50%;
-}
-#container .kanban-page .bot div .inprogress-sec .name {
-  width: 50%;
-  background-color: rgb(255, 111, 0);
-}
-#container .kanban-page .bot div .inprogress-sec .count {
-  width: 50%;
-}
-#container .kanban-page .bot div .done-sec .name {
-  width: 50%;
-  background-color: rgb(26, 148, 30);
-}
-#container .kanban-page .bot div .done-sec .count {
-  width: 50%;
-}
-#container .kanban-page.active {
-  transform: scale(1);
-  opacity: 1;
-  pointer-events: auto;
-}
-#container #bot-section {
-  overflow: hidden;
-  height: 100%;
-  width: 100%;
-  border-radius: 20px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1.5fr 1.5fr 1fr;
-  grid-template-areas: "top-left top-mid top-mid top-top-right " "top-left top-mid top-mid top-bot-right" "bot-top-left bot-mid-left bot-mid-right bot-right" "bot-bot-left bot-mid-left bot-mid-right bot-right ";
-  gap: 10px;
-  padding: 10px;
-}
-#container #bot-section .top-left.weather-sec1 {
-  border: 1px solid rgba(128, 128, 128, 0.417);
-  border-radius: 20px;
-  grid-area: top-left;
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-  overflow: hidden;
-  padding: 40px;
-  color: white;
-  font-family: helvetica neue, open sans, Helvetica, Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-}
-#container #bot-section .top-left.weather-sec1 .top h1 {
-  font-size: 50px;
-  padding: 10px;
-  border-bottom: 1px solid white;
-}
-#container #bot-section .top-left.weather-sec1 .top h2 {
-  font-size: 150px;
-  font-family: nasa;
-}
-#container #bot-section .top-left.weather-sec1 .bot {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-#container #bot-section .top-left.weather-sec1 .bot img {
-  width: 110px;
-}
-#container #bot-section .top-left.weather-sec1 .bot div {
-  line-height: 1.5;
-  padding: 10px;
-  border-left: 1px solid white;
-}
-#container #bot-section .top-left.weather-sec1 .bot div h2 {
-  font-size: 30px;
-  letter-spacing: 3px;
-}
-#container #bot-section .top-left.weather-sec1 .bot div h3 {
-  font-size: 15px;
-  letter-spacing: 3px;
-}
-#container #bot-section .top-left.weather-sec1::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 100%; /* height of background */
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1799 1799' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  background-blend-mode: screen;
-  z-index: 3;
-  opacity: 0.2;
-}
-#container #bot-section .top-mid {
-  grid-area: top-mid;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  padding: 8px;
-  border-radius: 22px;
-  background-color: #000000;
-  position: relative;
-  z-index: 0;
-}
-#container #bot-section .top-mid .div1 {
-  height: 100%;
-  width: 50%;
-}
-#container #bot-section .top-mid .div1 div {
-  border-radius: 15px;
-  overflow: hidden;
-  height: 30%;
-  width: 100%;
-}
-#container #bot-section .top-mid .div1 div img {
-  height: 100%;
-  width: 100%;
-  -o-object-position: 50% 20%;
-     object-position: 50% 20%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  filter: saturate(80%) contrast(90%);
-}
-#container #bot-section .top-mid .div1 h1 {
-  text-shadow: 0px 0px 50px rgb(44, 44, 44);
-  text-align: justify;
-  line-height: 0.9;
-  align-self: flex-end;
-  width: 100%;
-  height: 70%;
-  text-transform: capitalize;
-  white-space: normal;
-  word-break: break-word;
-  font-size: 85px;
-  font-family: Syne;
-  color: white;
-  opacity: 1;
-  position: relative;
-}
-#container #bot-section .top-mid .div1 h1::after {
-  content: "";
-  position: absolute;
-  bottom: 20%;
-  right: 0;
-  width: 100px; /* length of the corner */
-  height: 100px;
-  border-right: 3px solid rgb(255, 255, 255);
-  border-bottom: 3px solid rgb(255, 255, 255);
-}
-#container #bot-section .top-mid .div2 {
-  height: 100%;
-  width: 50%;
-}
-#container #bot-section .top-mid .div2 div {
-  border-radius: 15px;
-  overflow: hidden;
-  height: 60%;
-  width: 100%;
-}
-#container #bot-section .top-mid .div2 div img {
-  height: 100%;
-  width: 150%;
-  -o-object-position: 0% 80%;
-     object-position: 0% 80%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  filter: grayscale(100%);
-}
-#container #bot-section .top-mid .div2 h1 {
-  align-self: flex-end;
-  width: 100%;
-  height: 40%;
-  text-transform: capitalize;
-  white-space: normal;
-  word-break: break-word;
-  font-size: 85px;
-  font-family: Syne;
-  color: rgb(251, 251, 251);
-  border-radius: 15px;
-  -webkit-text-stroke: 1px rgba(255, 0, 200, 0);
-  -webkit-background-clip: text;
-          background-clip: text;
-  background-position: center;
-  background-size: 800px;
-  line-height: 0.9;
-  text-align: justify;
-  filter: contrast(100%) brightness(150%) saturate(150%);
-}
-#container #bot-section .top-mid::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  padding: 2px; /* border thickness */
-  border-radius: 20px;
-  background: linear-gradient(270deg, black, #e1a0ff, #8f2bbd, black);
-  background-size: 400% 400%;
-  animation: borderMove 20s linear infinite;
-  /* MAGIC PART */
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-}
-@keyframes borderMove {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 400% 50%;
-  }
-}
-#container #bot-section .top-top-right.todo-card {
-  grid-area: top-top-right;
-  border: 1px solid rgba(128, 128, 128, 0.417);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: row-reverse;
-  padding: 10px;
-  border-radius: 20px;
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-}
-#container #bot-section .top-top-right.todo-card .textdiv {
-  width: 60%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  text-align: center;
-}
-#container #bot-section .top-top-right.todo-card .textdiv h1 {
-  width: 70%;
-  color: white;
-  font-family: Syne;
-  font-size: 30px;
-  line-height: 1;
-  text-transform: uppercase;
-}
-#container #bot-section .top-top-right.todo-card .textdiv button {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  text-align: justify;
-  text-transform: uppercase;
-  font-weight: bold;
-  padding: 10px 40px;
-  color: white;
-  border-radius: 5px;
-  margin-top: 10px;
-  background-color: rgba(101, 101, 101, 0.147);
-  border: none;
-  border: 1px solid rgba(128, 128, 128, 0.807);
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-  transition: all 0.5 ease;
-}
-#container #bot-section .top-top-right.todo-card .textdiv button:hover {
-  background-color: rgba(101, 101, 101, 0.693);
-  transform: scale(0.99);
-}
-#container #bot-section .top-top-right.todo-card .imgdiv {
-  overflow: hidden;
-  border-radius: 15px;
-  height: 100%;
-  width: 40%;
-  pointer-events: none;
-  border-right: 1px solid rgba(255, 255, 255, 0.401);
-}
-#container #bot-section .top-top-right.todo-card .imgdiv img {
-  height: 100%;
-  width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
-  filter: contrast(150%) saturate(-50%);
-}
-#container #bot-section .todo-card:hover {
-  scale: 0.98;
-}
-#container #bot-section .top-bot-right.dailyplanner-card {
-  grid-area: top-bot-right;
-  border: 1px solid rgba(128, 128, 128, 0.417);
-  display: flex;
-  padding: 10px;
-  border-radius: 20px;
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-}
-#container #bot-section .top-bot-right.dailyplanner-card .textdiv {
-  width: 50%;
-  height: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
-}
-#container #bot-section .top-bot-right.dailyplanner-card .textdiv h1 {
-  width: 100%;
-  color: white;
-  font-family: Syne;
-  font-size: 42px;
-  line-height: 1;
-  white-space: normal;
-  word-break: break-word;
-  overflow-wrap: break-word;
-  text-transform: uppercase;
-}
-#container #bot-section .top-bot-right.dailyplanner-card .textdiv button {
-  align-self: flex-start;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: bold;
-  padding: 10px 40px;
-  color: white;
-  border-radius: 5px;
-  margin-top: 10px;
-  background-color: rgba(101, 101, 101, 0.147);
-  border: none;
-  border: 1px solid rgba(128, 128, 128, 0.807);
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-  transition: all 0.5 ease;
-}
-#container #bot-section .top-bot-right.dailyplanner-card .textdiv button:hover {
-  background-color: rgba(101, 101, 101, 0.693);
-  transform: scale(0.99);
-}
-#container #bot-section .top-bot-right.dailyplanner-card .imgdiv {
-  height: 100%;
-  width: 50%;
-  overflow: hidden;
-  border-radius: 15px;
-  height: 100%;
-  pointer-events: none;
-  border-left: 1px solid rgba(255, 255, 255, 0.401);
-}
-#container #bot-section .top-bot-right.dailyplanner-card .imgdiv img {
-  height: 100%;
-  width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
-  pointer-events: none;
-}
-#container #bot-section .dailyplanner-card:hover {
-  scale: 0.98;
-}
-#container #bot-section .bot-top-left.weather-sec2 {
-  border: 1px solid rgba(128, 128, 128, 0.417);
-  font-family: helvetica neue, open sans, Helvetica, Arial, sans-serif;
-  border-radius: 20px;
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-  grid-area: bot-top-left;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  color: white;
-  font-weight: bold;
-}
-#container #bot-section .bot-top-left.weather-sec2 .left,
-#container #bot-section .bot-top-left.weather-sec2 .right {
-  display: flex;
-  gap: 10px;
-}
-#container #bot-section .bot-top-left.weather-sec2 .left div,
-#container #bot-section .bot-top-left.weather-sec2 .right div {
-  width: 130px;
-  height: 80px;
-  border-radius: 15px;
-  background: radial-gradient(250px, rgba(0, 0, 0, 0.3294117647), rgba(255, 255, 255, 0.165));
-  border: 1px solid rgba(255, 255, 255, 0.141);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-#container #bot-section .bot-top-left.weather-sec2 .left div .km,
-#container #bot-section .bot-top-left.weather-sec2 .right div .km {
-  font-size: 20px;
-  color: rgb(177, 177, 177);
-}
-#container #bot-section .bot-top-left.weather-sec2 .left div .celcius,
-#container #bot-section .bot-top-left.weather-sec2 .right div .celcius {
-  font-size: 20px;
-  color: rgb(177, 177, 177);
-}
-#container #bot-section .bot-top-left.weather-sec2 .left div p,
-#container #bot-section .bot-top-left.weather-sec2 .right div p {
-  letter-spacing: 3px;
-  font-size: 15px;
-  padding: 5px;
-  color: rgb(177, 177, 177);
-}
-#container #bot-section .bot-top-left.weather-sec2 .left div .data,
-#container #bot-section .bot-top-left.weather-sec2 .right div .data {
-  color: white;
-  font-size: 30px;
-}
-#container #bot-section .bot-top-left::before {
-  content: "";
-  position: absolute;
-  top: 0%;
-  left: 0;
-  width: 100%;
-  height: 100%; /* height of background */
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1799 1799' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  background-blend-mode: screen;
-  z-index: 3;
-  opacity: 0.2;
-}
-#container #bot-section .bot-bot-left.weather-sec3 {
-  border: 1px solid #8f2bbd;
-  border-radius: 20px;
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-  grid-area: bot-bot-left;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#container #bot-section .bot-bot-left.weather-sec3 h1 {
-  font-size: 100px;
-  color: white;
-  font-family: nasa;
-}
-#container #bot-section .bot-bot-left.weather-sec3 h1 .seconds {
-  font-family: helvetica neue, open sans, Helvetica, Arial, sans-serif;
-  font-size: 50px;
-}
-#container #bot-section .bot-bot-left::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 100%; /* height of background */
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1799 1799' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  background-blend-mode: screen;
-  z-index: 3;
-  opacity: 0.2;
-}
-#container #bot-section .bot-mid-left.moti-card {
-  grid-area: bot-mid-left;
-  border: 1px solid rgba(128, 128, 128, 0.417);
-  border-radius: 20px;
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: space-between;
-  padding: 10px;
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-}
-#container #bot-section .bot-mid-left.moti-card .textdiv {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  overflow: hidden;
-}
-#container #bot-section .bot-mid-left.moti-card .textdiv div h1,
-#container #bot-section .bot-mid-left.moti-card .textdiv div h2 {
-  color: white;
-  font-family: Syne;
-  line-height: 1;
-  pointer-events: none;
-  white-space: normal;
-  word-break: break-word;
-  overflow-wrap: break-word;
-  text-transform: uppercase;
-}
-#container #bot-section .bot-mid-left.moti-card .textdiv div h1 {
-  font-size: 40px;
-}
-#container #bot-section .bot-mid-left.moti-card .textdiv div h2 {
-  font-size: 50px;
-}
-#container #bot-section .bot-mid-left.moti-card .textdiv button {
-  height: 85%;
-  margin-right: 3px;
-  text-align: center;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  text-transform: uppercase;
-  font-weight: bold;
-  padding: 10px;
-  color: white;
-  border-radius: 7px;
-  background-color: rgba(135, 192, 209, 0.067);
-  border: none;
-  border: 1px solid rgba(128, 128, 128, 0.807);
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-  transition: all 0.5 ease;
-}
-#container #bot-section .bot-mid-left.moti-card .textdiv button:hover {
-  background-color: rgba(101, 101, 101, 0.693);
-  transform: scale(0.99);
-}
-#container #bot-section .bot-mid-left.moti-card .imgdiv {
-  width: 100%;
-  height: 70%;
-  border-radius: 15px;
-  pointer-events: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.401);
-  overflow: hidden;
-}
-#container #bot-section .bot-mid-left.moti-card .imgdiv img {
-  height: 100%;
-  width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: 50% 20%;
-     object-position: 50% 20%;
-  pointer-events: none;
-  filter: contrast(150%);
-}
-#container #bot-section .moti-card:hover {
-  scale: 0.98;
-}
-#container #bot-section .bot-mid-right.pomo-card {
-  grid-area: bot-mid-right;
-  border: 1px solid rgba(128, 128, 128, 0.417);
-  border-radius: 20px;
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column-reverse;
-  padding: 10px;
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-}
-#container #bot-section .bot-mid-right.pomo-card .textdiv {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  overflow: hidden;
-  gap: 10px;
-}
-#container #bot-section .bot-mid-right.pomo-card .textdiv div h1,
-#container #bot-section .bot-mid-right.pomo-card .textdiv div h2 {
-  color: white;
-  font-family: Syne;
-  line-height: 1;
-  pointer-events: none;
-  white-space: normal;
-  word-break: break-word;
-  overflow-wrap: break-word;
-  text-transform: uppercase;
-}
-#container #bot-section .bot-mid-right.pomo-card .textdiv div h1 {
-  font-size: 40px;
-}
-#container #bot-section .bot-mid-right.pomo-card .textdiv div h2 {
-  font-size: 50px;
-}
-#container #bot-section .bot-mid-right.pomo-card .textdiv button {
-  height: 85%;
-  margin-right: 3px;
-  text-align: center;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  text-transform: uppercase;
-  font-weight: bold;
-  padding: 10px;
-  color: white;
-  border-radius: 7px;
-  background-color: rgba(135, 192, 209, 0.067);
-  border: none;
-  border: 1px solid rgba(128, 128, 128, 0.807);
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-  transition: all 0.5 ease;
-}
-#container #bot-section .bot-mid-right.pomo-card .textdiv button:hover {
-  background-color: rgba(101, 101, 101, 0.693);
-  transform: scale(0.99);
-}
-#container #bot-section .bot-mid-right.pomo-card .imgdiv {
-  width: 100%;
-  height: 70%;
-  border-radius: 15px;
-  pointer-events: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.401);
-  overflow: hidden;
-}
-#container #bot-section .bot-mid-right.pomo-card .imgdiv img {
-  height: 100%;
-  width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: 50% 50%;
-     object-position: 50% 50%;
-  pointer-events: none;
-}
-#container #bot-section .pomo-card:hover {
-  scale: 0.98;
-}
-#container #bot-section .bot-right.kanban-card {
-  grid-area: bot-right;
-  border: 1px solid rgba(128, 128, 128, 0.417);
-  border-radius: 20px;
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: space-between;
-  padding: 10px;
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  transition: all 0.2s ease;
-}
-#container #bot-section .bot-right.kanban-card .textdiv {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  overflow: hidden;
-}
-#container #bot-section .bot-right.kanban-card .textdiv div h1,
-#container #bot-section .bot-right.kanban-card .textdiv div h2 {
-  color: white;
-  font-family: Syne;
-  line-height: 1;
-  pointer-events: none;
-  white-space: normal;
-  word-break: break-word;
-  overflow-wrap: break-word;
-  text-transform: uppercase;
-}
-#container #bot-section .bot-right.kanban-card .textdiv div h1 {
-  font-size: 40px;
-}
-#container #bot-section .bot-right.kanban-card .textdiv div h2 {
-  font-size: 50px;
-}
-#container #bot-section .bot-right.kanban-card .textdiv button {
-  height: 85%;
-  margin-right: 3px;
-  text-align: center;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  text-transform: uppercase;
-  font-weight: bold;
-  padding: 10px;
-  color: white;
-  border-radius: 7px;
-  background-color: rgba(135, 192, 209, 0.067);
-  border: none;
-  border: 1px solid rgba(128, 128, 128, 0.807);
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-  transition: all 0.5 ease;
-}
-#container #bot-section .bot-right.kanban-card .textdiv button:hover {
-  background-color: rgba(101, 101, 101, 0.693);
-  transform: scale(0.99);
-}
-#container #bot-section .bot-right.kanban-card .imgdiv {
-  width: 100%;
-  height: 70%;
-  border-radius: 15px;
-  pointer-events: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.401);
-  overflow: hidden;
-}
-#container #bot-section .bot-right.kanban-card .imgdiv img {
-  height: 100%;
-  width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: 50% 20%;
-     object-position: 50% 20%;
-  pointer-events: none;
-}
-#container #bot-section .kanban-card:hover {
-  scale: 0.98;
-}
-
 @keyframes hero-gradient-animation {
   0% {
     --c-0: hsla(266.99999999999983, 1%, 12%, 1);
@@ -1953,4 +143,2085 @@ main {
   syntax: "<percentage>";
   inherits: false;
   initial-value: 68%;
+}
+@keyframes hero-gradient-animation {
+  0% {
+    --c-0: hsla(266.99999999999983, 1%, 12%, 1);
+    --s-start-0: 9%;
+    --s-end-0: 55%;
+    --y-0: 80%;
+    --x-0: 85%;
+    --x-1: 60%;
+    --c-1: hsla(335.9999999999997, 2%, 22%, 1);
+    --s-start-1: 5%;
+    --s-end-1: 72%;
+    --y-1: 24%;
+    --x-2: 13%;
+    --y-2: 82%;
+    --c-2: hsla(53.999999999999886, 0%, 0%, 0.49);
+    --s-start-2: 5%;
+    --s-end-2: 52%;
+    --c-3: hsla(299, 4%, 36%, 1);
+    --y-3: 7%;
+    --x-3: 24%;
+    --s-start-3: 13%;
+    --s-end-3: 68%;
+  }
+  100% {
+    --c-0: hsla(266.99999999999943, 0%, 12%, 1);
+    --s-start-0: 9%;
+    --s-end-0: 55%;
+    --y-0: 94%;
+    --x-0: 31%;
+    --x-1: 2%;
+    --c-1: hsla(0, 4%, 19%, 1);
+    --s-start-1: 5%;
+    --s-end-1: 72%;
+    --y-1: 25%;
+    --x-2: 98%;
+    --y-2: 20%;
+    --c-2: hsla(54.000000000000036, 0%, 0%, 0.49);
+    --s-start-2: 5%;
+    --s-end-2: 52%;
+    --c-3: hsla(298.99999999999994, 3%, 41%, 1);
+    --y-3: 92%;
+    --x-3: 95%;
+    --s-start-3: 13%;
+    --s-end-3: 68%;
+  }
+}
+@property --c-0 {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: hsl(267, 1%, 12%);
+}
+@property --s-start-0 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 9%;
+}
+@property --s-end-0 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 55%;
+}
+@property --y-0 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 80%;
+}
+@property --x-0 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 85%;
+}
+@property --x-1 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 60%;
+}
+@property --c-1 {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: hsl(336, 2%, 22%);
+}
+@property --s-start-1 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 5%;
+}
+@property --s-end-1 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 72%;
+}
+@property --y-1 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 24%;
+}
+@property --x-2 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 13%;
+}
+@property --y-2 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 82%;
+}
+@property --c-2 {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: hsla(54, 0%, 0%, 0.49);
+}
+@property --s-start-2 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 5%;
+}
+@property --s-end-2 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 52%;
+}
+@property --c-3 {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: hsl(299, 4%, 36%);
+}
+@property --y-3 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 7%;
+}
+@property --x-3 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 24%;
+}
+@property --s-start-3 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 13%;
+}
+@property --s-end-3 {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 68%;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: nasa;
+  src: url(./fonts/Nasalization\ Rg.otf);
+}
+@font-face {
+  font-family: ceta;
+  src: url(./fonts/5ceta_mono.ttf);
+}
+@font-face {
+  font-family: Syne;
+  src: url(./fonts/Syne-Extra.otf);
+}
+.done {
+  color: grey;
+  text-decoration: line-through;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: clamp(1.2rem, 2vw, 2.5rem);
+}
+
+.weather-sec1 h2 {
+  font-size: clamp(4rem, 6vw, 8rem);
+}
+
+img {
+  max-height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+main {
+  height: 100vh;
+  width: 100%;
+  padding: 1.5rem;
+  position: relative;
+  --c-0: hsla(266.99999999999983, 1%, 12%, 1);
+  --y-0: 80%;
+  --x-0: 85%;
+  --x-1: 60%;
+  --c-1: hsla(335.9999999999997, 2%, 22%, 1);
+  --y-1: 24%;
+  --x-2: 13%;
+  --y-2: 82%;
+  --c-2: hsla(53.999999999999886, 0%, 0%, 0.49);
+  --c-3: rgb(89, 88, 95);
+  --y-3: 7%;
+  --x-3: 24%;
+  background-color: hsl(0, 0%, 0%);
+  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
+  animation: hero-gradient-animation 10s linear infinite alternate;
+  background-blend-mode: normal, normal, normal, normal;
+  overflow: hidden;
+}
+main #container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+main #container .todo-page {
+  --c-0: hsla(266.99999999999983, 1%, 12%, 1);
+  --y-0: 80%;
+  --x-0: 85%;
+  --x-1: 60%;
+  --c-1: hsla(335.9999999999997, 2%, 22%, 1);
+  --y-1: 24%;
+  --x-2: 13%;
+  --y-2: 82%;
+  --c-2: hsla(53.999999999999886, 0%, 0%, 0.49);
+  --c-3: rgb(89, 88, 95);
+  --y-3: 7%;
+  --x-3: 24%;
+  background-color: hsl(0, 0%, 0%);
+  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
+  animation: hero-gradient-animation 10s linear infinite alternate;
+  background-blend-mode: normal, normal, normal, normal;
+  position: absolute;
+  background-color: rgb(103, 20, 20);
+  height: 100%;
+  width: 100%;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10px;
+  gap: 10px;
+  transition: all 0.4s ease, opacity 0.3s ease;
+  transform: scale(0.5);
+  opacity: 0;
+  pointer-events: none;
+}
+main #container .todo-page .top {
+  height: 15%;
+  width: 100%;
+  background-color: rgba(254, 254, 230, 0.918);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Syne;
+  text-transform: uppercase;
+  position: relative;
+}
+main #container .todo-page .top h1 {
+  font-size: 100px;
+  color: rgb(23, 23, 23);
+}
+main #container .todo-page .top p {
+  position: absolute;
+  top: 10%;
+  right: 2%;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(27, 27, 27, 0.418);
+}
+main #container .todo-page .top p i {
+  color: white;
+  pointer-events: none;
+}
+main #container .todo-page .bot {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 85%;
+  gap: 10px;
+  overflow: hidden;
+}
+main #container .todo-page .bot .left {
+  width: 40%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.089);
+  border-radius: 5px;
+}
+main #container .todo-page .bot .left .inp,
+main #container .todo-page .bot .left textarea,
+main #container .todo-page .bot .left select {
+  all: unset;
+  box-sizing: border-box;
+  font-family: inherit;
+  color: inherit;
+}
+main #container .todo-page .bot .left .inp,
+main #container .todo-page .bot .left textarea {
+  caret-color: rgb(255, 255, 255); /* any color */
+  color: white;
+}
+main #container .todo-page .bot .left .form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  gap: 10px;
+  padding: 10px;
+}
+main #container .todo-page .bot .left .form .inp {
+  transition: all 0.5s ease;
+  width: 80%;
+  padding: 10px;
+  font-size: 20px;
+  height: 50px;
+  font-family: nasa;
+  border-radius: 5px;
+  background-color: rgba(19, 19, 19, 0.329);
+}
+main #container .todo-page .bot .left .form textarea {
+  width: 80%;
+  height: 200px;
+  padding: 10px;
+  font-size: 20px;
+  font-family: nasa;
+  border-radius: 5px;
+  background-color: rgba(19, 19, 19, 0.329);
+}
+main #container .todo-page .bot .left .form label {
+  width: 80%;
+  font-size: 20px;
+  font-family: nasa;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: rgb(217, 217, 217);
+  padding: 20px;
+}
+main #container .todo-page .bot .left .form label input {
+  height: 25px;
+  width: 25px;
+}
+main #container .todo-page .bot .left .form label p {
+  -moz-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+main #container .todo-page .bot .left .form button {
+  all: unset;
+  box-sizing: border-box;
+  font-family: inherit;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 80%;
+  font-family: nasa;
+  font-weight: bold;
+  font-size: 30px;
+  border-radius: 5px;
+  color: rgb(19, 19, 19);
+  background-color: rgba(254, 254, 230, 0.918);
+  transition: all 0.3s ease;
+}
+main #container .todo-page .bot .left .form button:hover {
+  background-color: rgb(145, 145, 145);
+  color: white;
+}
+main #container .todo-page .bot .right::-webkit-scrollbar {
+  display: none;
+}
+main #container .todo-page .bot .right {
+  height: 100%;
+  width: 60%;
+  display: flex;
+  position: relative;
+  border-radius: 5px;
+  overflow-y: auto;
+}
+main #container .todo-page .bot .right .list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  padding: 10px;
+  gap: 10px;
+}
+main #container .todo-page .bot .right .list .listitems {
+  flex-shrink: 0;
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  overflow: hidden;
+  font-family: nasa;
+}
+main #container .todo-page .bot .right .list .listitems .text {
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  height: 100%;
+  background-color: rgba(254, 254, 230, 0.918);
+  font-size: 50px;
+}
+main #container .todo-page .bot .right .list .listitems .text .imp {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  font-size: 20px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: rgb(29, 29, 29) !important;
+  background-color: red;
+}
+main #container .todo-page .bot .right .list .listitems .text .grey {
+  background-color: gray;
+}
+main #container .todo-page .bot .right .list .listitems .completed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 25%;
+  background-color: rgb(58, 130, 58);
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+main #container .todo-page .bot .right .list .listitems .delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 58, 58);
+  height: 100%;
+  width: 15%;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+main #container .todo-page .bot .right .list .listitems .delete:hover {
+  background-color: maroon;
+  color: white;
+}
+main #container .todo-page .bot .right .list .listitems .completed:hover {
+  background-color: rgb(1, 77, 1);
+  color: white;
+}
+main #container .todo-page.active {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+main #container .dailyplanner-page {
+  --c-0: hsla(266.99999999999983, 1%, 12%, 1);
+  --y-0: 80%;
+  --x-0: 85%;
+  --x-1: 60%;
+  --c-1: hsla(335.9999999999997, 2%, 22%, 1);
+  --y-1: 24%;
+  --x-2: 13%;
+  --y-2: 82%;
+  --c-2: hsla(53.999999999999886, 0%, 0%, 0.49);
+  --c-3: rgb(89, 88, 95);
+  --y-3: 7%;
+  --x-3: 24%;
+  background-color: hsl(0, 0%, 0%);
+  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
+  animation: hero-gradient-animation 10s linear infinite alternate;
+  background-blend-mode: normal, normal, normal, normal;
+  position: absolute;
+  background-color: rgb(13, 78, 158);
+  height: 100%;
+  width: 100%;
+  z-index: 5;
+  display: flex;
+  transition: all 0.4s ease, opacity 0.3s ease;
+  transform: scale(0.5);
+  opacity: 0;
+  pointer-events: none;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10px;
+  gap: 10px;
+}
+main #container .dailyplanner-page .top {
+  height: 15%;
+  width: 100%;
+  background-color: rgba(254, 254, 230, 0.918);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Syne;
+  text-transform: uppercase;
+  position: relative;
+}
+main #container .dailyplanner-page .top h1 {
+  font-size: 100px;
+  color: rgb(23, 23, 23);
+}
+main #container .dailyplanner-page .top p {
+  position: absolute;
+  top: 10%;
+  right: 2%;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(27, 27, 27, 0.418);
+}
+main #container .dailyplanner-page .top p i {
+  color: white;
+  pointer-events: none;
+}
+main #container .dailyplanner-page .bot {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 85%;
+  gap: 10px;
+}
+main #container .dailyplanner-page .bot .inside {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.089);
+  border-radius: 5px;
+  padding: 30px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  overflow: auto;
+}
+main #container .dailyplanner-page .bot .inside .items {
+  height: 70px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  width: 45%;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid rgb(13, 78, 158);
+  background: linear-gradient(45deg, rgba(0, 115, 255, 0), rgba(22, 22, 22, 0.397));
+}
+main #container .dailyplanner-page .bot .inside .items p {
+  width: 30%;
+  font-size: 1.5rem;
+  text-align: center;
+  border-right: 1px solid rgb(255, 255, 255);
+  font-family: nasa;
+  padding: 10px;
+  color: rgba(254, 254, 230, 0.918);
+  white-space: nowrap;
+}
+main #container .dailyplanner-page .bot .inside .items input {
+  all: unset;
+  flex: 1;
+  box-sizing: border-box;
+  font-family: nasa;
+  padding: 10px;
+  font-size: 25px;
+  line-height: 40px;
+  color: rgba(254, 254, 230, 0.918);
+  font-weight: 200;
+  overflow-x: auto;
+}
+main #container .dailyplanner-page .bot .inside .items input::-moz-placeholder {
+  color: rgba(166, 166, 166, 0.246);
+  font-family: nasa;
+  opacity: 1;
+  font-size: 20px;
+  -moz-transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease;
+}
+main #container .dailyplanner-page .bot .inside .items input::placeholder {
+  color: rgba(166, 166, 166, 0.246);
+  font-family: nasa;
+  opacity: 1;
+  font-size: 20px;
+  transition: opacity 0.2s ease;
+}
+main #container .dailyplanner-page .bot .inside .items input:focus::-moz-placeholder {
+  opacity: 0;
+}
+main #container .dailyplanner-page .bot .inside .items input:focus::placeholder {
+  opacity: 0;
+}
+main #container .dailyplanner-page.active {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+main #container .motivational-page {
+  --c-0: hsla(266.99999999999983, 1%, 12%, 1);
+  --y-0: 80%;
+  --x-0: 85%;
+  --x-1: 60%;
+  --c-1: hsla(335.9999999999997, 2%, 22%, 1);
+  --y-1: 24%;
+  --x-2: 13%;
+  --y-2: 82%;
+  --c-2: hsla(53.999999999999886, 0%, 0%, 0.49);
+  --c-3: rgb(89, 88, 95);
+  --y-3: 7%;
+  --x-3: 24%;
+  background-color: hsl(0, 0%, 0%);
+  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
+  animation: hero-gradient-animation 10s linear infinite alternate;
+  background-blend-mode: normal, normal, normal, normal;
+  position: absolute;
+  background-color: #2e2512;
+  height: 100%;
+  width: 100%;
+  z-index: 5;
+  display: flex;
+  transition: all 0.4s ease, opacity 0.3s ease;
+  transform: scale(0.5);
+  opacity: 0;
+  pointer-events: none;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10px;
+  gap: 10px;
+}
+main #container .motivational-page .top {
+  height: 15%;
+  width: 100%;
+  background-color: rgba(254, 254, 230, 0.918);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Syne;
+  text-transform: uppercase;
+  position: relative;
+}
+main #container .motivational-page .top h1 {
+  font-size: 100px;
+  color: rgb(23, 23, 23);
+}
+main #container .motivational-page .top p {
+  position: absolute;
+  top: 10%;
+  right: 2%;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(27, 27, 27, 0.418);
+}
+main #container .motivational-page .top p i {
+  color: white;
+  pointer-events: none;
+}
+main #container .motivational-page .bot {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 85%;
+  gap: 10px;
+}
+main #container .motivational-page .bot .inside {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.089);
+  border-radius: 5px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+main #container .motivational-page .bot .inside .quoteDiv {
+  padding: 20px;
+  height: 400px;
+  width: 800px;
+  background-color: rgb(253, 210, 100);
+  border: 1px solid rgba(255, 255, 255, 0.419);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 0 200px #fdd264;
+  animation: opa 2s ease-in-out infinite alternate;
+}
+main #container .motivational-page .bot .inside .quoteDiv .left {
+  height: 80%;
+  width: 80%;
+  font-size: 30px;
+  font-family: Syne;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  color: rgb(54, 54, 54);
+  border-top: 2px solid rgb(255, 255, 255);
+}
+main #container .motivational-page .bot .inside .quoteDiv .left .name {
+  border-bottom: 2px solid rgb(255, 255, 255);
+}
+main #container .motivational-page .bot .inside .quoteDiv .right1 {
+  position: absolute;
+  top: -10%;
+  right: 0%;
+  font-family: Syne;
+  font-size: 150px;
+  color: rgba(49, 49, 49, 0.283);
+  align-self: flex-start;
+  color: transparent;
+  -webkit-text-stroke: 5px rgba(49, 49, 49, 0.5);
+  background-color: rgba(255, 0, 0, 0);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+main #container .motivational-page .bot .inside .quoteDiv .right2 {
+  position: absolute;
+  bottom: -10%;
+  left: 0%;
+  font-family: Syne;
+  font-size: 150px;
+  color: rgba(49, 49, 49, 0.283);
+  align-self: flex-start;
+  color: transparent;
+  -webkit-text-stroke: 5px rgba(49, 49, 49, 0.5);
+  background-color: rgba(255, 0, 0, 0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  rotate: 180deg;
+}
+main #container .motivational-page .bot .inside .quoteDiv::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgb(255, 215, 140);
+  border-radius: 10px;
+  z-index: -1;
+  filter: blur(100px);
+}
+main #container .motivational-page .bot .inside .btn {
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  padding: 20px;
+  font-family: Syne;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: rgb(54, 54, 54);
+  background-color: rgba(254, 254, 230, 0.918);
+  border: 1px solid rgba(255, 255, 255, 0.419);
+  transition: all 0.3s ease;
+}
+main #container .motivational-page .bot .inside .btn:active {
+  background-color: rgba(187, 187, 169, 0.918);
+  cursor: pointer;
+}
+main #container .motivational-page .bot .inside .btn:hover {
+  cursor: pointer;
+  transform: scale(0.99);
+}
+@keyframes opa {
+  from {
+    box-shadow: 0 0 50px #fdd264;
+  }
+  to {
+    box-shadow: 0 0 0px #fdd264;
+  }
+}
+main #container .motivational-page.active {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+main #container .pomodoro-page {
+  --c-0: hsla(266.99999999999983, 1%, 12%, 1);
+  --y-0: 80%;
+  --x-0: 85%;
+  --x-1: 60%;
+  --c-1: hsla(335.9999999999997, 2%, 22%, 1);
+  --y-1: 24%;
+  --x-2: 13%;
+  --y-2: 82%;
+  --c-2: hsla(53.999999999999886, 0%, 0%, 0.49);
+  --c-3: rgb(89, 88, 95);
+  --y-3: 7%;
+  --x-3: 24%;
+  background-color: hsl(0, 0%, 0%);
+  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
+  animation: hero-gradient-animation 10s linear infinite alternate;
+  background-blend-mode: normal, normal, normal, normal;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 5;
+  background-color: rgb(87, 0, 116);
+  display: flex;
+  transition: all 0.4s ease, opacity 0.3s ease;
+  transform: scale(0.5);
+  opacity: 0;
+  pointer-events: none;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10px;
+  gap: 10px;
+}
+main #container .pomodoro-page .top {
+  height: 15%;
+  width: 100%;
+  background-color: rgba(254, 254, 230, 0.918);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Syne;
+  text-transform: uppercase;
+  position: relative;
+}
+main #container .pomodoro-page .top h1 {
+  font-size: 100px;
+  color: rgb(23, 23, 23);
+}
+main #container .pomodoro-page .top p {
+  position: absolute;
+  top: 10%;
+  right: 2%;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(27, 27, 27, 0.418);
+}
+main #container .pomodoro-page .top p i {
+  color: white;
+  pointer-events: none;
+}
+main #container .pomodoro-page .bot {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 85%;
+  gap: 10px;
+}
+main #container .pomodoro-page .bot .inside {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.089);
+  border-radius: 5px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+main #container .pomodoro-page .bot .inside .timerDiv {
+  border-radius: 10px;
+  -webkit-backdrop-filter: blur(50px);
+          backdrop-filter: blur(50px);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  overflow: hidden;
+  width: 50%;
+}
+main #container .pomodoro-page .bot .inside .timerDiv .tabs {
+  width: 100%;
+  background-color: black;
+  font-size: 1.5rem;
+  font-family: nasa;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+main #container .pomodoro-page .bot .inside .timerDiv .tabs .pomo {
+  background-color: rgb(145, 0, 193);
+}
+main #container .pomodoro-page .bot .inside .timerDiv .tabs .longBreak {
+  background-color: rgb(209, 72, 255);
+}
+main #container .pomodoro-page .bot .inside .timerDiv .tabs .shortBreak {
+  background-color: rgb(225, 134, 255);
+}
+main #container .pomodoro-page .bot .inside .timerDiv .tabs .longBreak,
+main #container .pomodoro-page .bot .inside .timerDiv .tabs .pomo,
+main #container .pomodoro-page .bot .inside .timerDiv .tabs .shortBreak {
+  white-space: nowrap;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  padding: 20px;
+  transition: all 0.3s ease-in-out;
+  border-bottom: 1px solid transparent;
+  width: 33.3%;
+  text-align: center;
+}
+main #container .pomodoro-page .bot .inside .timerDiv .tabs .shortBreak:hover,
+main #container .pomodoro-page .bot .inside .timerDiv .tabs .pomo:hover,
+main #container .pomodoro-page .bot .inside .timerDiv .tabs .longBreak:hover {
+  color: rgba(254, 254, 230, 0.918);
+  background-color: rgb(34, 34, 34);
+  border-bottom: 1px solid rgb(255, 255, 255);
+}
+main #container .pomodoro-page .bot .inside .timerDiv .tabs .shortBreak:active,
+main #container .pomodoro-page .bot .inside .timerDiv .tabs .pomo:active,
+main #container .pomodoro-page .bot .inside .timerDiv .tabs .longBreak:active {
+  transform: scale(0.9);
+  background-color: rgb(92, 92, 92);
+}
+main #container .pomodoro-page .bot .inside .timerDiv .timer {
+  width: 100%;
+  height: 300px;
+  font-size: 250px;
+  font-family: helvetica neue, open sans, Helvetica, Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  border-left: 1px solid rgba(191, 0, 255, 0.267);
+  border-right: 1px solid rgba(191, 0, 255, 0.267);
+  box-shadow: inset 0px 0px 100px rgba(120, 0, 160, 0.283);
+}
+main #container .pomodoro-page .bot .inside .timerDiv .timer span {
+  display: flex;
+  flex-direction: column;
+  font-size: 30px;
+  gap: 50px;
+}
+main #container .pomodoro-page .bot .inside .timerDiv .btn {
+  background-color: black;
+  width: 100%;
+  display: flex;
+  gap: 1px;
+}
+main #container .pomodoro-page .bot .inside .timerDiv .btn .btn1 {
+  width: 50%;
+  border: none;
+  padding: 20px 50px;
+  font-size: 50px;
+  font-family: nasa;
+  transition: all 0.3s ease;
+  background-color: rgba(254, 254, 230, 0.918);
+  cursor: pointer;
+}
+main #container .pomodoro-page .bot .inside .timerDiv .btn .btn2 {
+  width: 50%;
+  border: none;
+  padding: 20px 50px;
+  font-size: 50px;
+  font-family: nasa;
+  transition: all 0.3s ease;
+  background-color: rgb(200, 52, 52);
+  cursor: pointer;
+}
+main #container .pomodoro-page .bot .inside .timerDiv .btn .btn1:hover,
+main #container .pomodoro-page .bot .inside .timerDiv .btn .btn2:hover {
+  color: rgba(254, 254, 230, 0.918);
+  background-color: rgb(34, 34, 34);
+}
+main #container .pomodoro-page .bot .inside .timerDiv .btn .btn1:active,
+main #container .pomodoro-page .bot .inside .timerDiv .btn .btn2:active {
+  transform: scale(0.95);
+  background-color: rgb(92, 92, 92);
+}
+main #container .pomodoro-page.active {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+main #container .kanban-page {
+  --c-0: hsla(266.99999999999983, 1%, 12%, 1);
+  --y-0: 80%;
+  --x-0: 85%;
+  --x-1: 60%;
+  --c-1: hsla(335.9999999999997, 2%, 22%, 1);
+  --y-1: 24%;
+  --x-2: 13%;
+  --y-2: 82%;
+  --c-2: hsla(53.999999999999886, 0%, 0%, 0.49);
+  --c-3: rgb(89, 88, 95);
+  --y-3: 7%;
+  --x-3: 24%;
+  background-color: hsl(0, 0%, 0%);
+  background-image: radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
+  animation: hero-gradient-animation 10s linear infinite alternate;
+  background-blend-mode: normal, normal, normal, normal;
+  position: absolute;
+  background-color: #9a3b00;
+  height: 100%;
+  width: 100%;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10px;
+  gap: 10px;
+  transition: all 0.4s ease, opacity 0.3s ease;
+  transform: scale(0.5);
+  opacity: 0;
+  pointer-events: none;
+}
+main #container .kanban-page .top {
+  height: 10%;
+  width: 100%;
+  background-color: rgba(254, 254, 230, 0.918);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Syne;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+main #container .kanban-page .top h1 {
+  font-size: 100px;
+  color: rgb(23, 23, 23);
+}
+main #container .kanban-page .top p {
+  position: absolute;
+  top: 10%;
+  right: 2%;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(27, 27, 27, 0.418);
+}
+main #container .kanban-page .top p i {
+  color: white;
+  pointer-events: none;
+}
+main #container .kanban-page .bot {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding-top: 20px;
+}
+main #container .kanban-page .bot .add-form {
+  background-color: rgba(0, 0, 0, 0.232);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0%;
+  overflow: hidden;
+  display: flex;
+  transform: scale(0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transition: all 0.4s ease, opacity 0.3s ease;
+  pointer-events: none;
+  align-items: center;
+  justify-content: center;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  z-index: 5;
+}
+main #container .kanban-page .bot .add-form p {
+  padding: 20px;
+  border-radius: 50%;
+  top: 30%;
+  right: 35%;
+  background-color: #ff6200;
+  position: absolute;
+}
+main #container .kanban-page .bot .add-form form {
+  height: 50%;
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 10px;
+  gap: 20px;
+  background: linear-gradient(rgba(254, 254, 230, 0), rgba(255, 106, 0, 0.194));
+}
+main #container .kanban-page .bot .add-form form input {
+  font-size: 20px;
+  border-radius: 8px;
+  width: 400px;
+  height: 20px;
+  padding: 20px;
+  font-family: Syne;
+}
+main #container .kanban-page .bot .add-form form button {
+  background-color: #ff6200;
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+  border: none;
+  border-radius: 50px;
+  font-size: 20px;
+  padding: 10px 30px;
+  transition: all 0.3s ease;
+}
+main #container .kanban-page .bot .add-form form button:hover {
+  background-color: #b89884;
+  color: white;
+}
+main #container .kanban-page .bot .add-form.active {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+  border-radius: 10px;
+}
+main #container .kanban-page .bot .add-taskbtn {
+  height: 7%;
+  padding: 5px 10px;
+  font-size: 20px;
+  font-weight: bolder;
+  text-transform: uppercase;
+  font-family: Syne;
+  background-color: rgba(90, 90, 90, 0.918);
+  color: rgb(255, 255, 255);
+  border-radius: 8px;
+  border: 1px solid white;
+}
+main #container .kanban-page .bot .add-taskbtn:hover {
+  background-color: rgb(119, 119, 119);
+  transform: scale(1.02);
+}
+main #container .kanban-page .bot div {
+  height: 93%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+main #container .kanban-page .bot div .task-column {
+  width: 32%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+main #container .kanban-page .bot div .task-column .upper {
+  background-color: rgba(254, 254, 230, 0.918);
+  overflow: hidden;
+  height: 8%;
+  border-radius: 8px;
+}
+main #container .kanban-page .bot div .task-column .upper .name,
+main #container .kanban-page .bot div .task-column .upper .count {
+  height: 100%;
+  font-size: 25px;
+  font-family: nasa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main #container .kanban-page .bot div .task-column .bottom-sec {
+  border-radius: 10px;
+  height: 92%;
+  background-color: rgba(27, 27, 27, 0.471);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 15px;
+  overflow: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+main #container .kanban-page .bot div .task-column .bottom-sec .todo-items {
+  flex-shrink: 0;
+  width: 100%;
+  height: 120px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: grab;
+  background: linear-gradient(rgba(255, 255, 255, 0.095), rgba(255, 255, 255, 0.095));
+}
+main #container .kanban-page .bot div .task-column .bottom-sec .todo-items .text-wrapper {
+  width: 90%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  overflow: hidden;
+  margin-left: 20px;
+}
+main #container .kanban-page .bot div .task-column .bottom-sec .todo-items .text-wrapper .task {
+  color: white;
+  font-family: nasa;
+  font-size: 35px;
+  margin: 0;
+  justify-content: flex-start;
+}
+main #container .kanban-page .bot div .task-column .bottom-sec .todo-items .text-wrapper .decription {
+  justify-content: flex-start;
+  color: rgb(162, 162, 162);
+  font-size: 18px;
+  font-family: nasa;
+  margin: 0;
+  text-align: left;
+}
+main #container .kanban-page .bot div .task-column .bottom-sec .todo-items .delete-btn {
+  font-family: nasa;
+  height: 100%;
+  width: 12%;
+  padding: 10px;
+  margin: 0;
+  font-size: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ededd7;
+  color: rgb(255, 0, 0);
+  transition: all 0.3s ease;
+  box-sizing: inset 0px 10px 10px black;
+}
+main #container .kanban-page .bot div .task-column .bottom-sec .todo-items .delete-btn:hover {
+  cursor: pointer;
+  background-color: rgb(220, 0, 0);
+  color: white;
+  scale: 1.02;
+}
+main #container .kanban-page .bot div .task-column .bottom-sec.hover-over {
+  scale: 1.04;
+  border: 2px dashed white;
+}
+main #container .kanban-page .bot div .todo-sec .name {
+  width: 50%;
+  background-color: rgb(181, 0, 0);
+}
+main #container .kanban-page .bot div .todo-sec .count {
+  width: 50%;
+}
+main #container .kanban-page .bot div .inprogress-sec .name {
+  width: 50%;
+  background-color: rgb(255, 111, 0);
+}
+main #container .kanban-page .bot div .inprogress-sec .count {
+  width: 50%;
+}
+main #container .kanban-page .bot div .done-sec .name {
+  width: 50%;
+  background-color: rgb(26, 148, 30);
+}
+main #container .kanban-page .bot div .done-sec .count {
+  width: 50%;
+}
+main #container .kanban-page.active {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+main #container #bot-section {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  border-radius: 1.25rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1.5fr) minmax(0, 1.5fr) minmax(0, 1fr);
+  grid-template-areas: "top-left top-mid top-mid top-top-right" "top-left top-mid top-mid top-bot-right" "bot-top-left bot-mid-left bot-mid-right bot-right" "bot-bot-left bot-mid-left bot-mid-right bot-right";
+  gap: 0.625rem;
+  padding: 0.625rem;
+}
+main #container #bot-section > * {
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+main #container #bot-section .top-left.weather-sec1 {
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border: 1px solid rgba(128, 128, 128, 0.417);
+  border-radius: 1.25rem;
+  grid-area: top-left;
+  padding: 0.5rem;
+  color: white;
+  font-family: helvetica neue, open sans, Helvetica, Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+main #container #bot-section .top-left.weather-sec1::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1799 1799' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-blend-mode: screen;
+  opacity: 0.2;
+  z-index: 3;
+  pointer-events: none;
+}
+main #container #bot-section .top-left.weather-sec1 .top {
+  margin-bottom: 1rem;
+}
+main #container #bot-section .top-left.weather-sec1 .top h1 {
+  font-size: clamp(0.8rem, 2.5vw, 3rem);
+  padding: 1rem 0.5rem;
+  border-bottom: 1px solid white;
+}
+main #container #bot-section .top-left.weather-sec1 .top h2 {
+  font-size: clamp(3rem, 8vw, 9rem);
+  font-family: nasa, sans-serif;
+}
+main #container #bot-section .top-left.weather-sec1 .bot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 0.625rem;
+}
+main #container #bot-section .top-left.weather-sec1 .bot img {
+  width: clamp(1rem, 8vw, 8rem);
+}
+main #container #bot-section .top-left.weather-sec1 .bot div {
+  line-height: 1.5;
+  padding: 0.7rem;
+  border-left: 1px solid white;
+}
+main #container #bot-section .top-left.weather-sec1 .bot div h2 {
+  font-size: clamp(1rem, 2vw, 2.5rem);
+  letter-spacing: 0.1rem;
+}
+main #container #bot-section .top-left.weather-sec1 .bot div h3 {
+  white-space: nowrap;
+  font-size: clamp(0.8rem, 0.5vw, 2.5rem);
+  letter-spacing: 0.1rem;
+}
+main #container #bot-section .top-mid {
+  grid-area: top-mid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 0.625rem;
+  padding: 0.5rem;
+  border-radius: 1.375rem;
+  background-color: #000000;
+  position: relative;
+  z-index: 0;
+}
+main #container #bot-section .top-mid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: 1.25rem;
+  background: linear-gradient(270deg, black, #dcacff, #8f2bbd, black);
+  background-size: 400% 400%;
+  animation: borderMove 15s linear infinite;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+@keyframes borderMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 400% 50%;
+  }
+}
+main #container #bot-section .top-mid .div1,
+main #container #bot-section .top-mid .div2 {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+main #container #bot-section .top-mid .div1 div {
+  border-radius: 0.9375rem;
+  overflow: hidden;
+  height: 30%;
+  width: 100%;
+  flex-shrink: 0;
+}
+main #container #bot-section .top-mid .div1 div img {
+  height: 100%;
+  width: 100%;
+  -o-object-position: 50% 20%;
+     object-position: 50% 20%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  filter: saturate(80%) contrast(90%);
+}
+main #container #bot-section .top-mid .div1 h1 {
+  color: white;
+  font-family: Syne, sans-serif;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  font-size: clamp(2.5rem, 3.5vw, 4rem);
+  pointer-events: none;
+  text-shadow: 0 0 3.125rem rgb(44, 44, 44);
+  text-align: justify;
+  height: 70%;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  padding: 1.8rem;
+}
+main #container #bot-section .top-mid .div1 h1::after {
+  content: "";
+  position: absolute;
+  bottom: 18%;
+  right: 0;
+  width: clamp(3rem, 5vw, 5rem);
+  height: clamp(3rem, 5vw, 5rem);
+  border-right: 3px solid rgb(255, 255, 255);
+  border-bottom: 3px solid rgb(255, 255, 255);
+}
+main #container #bot-section .top-mid .div2 div {
+  border-radius: 0.9375rem;
+  overflow: hidden;
+  height: 60%;
+  width: 100%;
+  flex-shrink: 0;
+}
+main #container #bot-section .top-mid .div2 div img {
+  height: 100%;
+  width: 150%;
+  -o-object-position: 0% 80%;
+     object-position: 0% 80%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  filter: grayscale(100%);
+}
+main #container #bot-section .top-mid .div2 h1 {
+  color: white;
+  font-family: Syne, sans-serif;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  font-size: clamp(2.5rem, 3.5vw, 4rem);
+  pointer-events: none;
+  height: 40%;
+  text-align: justify;
+  padding: 1.8rem;
+  border-radius: 0.9375rem;
+  -webkit-text-stroke: 1px rgba(255, 0, 200, 0);
+  -webkit-background-clip: text;
+          background-clip: text;
+  background-position: center;
+  background-size: 50rem;
+  filter: contrast(100%) brightness(150%) saturate(150%);
+  display: flex;
+  align-items: center;
+}
+main #container #bot-section .top-top-right.todo-card {
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border: 1px solid rgba(128, 128, 128, 0.417);
+  border-radius: 1.25rem;
+  transition: all 0.3s ease;
+  grid-area: top-top-right;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  padding: 0.625rem;
+}
+main #container #bot-section .top-top-right.todo-card:hover {
+  transform: scale(0.98);
+}
+main #container #bot-section .top-top-right.todo-card .textdiv {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-around;
+}
+main #container #bot-section .top-top-right.todo-card .textdiv h1 {
+  width: 70%;
+  color: white;
+  font-family: Syne, sans-serif;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  font-size: clamp(1.2rem, 1.6vw, 2.5rem);
+  pointer-events: none;
+}
+main #container #bot-section .top-top-right.todo-card .textdiv button {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0.5rem 1.5rem;
+  color: white;
+  border-radius: 0.3125rem;
+  background-color: rgba(101, 101, 101, 0.147);
+  border: 1px solid rgba(128, 128, 128, 0.807);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+}
+main #container #bot-section .top-top-right.todo-card .textdiv button:hover {
+  background-color: rgba(101, 101, 101, 0.693);
+  transform: scale(0.99);
+}
+main #container #bot-section .top-top-right.todo-card .imgdiv {
+  width: 100%;
+  border-radius: 0.9375rem;
+  overflow: hidden;
+  pointer-events: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.401);
+  height: 100%;
+  width: 40%;
+}
+main #container #bot-section .top-top-right.todo-card .imgdiv img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  pointer-events: none;
+}
+main #container #bot-section .top-top-right.todo-card .imgdiv img {
+  -o-object-position: center;
+     object-position: center;
+  filter: contrast(150%) saturate(-50%);
+}
+main #container #bot-section .top-bot-right.dailyplanner-card {
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border: 1px solid rgba(128, 128, 128, 0.417);
+  border-radius: 1.25rem;
+  transition: all 0.3s ease;
+  grid-area: top-bot-right;
+  display: flex;
+  padding: 0.625rem;
+}
+main #container #bot-section .top-bot-right.dailyplanner-card:hover {
+  transform: scale(0.98);
+}
+main #container #bot-section .top-bot-right.dailyplanner-card .textdiv {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  padding-left: 1rem;
+}
+main #container #bot-section .top-bot-right.dailyplanner-card .textdiv h1 {
+  width: 100%;
+  color: white;
+  font-family: Syne, sans-serif;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  font-size: clamp(1.2rem, 1.8vw, 2.5rem);
+  pointer-events: none;
+}
+main #container #bot-section .top-bot-right.dailyplanner-card .textdiv button {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0.5rem 1.5rem;
+  color: white;
+  border-radius: 0.3125rem;
+  background-color: rgba(101, 101, 101, 0.147);
+  border: 1px solid rgba(128, 128, 128, 0.807);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 0.75rem;
+  align-self: flex-start;
+  margin-top: 0.5rem;
+}
+main #container #bot-section .top-bot-right.dailyplanner-card .textdiv button:hover {
+  background-color: rgba(101, 101, 101, 0.693);
+  transform: scale(0.99);
+}
+main #container #bot-section .top-bot-right.dailyplanner-card .imgdiv {
+  width: 100%;
+  border-radius: 0.9375rem;
+  overflow: hidden;
+  pointer-events: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.401);
+  height: 100%;
+  width: 50%;
+}
+main #container #bot-section .top-bot-right.dailyplanner-card .imgdiv img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  pointer-events: none;
+}
+main #container #bot-section .top-bot-right.dailyplanner-card .imgdiv img {
+  -o-object-position: center;
+     object-position: center;
+}
+main #container #bot-section .bot-top-left.weather-sec2 {
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border: 1px solid rgba(128, 128, 128, 0.417);
+  border-radius: 1.25rem;
+  grid-area: bot-top-left;
+  font-family: helvetica neue, open sans, Helvetica, Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem;
+}
+main #container #bot-section .bot-top-left.weather-sec2::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1799 1799' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-blend-mode: screen;
+  opacity: 0.2;
+  z-index: 3;
+  pointer-events: none;
+}
+main #container #bot-section .bot-top-left.weather-sec2 .left,
+main #container #bot-section .bot-top-left.weather-sec2 .right {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+  justify-content: center;
+}
+main #container #bot-section .bot-top-left.weather-sec2 .left div,
+main #container #bot-section .bot-top-left.weather-sec2 .right div {
+  width: 100%;
+  max-width: 8rem;
+  min-height: 4rem;
+  padding: 0.5rem;
+  border-radius: 0.9375rem;
+  background: radial-gradient(15.625rem, rgba(0, 0, 0, 0.3294117647), rgba(255, 255, 255, 0.165));
+  border: 1px solid rgba(255, 255, 255, 0.141);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  flex: 1;
+}
+main #container #bot-section .bot-top-left.weather-sec2 .left div p,
+main #container #bot-section .bot-top-left.weather-sec2 .right div p {
+  letter-spacing: 0.1rem;
+  font-size: clamp(0.2rem, 1vw, 0.8rem);
+  padding: 0.25rem;
+  color: rgb(177, 177, 177);
+}
+main #container #bot-section .bot-top-left.weather-sec2 .left div .data,
+main #container #bot-section .bot-top-left.weather-sec2 .right div .data {
+  color: white;
+  font-size: clamp(1rem, 2vw, 2rem);
+}
+main #container #bot-section .bot-top-left.weather-sec2 .left div .km,
+main #container #bot-section .bot-top-left.weather-sec2 .left div .celcius,
+main #container #bot-section .bot-top-left.weather-sec2 .right div .km,
+main #container #bot-section .bot-top-left.weather-sec2 .right div .celcius {
+  font-size: 1rem;
+  color: rgb(177, 177, 177);
+}
+main #container #bot-section .bot-bot-left.weather-sec3 {
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border: 1px solid rgb(128, 128, 128);
+  border-radius: 1.25rem;
+  grid-area: bot-bot-left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  border-color: #8f2bbd;
+}
+main #container #bot-section .bot-bot-left.weather-sec3::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1799 1799' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-blend-mode: screen;
+  opacity: 0.2;
+  z-index: 3;
+  pointer-events: none;
+}
+main #container #bot-section .bot-bot-left.weather-sec3 h1 {
+  font-size: clamp(2rem, 5.5vw, 8rem);
+  color: white;
+  font-family: nasa, sans-serif;
+}
+main #container #bot-section .bot-bot-left.weather-sec3 h1 .seconds {
+  font-family: helvetica neue, open sans, Helvetica, Arial, sans-serif;
+  font-size: 0.5em;
+}
+main #container #bot-section .bot-mid-left.moti-card {
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border: 1px solid rgba(128, 128, 128, 0.417);
+  border-radius: 1.25rem;
+  transition: all 0.3s ease;
+  grid-area: bot-mid-left;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  padding: 0.625rem;
+}
+main #container #bot-section .bot-mid-left.moti-card:hover {
+  transform: scale(0.98);
+}
+main #container #bot-section .bot-mid-left.moti-card .textdiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  min-height: 0;
+  padding: 0.5rem 0;
+}
+main #container #bot-section .bot-mid-left.moti-card .textdiv div h1 {
+  color: white;
+  font-family: Syne, sans-serif;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  font-size: clamp(1.2rem, 2vw, 2.5rem);
+  pointer-events: none;
+}
+main #container #bot-section .bot-mid-left.moti-card .textdiv div h2 {
+  color: white;
+  font-family: Syne, sans-serif;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  font-size: clamp(1.2rem, 2.5vw, 2.5rem);
+  pointer-events: none;
+}
+main #container #bot-section .bot-mid-left.moti-card .textdiv button {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0.5rem 1.5rem;
+  color: white;
+  border-radius: 0.3125rem;
+  background-color: rgba(101, 101, 101, 0.147);
+  border: 1px solid rgba(128, 128, 128, 0.807);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 0.75rem;
+  height: auto;
+  margin-right: 0.1875rem;
+  padding: 0.625rem;
+  border-radius: 0.4375rem;
+  background-color: rgba(135, 192, 209, 0.067);
+  flex-shrink: 0;
+}
+main #container #bot-section .bot-mid-left.moti-card .textdiv button:hover {
+  background-color: rgba(101, 101, 101, 0.693);
+  transform: scale(0.99);
+}
+main #container #bot-section .bot-mid-left.moti-card .imgdiv {
+  width: 100%;
+  border-radius: 0.9375rem;
+  overflow: hidden;
+  pointer-events: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.401);
+  height: 70%;
+  flex-shrink: 0;
+}
+main #container #bot-section .bot-mid-left.moti-card .imgdiv img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  pointer-events: none;
+}
+main #container #bot-section .bot-mid-left.moti-card .imgdiv img {
+  -o-object-position: 50% 20%;
+     object-position: 50% 20%;
+  filter: contrast(150%);
+}
+main #container #bot-section .bot-mid-right.pomo-card {
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border: 1px solid rgba(128, 128, 128, 0.417);
+  border-radius: 1.25rem;
+  transition: all 0.3s ease;
+  grid-area: bot-mid-right;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column-reverse;
+  padding: 0.625rem;
+}
+main #container #bot-section .bot-mid-right.pomo-card:hover {
+  transform: scale(0.98);
+}
+main #container #bot-section .bot-mid-right.pomo-card .textdiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  gap: 0.625rem;
+  min-height: 0;
+  padding: 0.5rem 0;
+}
+main #container #bot-section .bot-mid-right.pomo-card .textdiv div h1 {
+  color: white;
+  font-family: Syne, sans-serif;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  font-size: clamp(1.2rem, 2vw, 2.5rem);
+  pointer-events: none;
+}
+main #container #bot-section .bot-mid-right.pomo-card .textdiv div h2 {
+  color: white;
+  font-family: Syne, sans-serif;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  font-size: clamp(1.2rem, 2.5vw, 2.5rem);
+  pointer-events: none;
+}
+main #container #bot-section .bot-mid-right.pomo-card .textdiv button {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0.5rem 1.5rem;
+  color: white;
+  border-radius: 0.3125rem;
+  background-color: rgba(101, 101, 101, 0.147);
+  border: 1px solid rgba(128, 128, 128, 0.807);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 0.75rem;
+  height: auto;
+  margin-right: 0.1875rem;
+  padding: 0.625rem;
+  border-radius: 0.4375rem;
+  background-color: rgba(135, 192, 209, 0.067);
+  flex-shrink: 0;
+}
+main #container #bot-section .bot-mid-right.pomo-card .textdiv button:hover {
+  background-color: rgba(101, 101, 101, 0.693);
+  transform: scale(0.99);
+}
+main #container #bot-section .bot-mid-right.pomo-card .imgdiv {
+  width: 100%;
+  border-radius: 0.9375rem;
+  overflow: hidden;
+  pointer-events: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.401);
+  height: 70%;
+  flex-shrink: 0;
+}
+main #container #bot-section .bot-mid-right.pomo-card .imgdiv img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  pointer-events: none;
+}
+main #container #bot-section .bot-mid-right.pomo-card .imgdiv img {
+  -o-object-position: 50% 50%;
+     object-position: 50% 50%;
+}
+main #container #bot-section .bot-right.kanban-card {
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border: 1px solid rgba(128, 128, 128, 0.417);
+  border-radius: 1.25rem;
+  transition: all 0.3s ease;
+  grid-area: bot-right;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  padding: 0.625rem;
+  transition: all 0.2s ease;
+}
+main #container #bot-section .bot-right.kanban-card:hover {
+  transform: scale(0.98);
+}
+main #container #bot-section .bot-right.kanban-card .textdiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  min-height: 0;
+  padding: 0.5rem 0;
+}
+main #container #bot-section .bot-right.kanban-card .textdiv div h1 {
+  color: white;
+  font-family: Syne, sans-serif;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  font-size: clamp(1.2rem, 1.8vw, 2.5rem);
+  pointer-events: none;
+}
+main #container #bot-section .bot-right.kanban-card .textdiv div h2 {
+  color: white;
+  font-family: Syne, sans-serif;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  font-size: clamp(1.2rem, 2.4vw, 2.5rem);
+  pointer-events: none;
+}
+main #container #bot-section .bot-right.kanban-card .textdiv button {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0.5rem 1.5rem;
+  color: white;
+  border-radius: 0.3125rem;
+  background-color: rgba(101, 101, 101, 0.147);
+  border: 1px solid rgba(128, 128, 128, 0.807);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 0.75rem;
+  height: auto;
+  margin-right: 0.1875rem;
+  padding: 0.625rem;
+  border-radius: 0.4375rem;
+  background-color: rgba(135, 192, 209, 0.067);
+  flex-shrink: 0;
+}
+main #container #bot-section .bot-right.kanban-card .textdiv button:hover {
+  background-color: rgba(101, 101, 101, 0.693);
+  transform: scale(0.99);
+}
+main #container #bot-section .bot-right.kanban-card .imgdiv {
+  width: 100%;
+  border-radius: 0.9375rem;
+  overflow: hidden;
+  pointer-events: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.401);
+  height: 70%;
+  flex-shrink: 0;
+}
+main #container #bot-section .bot-right.kanban-card .imgdiv img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  pointer-events: none;
+}
+main #container #bot-section .bot-right.kanban-card .imgdiv img {
+  -o-object-position: 50% 20%;
+     object-position: 50% 20%;
+}
+
+@media (max-width: 1400px) {
+  main {
+    padding: 1rem;
+  }
+  #bot-section {
+    gap: 0.5rem;
+    padding: 0.5rem;
+    grid-template-rows: minmax(0, 1fr) minmax(0, 1.3fr) minmax(0, 1.3fr) minmax(0, 0.9fr);
+  }
+  h1 {
+    letter-spacing: 0.05rem;
+  }
+}
+@media (max-width: 1200px) {
+  #bot-section {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, minmax(0, 1fr));
+    grid-template-areas: "top-left top-mid top-mid" "top-left top-mid top-mid" "top-top-right top-bot-right bot-top-left" "bot-bot-left bot-mid-left bot-mid-right" "bot-bot-left bot-right bot-right";
+  }
+  .top-mid {
+    flex-direction: column;
+  }
+  .top-mid .div1,
+  .top-mid .div2 {
+    width: 100%;
+    height: 50%;
+  }
+  .weather-sec1 h2 {
+    font-size: 6rem;
+  }
+  .bot-bot-left.weather-sec3 h1 {
+    font-size: 4.5rem;
+  }
+}
+@media (max-width: 1200px) {
+  .weather-sec1::before,
+  .weather-sec2::before,
+  .weather-sec3::before {
+    opacity: 0.1;
+  }
 }/*# sourceMappingURL=style.css.map */

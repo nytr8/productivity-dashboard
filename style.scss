@@ -1,21 +1,173 @@
 @import "pages";
+@import "animkey";
+
+// ==========================================
+// BREAKPOINTS (NON-MOBILE ONLY)
+// ==========================================
+
+$xl: 1600px;
+$lg: 1400px;
+$md: 1200px;
+$sm: 900px;
+// ==========================================
+// MIXINS
+// ==========================================
+
+// Glass effect
+@mixin glass-effect($blur: 10px, $border-opacity: 0.417) {
+  backdrop-filter: blur($blur);
+  border: 1px solid rgba(128, 128, 128, $border-opacity);
+  border-radius: 1.25rem;
+}
+
+// Noise texture overlay
+@mixin noise-overlay($opacity: 0.2) {
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1799 1799' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    background-blend-mode: screen;
+    opacity: $opacity;
+    z-index: 3;
+    pointer-events: none;
+  }
+}
+
+// Flex center
+@mixin flex-center($direction: row, $gap: null) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @if $direction {
+    flex-direction: $direction;
+  }
+  @if $gap {
+    gap: $gap;
+  }
+}
+
+// Card button styles
+@mixin card-button {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0.5rem 1.5rem;
+  color: white;
+  border-radius: 0.3125rem;
+  background-color: rgba(101, 101, 101, 0.147);
+  border: 1px solid rgba(128, 128, 128, 0.807);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 0.75rem;
+
+  &:hover {
+    background-color: rgba(101, 101, 101, 0.693);
+    transform: scale(0.99);
+  }
+}
+
+// Card text styles
+@mixin card-heading($min: 1.4rem, $vw: 2.5vw, $max: 3rem) {
+  color: white;
+  font-family: Syne, sans-serif;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  font-size: clamp($min, $vw, $max);
+  pointer-events: none;
+}
+
+// Image container
+@mixin image-container($border-position: bottom) {
+  width: 100%;
+  border-radius: 0.9375rem;
+  overflow: hidden;
+  pointer-events: none;
+  @if $border-position == bottom {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.401);
+  } @else if $border-position == left {
+    border-left: 1px solid rgba(255, 255, 255, 0.401);
+  } @else if $border-position == right {
+    border-right: 1px solid rgba(255, 255, 255, 0.401);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+  }
+}
+
+// Card hover effect
+@mixin card-hover {
+  transition: all 0.3s ease;
+  &:hover {
+    transform: scale(0.98);
+  }
+}
+
+// Weather info box
+@mixin weather-info-box {
+  width: 100%;
+  max-width: 8rem;
+  min-height: 4rem;
+  padding: 0.5rem;
+  border-radius: 0.9375rem;
+  background: radial-gradient(15.625rem, #00000054, rgba(255, 255, 255, 0.165));
+  border: 1px solid rgba(255, 255, 255, 0.141);
+  @include flex-center(column);
+  text-align: center;
+
+  p {
+    letter-spacing: 0.1rem;
+    font-size: clamp(0.2rem, 1vw, 0.8rem);
+    padding: 0.25rem;
+    color: rgb(177, 177, 177);
+  }
+
+  .data {
+    color: white;
+    font-size: clamp(1rem, 2vw, 2rem);
+  }
+
+  .km,
+  .celcius {
+    font-size: 1rem;
+    color: rgb(177, 177, 177);
+  }
+}
+
+// ==========================================
+// BASE STYLES
+// ==========================================
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 @font-face {
   font-family: nasa;
   src: url(./fonts/Nasalization\ Rg.otf);
 }
+
 @font-face {
   font-family: ceta;
   src: url(./fonts/5ceta_mono.ttf);
 }
+
 @font-face {
   font-family: Syne;
   src: url(./fonts/Syne-Extra.otf);
 }
+
 .done {
   color: grey;
   text-decoration: line-through;
@@ -25,910 +177,621 @@ html,
 body {
   height: 100%;
   width: 100%;
+  overflow: hidden;
 }
+
+h1 {
+  font-size: clamp(1.2rem, 2vw, 2.5rem);
+}
+
+.weather-sec1 h2 {
+  font-size: clamp(4rem, 6vw, 8rem);
+}
+
+img {
+  max-height: 100%;
+  object-fit: cover;
+}
+
+// ==========================================
+// MAIN LAYOUT
+// ==========================================
+
 main {
   height: 100vh;
   width: 100%;
-
-  --c-0: hsla(266.99999999999983, 1%, 12%, 1);
-  --y-0: 80%;
-  --x-0: 85%;
-  --x-1: 60%;
-  --c-1: hsla(335.9999999999997, 2%, 22%, 1);
-  --y-1: 24%;
-  --x-2: 13%;
-  --y-2: 82%;
-  --c-2: hsla(53.999999999999886, 0%, 0%, 0.49);
-  --c-3: rgb(89, 88, 95);
-  --y-3: 7%;
-  --x-3: 24%;
-  background-color: hsla(0, 0%, 0%, 1);
-  background-image: radial-gradient(
-      circle at var(--x-0) var(--y-0),
-      var(--c-0) var(--s-start-0),
-      transparent var(--s-end-0)
-    ),
-    radial-gradient(
-      circle at var(--x-1) var(--y-1),
-      var(--c-1) var(--s-start-1),
-      transparent var(--s-end-1)
-    ),
-    radial-gradient(
-      circle at var(--x-2) var(--y-2),
-      var(--c-2) var(--s-start-2),
-      transparent var(--s-end-2)
-    ),
-    radial-gradient(
-      circle at var(--x-3) var(--y-3),
-      var(--c-3) var(--s-start-3),
-      transparent var(--s-end-3)
-    );
-  animation: hero-gradient-animation 8s linear infinite alternate;
-  background-blend-mode: normal, normal, normal, normal;
-  padding: 25px 50px;
+  padding: 1.5rem;
   position: relative;
-}
-#container {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 10px;
-  @include pages();
-  #bot-section {
-    overflow: hidden;
+  @include animkey();
+  overflow: hidden;
+
+  #container {
     height: 100%;
     width: 100%;
-    border-radius: 20px;
-    // background-color: rgba(255, 255, 255, 0.043);
-    // backdrop-filter: blur(10px);
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1.5fr 1.5fr 1fr;
-    grid-template-areas:
-      "top-left top-mid top-mid top-top-right "
-      "top-left top-mid top-mid top-bot-right"
-      "bot-top-left bot-mid-left bot-mid-right bot-right"
-      "bot-bot-left bot-mid-left bot-mid-right bot-right ";
-    gap: 10px;
-    padding: 10px;
+    @include flex-center(column, 0.625rem);
+    @include pages();
 
-    .top-left.weather-sec1 {
-      border: 1px solid rgba(128, 128, 128, 0.417);
-      border-radius: 20px;
-      grid-area: top-left;
-      backdrop-filter: blur(10px);
+    #bot-section {
       overflow: hidden;
-      padding: 40px;
-      color: white;
-      font-family: helvetica neue, open sans, Helvetica, Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-      .top {
-        h1 {
-          font-size: 50px;
-          padding: 10px;
-          border-bottom: 1px solid white;
-        }
-        h2 {
-          font-size: 150px;
-          font-family: nasa;
-        }
-      }
-      .bot {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        img {
-          width: 110px;
-        }
-        div {
-          line-height: 1.5;
-          padding: 10px;
-          border-left: 1px solid white;
-          h2 {
-            font-size: 30px;
-            letter-spacing: 3px;
-          }
-          h3 {
-            font-size: 15px;
-            letter-spacing: 3px;
-          }
-        }
-      }
-    }
-    .top-left.weather-sec1::before {
-      content: "";
-      position: absolute;
-      left: 0;
+      height: 100%;
       width: 100%;
-      height: 100%; /* height of background */
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1799 1799' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-      background-blend-mode: screen;
-      z-index: 3;
-      opacity: 0.2;
-    }
+      border-radius: 1.25rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: minmax(0, 1fr) minmax(0, 1.5fr) minmax(0, 1.5fr) minmax(
+          0,
+          1fr
+        );
+      grid-template-areas:
+        "top-left top-mid top-mid top-top-right"
+        "top-left top-mid top-mid top-bot-right"
+        "bot-top-left bot-mid-left bot-mid-right bot-right"
+        "bot-bot-left bot-mid-left bot-mid-right bot-right";
+      gap: 0.625rem;
+      padding: 0.625rem;
 
-    .top-mid {
-      grid-area: top-mid;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      padding: 8px;
-      border-radius: 22px;
-      background-color: #000000;
-      position: relative;
-      z-index: 0;
-      .div1 {
-        height: 100%;
-        width: 50%;
-        div {
-          border-radius: 15px;
-          overflow: hidden;
-          height: 30%;
-          width: 100%;
-          // border-top: 1px solid white;
-          img {
-            height: 100%;
-            width: 100%;
-            object-position: 50% 20%;
-            object-fit: cover;
-            filter: saturate(80%) contrast(90%);
+      // Ensure all grid items don't overflow
+      > * {
+        min-height: 0;
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      // ==========================================
+      // WEATHER SECTION 1
+      // ==========================================
+      .top-left.weather-sec1 {
+        @include glass-effect();
+        @include noise-overlay();
+        grid-area: top-left;
+        padding: 0.5rem;
+        color: white;
+        font-family: helvetica neue, open sans, Helvetica, Arial, sans-serif;
+        @include flex-center(column);
+        text-align: center;
+        position: relative;
+        z-index: 1;
+
+        .top {
+          margin-bottom: 1rem;
+
+          h1 {
+            font-size: clamp(0.8rem, 2.5vw, 3rem);
+            padding: 1rem 0.5rem;
+            border-bottom: 1px solid white;
+          }
+
+          h2 {
+            font-size: clamp(3rem, 8vw, 9rem);
+            font-family: nasa, sans-serif;
           }
         }
-        h1 {
-          text-shadow: 0px 0px 50px rgb(44, 44, 44);
-          text-align: justify;
-          line-height: 0.9;
-          align-self: flex-end;
-          width: 100%;
-          height: 70%;
-          text-transform: capitalize;
-          white-space: normal;
-          word-break: break-word;
-          font-size: 85px;
-          font-family: Syne;
-          color: white;
-          opacity: 1;
-          position: relative;
+
+        .bot {
+          @include flex-center(row, 0.625rem);
+          // .icon {
+          //   width: 8rem;
+          // }
+          img {
+            width: clamp(1rem, 8vw, 8rem);
+          }
+
+          div {
+            line-height: 1.5;
+            padding: 0.7rem;
+            border-left: 1px solid white;
+
+            h2 {
+              font-size: clamp(1rem, 2vw, 2.5rem);
+              letter-spacing: 0.1rem;
+            }
+
+            h3 {
+              white-space: nowrap;
+              font-size: clamp(0.8rem, 0.5vw, 2.5rem);
+              letter-spacing: 0.1rem;
+            }
+          }
         }
-        h1::after {
+      }
+
+      // ==========================================
+      // TOP MID SECTION
+      // ==========================================
+      .top-mid {
+        grid-area: top-mid;
+        @include flex-center(row, 0.625rem);
+        padding: 0.5rem;
+        border-radius: 1.375rem;
+        background-color: #000000;
+        position: relative;
+        z-index: 0;
+
+        // Animated border
+        &::before {
           content: "";
           position: absolute;
-          bottom: 20%;
-          right: 0;
-          width: 100px; /* length of the corner */
-          height: 100px;
-          border-right: 3px solid rgb(255, 255, 255);
-          border-bottom: 3px solid rgb(255, 255, 255);
-        }
-      }
-
-      .div2 {
-        height: 100%;
-        width: 50%;
-        div {
-          border-radius: 15px;
-          overflow: hidden;
-          height: 60%;
-          width: 100%;
-          // border-bottom: 1px solid white;
-          img {
-            height: 100%;
-            width: 150%;
-            object-position: 0% 80%;
-            object-fit: cover;
-            filter: grayscale(100%);
-          }
-        }
-        h1 {
-          align-self: flex-end;
-          width: 100%;
-          height: 40%;
-          text-transform: capitalize;
-          white-space: normal;
-          word-break: break-word;
-          font-size: 85px;
-          font-family: Syne;
-          color: rgb(251, 251, 251);
-          border-radius: 15px;
-          // background: url(https://i.pinimg.com/736x/95/55/3e/95553e5406263303839d34bac0b690c3.jpg);
-          -webkit-text-stroke: 1px rgba(255, 0, 200, 0);
-          background-clip: text;
-          background-position: center;
-          background-size: 800px;
-          line-height: 0.9;
-          text-align: justify;
-          filter: contrast(100%) brightness(150%) saturate(150%);
-        }
-      }
-    }
-    .top-mid::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      padding: 2px; /* border thickness */
-      border-radius: 20px;
-      background: linear-gradient(270deg, black, #e1a0ff, #8f2bbd, black);
-      background-size: 400% 400%;
-      animation: borderMove 20s linear infinite;
-
-      /* MAGIC PART */
-      -webkit-mask: linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-
-      pointer-events: none;
-    }
-
-    @keyframes borderMove {
-      0% {
-        background-position: 0% 50%;
-      }
-      100% {
-        background-position: 400% 50%;
-      }
-    }
-    .top-top-right.todo-card {
-      grid-area: top-top-right;
-      border: 1px solid rgba(128, 128, 128, 0.417);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-direction: row-reverse;
-      padding: 10px;
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
-      .textdiv {
-        width: 60%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        text-align: center;
-        h1 {
-          width: 70%;
-          color: white;
-          font-family: Syne;
-          font-size: 30px;
-          line-height: 1;
-          text-transform: uppercase;
-        }
-        button {
-          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-            Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-            sans-serif;
-          text-align: justify;
-          text-transform: uppercase;
-          font-weight: bold;
-          padding: 10px 40px;
-          color: white;
-          border-radius: 5px;
-          margin-top: 10px;
-          background-color: rgba(101, 101, 101, 0.147);
-          border: none;
-          border: 1px solid rgba(128, 128, 128, 0.807);
-          backdrop-filter: blur(10px);
-          transition: all 0.5 ease;
-        }
-        button:hover {
-          background-color: rgba(101, 101, 101, 0.693);
-          transform: scale(0.99);
-        }
-      }
-
-      .imgdiv {
-        overflow: hidden;
-        border-radius: 15px;
-        height: 100%;
-        width: 40%;
-        pointer-events: none;
-        border-right: 1px solid rgba(255, 255, 255, 0.401);
-        img {
-          height: 100%;
-          width: 100%;
-          object-fit: cover;
-          object-position: center;
-          filter: contrast(150%) saturate(-50%);
-        }
-      }
-    }
-    .todo-card:hover {
-      scale: 0.98;
-    }
-    .top-bot-right.dailyplanner-card {
-      grid-area: top-bot-right;
-      border: 1px solid rgba(128, 128, 128, 0.417);
-      display: flex;
-      padding: 10px;
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
-      .textdiv {
-        width: 50%;
-        height: 100%;
-        display: flex;
-        justify-content: space-evenly;
-        flex-direction: column;
-        align-items: center;
-        overflow: hidden;
-        h1 {
-          width: 100%;
-          color: white;
-          font-family: Syne;
-          font-size: 42px;
-          line-height: 1;
-          white-space: normal;
-          word-break: break-word;
-          overflow-wrap: break-word;
-          text-transform: uppercase;
-        }
-        button {
-          align-self: flex-start;
-          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-            Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-            sans-serif;
-          text-align: center;
-          text-transform: uppercase;
-          font-weight: bold;
-          padding: 10px 40px;
-          color: white;
-          border-radius: 5px;
-          margin-top: 10px;
-          background-color: rgba(101, 101, 101, 0.147);
-          border: none;
-          border: 1px solid rgba(128, 128, 128, 0.807);
-          backdrop-filter: blur(10px);
-          transition: all 0.5 ease;
-        }
-        button:hover {
-          background-color: rgba(101, 101, 101, 0.693);
-          transform: scale(0.99);
-        }
-      }
-
-      .imgdiv {
-        height: 100%;
-        width: 50%;
-        overflow: hidden;
-        border-radius: 15px;
-        height: 100%;
-        pointer-events: none;
-        border-left: 1px solid rgba(255, 255, 255, 0.401);
-        img {
-          height: 100%;
-          width: 100%;
-          object-fit: cover;
-          object-position: center;
+          inset: 0;
+          padding: 2px;
+          border-radius: 1.25rem;
+          background: linear-gradient(270deg, black, #dcacff, #8f2bbd, black);
+          background-size: 400% 400%;
+          animation: borderMove 15s linear infinite;
+          -webkit-mask: linear-gradient(#000 0 0) content-box,
+            linear-gradient(#000 0 0);
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
           pointer-events: none;
         }
-      }
-    }
-    .dailyplanner-card:hover {
-      scale: 0.98;
-    }
-    .bot-top-left.weather-sec2 {
-      border: 1px solid rgba(128, 128, 128, 0.417);
-      font-family: helvetica neue, open sans, Helvetica, Arial, sans-serif;
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      grid-area: bot-top-left;
-      overflow: hidden;
-      // gap: 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-evenly;
-      color: white;
-      font-weight: bold;
-      .left,
-      .right {
-        display: flex;
-        gap: 10px;
-        div {
-          width: 130px;
-          height: 80px;
-          border-radius: 15px;
-          background: radial-gradient(
-            250px,
-            #00000054,
-            rgba(255, 255, 255, 0.165)
-          );
-          border: 1px solid rgba(255, 255, 255, 0.141);
+
+        @keyframes borderMove {
+          0% {
+            background-position: 0% 50%;
+          }
+          100% {
+            background-position: 400% 50%;
+          }
+        }
+
+        .div1,
+        .div2 {
+          height: 100%;
+          width: 50%;
           display: flex;
           flex-direction: column;
-          justify-content: center;
-          text-align: center;
-          .km {
-            font-size: 20px;
-            color: rgb(177, 177, 177);
+          justify-content: space-between;
+        }
+
+        .div1 {
+          div {
+            border-radius: 0.9375rem;
+            overflow: hidden;
+            height: 30%;
+            width: 100%;
+            flex-shrink: 0;
+
+            img {
+              height: 100%;
+              width: 100%;
+              object-position: 50% 20%;
+              object-fit: cover;
+              filter: saturate(80%) contrast(90%);
+            }
           }
-          .celcius {
-            font-size: 20px;
-            color: rgb(177, 177, 177);
+
+          h1 {
+            @include card-heading(2.5rem, 3.5vw, 4rem);
+            text-shadow: 0 0 3.125rem rgb(44, 44, 44);
+            text-align: justify;
+            height: 70%;
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            padding: 1.8rem;
+            &::after {
+              content: "";
+              position: absolute;
+              bottom: 18%;
+              right: 0;
+              width: clamp(3rem, 5vw, 5rem);
+              height: clamp(3rem, 5vw, 5rem);
+              border-right: 3px solid rgb(255, 255, 255);
+              border-bottom: 3px solid rgb(255, 255, 255);
+            }
           }
-          p {
-            letter-spacing: 3px;
-            font-size: 15px;
-            padding: 5px;
-            color: rgb(177, 177, 177);
+        }
+
+        .div2 {
+          div {
+            border-radius: 0.9375rem;
+            overflow: hidden;
+            height: 60%;
+            width: 100%;
+            flex-shrink: 0;
+
+            img {
+              height: 100%;
+              width: 150%;
+              object-position: 0% 80%;
+              object-fit: cover;
+              filter: grayscale(100%);
+            }
           }
-          .data {
-            color: white;
-            font-size: 30px;
+
+          h1 {
+            @include card-heading(2.5rem, 3.5vw, 4rem);
+            height: 40%;
+            text-align: justify;
+            padding: 1.8rem;
+            border-radius: 0.9375rem;
+            -webkit-text-stroke: 1px rgba(255, 0, 200, 0);
+            background-clip: text;
+            background-position: center;
+            background-size: 50rem;
+            filter: contrast(100%) brightness(150%) saturate(150%);
+            display: flex;
+            align-items: center;
           }
         }
       }
-    }
-    .bot-top-left::before {
-      content: "";
-      position: absolute;
-      top: 0%;
-      left: 0;
-      width: 100%;
-      height: 100%; /* height of background */
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1799 1799' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-      background-blend-mode: screen;
-      z-index: 3;
-      opacity: 0.2;
-    }
-    .bot-bot-left.weather-sec3 {
-      border: 1px solid #8f2bbd;
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      grid-area: bot-bot-left;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      h1 {
-        font-size: 100px;
+
+      // ==========================================
+      // TODO CARD
+      // ==========================================
+      .top-top-right.todo-card {
+        @include glass-effect();
+        @include card-hover();
+        grid-area: top-top-right;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row-reverse;
+        padding: 0.625rem;
+
+        .textdiv {
+          width: 60%;
+          height: 100%;
+          @include flex-center(column);
+          text-align: center;
+          justify-content: space-around;
+
+          h1 {
+            width: 70%;
+            @include card-heading(1.2rem, 1.6vw, 2.5rem);
+          }
+
+          button {
+            @include card-button();
+            margin-top: 0.5rem;
+          }
+        }
+
+        .imgdiv {
+          @include image-container(right);
+          height: 100%;
+          width: 40%;
+
+          img {
+            object-position: center;
+            filter: contrast(150%) saturate(-50%);
+          }
+        }
+      }
+
+      // ==========================================
+      // DAILY PLANNER CARD
+      // ==========================================
+      .top-bot-right.dailyplanner-card {
+        @include glass-effect();
+        @include card-hover();
+        grid-area: top-bot-right;
+        display: flex;
+        padding: 0.625rem;
+
+        .textdiv {
+          width: 50%;
+          height: 100%;
+          display: flex;
+          justify-content: space-evenly;
+          flex-direction: column;
+          align-items: center;
+          overflow: hidden;
+          padding-left: 1rem;
+
+          h1 {
+            width: 100%;
+            @include card-heading(1.2rem, 1.8vw, 2.5rem);
+          }
+
+          button {
+            @include card-button();
+            align-self: flex-start;
+            margin-top: 0.5rem;
+          }
+        }
+
+        .imgdiv {
+          @include image-container(left);
+          height: 100%;
+          width: 50%;
+
+          img {
+            object-position: center;
+          }
+        }
+      }
+
+      // ==========================================
+      // WEATHER SECTION 2
+      // ==========================================
+      .bot-top-left.weather-sec2 {
+        @include glass-effect();
+        @include noise-overlay();
+        grid-area: bot-top-left;
+        font-family: helvetica neue, open sans, Helvetica, Arial, sans-serif;
+        @include flex-center(column);
+        justify-content: space-evenly;
         color: white;
-        font-family: nasa;
-        .seconds {
-          font-family: helvetica neue, open sans, Helvetica, Arial, sans-serif;
-          font-size: 50px;
+        font-weight: bold;
+        padding: 0.5rem;
+
+        .left,
+        .right {
+          display: flex;
+          gap: 0.5rem;
+          width: 100%;
+          justify-content: center;
+
+          div {
+            @include weather-info-box();
+            flex: 1;
+          }
+        }
+      }
+
+      // ==========================================
+      // WEATHER SECTION 3 (CLOCK)
+      // ==========================================
+      .bot-bot-left.weather-sec3 {
+        @include glass-effect(10px, 1);
+        @include noise-overlay();
+        grid-area: bot-bot-left;
+        @include flex-center();
+        border-color: #8f2bbd;
+
+        h1 {
+          font-size: clamp(2rem, 5.5vw, 8rem);
+          color: white;
+          font-family: nasa, sans-serif;
+
+          .seconds {
+            font-family: helvetica neue, open sans, Helvetica, Arial, sans-serif;
+            font-size: 0.5em;
+          }
+        }
+      }
+
+      // ==========================================
+      // MOTIVATION CARD
+      // ==========================================
+      .bot-mid-left.moti-card {
+        @include glass-effect();
+        @include card-hover();
+        grid-area: bot-mid-left;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-between;
+        padding: 0.625rem;
+
+        .textdiv {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          overflow: hidden;
+          min-height: 0;
+          padding: 0.5rem 0;
+
+          div {
+            h1 {
+              @include card-heading(1.2rem, 2vw, 2.5rem);
+            }
+
+            h2 {
+              @include card-heading(1.2rem, 2.5vw, 2.5rem);
+            }
+          }
+
+          button {
+            @include card-button();
+            height: auto;
+            margin-right: 0.1875rem;
+            padding: 0.625rem;
+            border-radius: 0.4375rem;
+            background-color: rgba(135, 192, 209, 0.067);
+            flex-shrink: 0;
+          }
+        }
+
+        .imgdiv {
+          @include image-container();
+          height: 70%;
+          flex-shrink: 0;
+
+          img {
+            object-position: 50% 20%;
+            filter: contrast(150%);
+          }
+        }
+      }
+
+      // ==========================================
+      // POMODORO CARD
+      // ==========================================
+      .bot-mid-right.pomo-card {
+        @include glass-effect();
+        @include card-hover();
+        grid-area: bot-mid-right;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column-reverse;
+        padding: 0.625rem;
+
+        .textdiv {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          overflow: hidden;
+          gap: 0.625rem;
+          min-height: 0;
+          padding: 0.5rem 0;
+
+          div {
+            h1 {
+              @include card-heading(1.2rem, 2vw, 2.5rem);
+            }
+
+            h2 {
+              @include card-heading(1.2rem, 2.5vw, 2.5rem);
+            }
+          }
+
+          button {
+            @include card-button();
+            height: auto;
+            margin-right: 0.1875rem;
+            padding: 0.625rem;
+            border-radius: 0.4375rem;
+            background-color: rgba(135, 192, 209, 0.067);
+            flex-shrink: 0;
+          }
+        }
+
+        .imgdiv {
+          @include image-container();
+          height: 70%;
+          flex-shrink: 0;
+
+          img {
+            object-position: 50% 50%;
+          }
+        }
+      }
+
+      // ==========================================
+      // KANBAN CARD
+      // ==========================================
+      .bot-right.kanban-card {
+        @include glass-effect();
+        @include card-hover();
+        grid-area: bot-right;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-between;
+        padding: 0.625rem;
+        transition: all 0.2s ease;
+
+        .textdiv {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          overflow: hidden;
+          min-height: 0;
+          padding: 0.5rem 0;
+
+          div {
+            h1 {
+              @include card-heading(1.2rem, 1.8vw, 2.5rem);
+            }
+
+            h2 {
+              @include card-heading(1.2rem, 2.4vw, 2.5rem);
+            }
+          }
+
+          button {
+            @include card-button();
+            height: auto;
+            margin-right: 0.1875rem;
+            padding: 0.625rem;
+            border-radius: 0.4375rem;
+            background-color: rgba(135, 192, 209, 0.067);
+            flex-shrink: 0;
+          }
+        }
+
+        .imgdiv {
+          @include image-container();
+          height: 70%;
+          flex-shrink: 0;
+
+          img {
+            object-position: 50% 20%;
+          }
         }
       }
     }
-    .bot-bot-left::before {
-      content: "";
-      position: absolute;
-      left: 0;
+  }
+}
+@media (max-width: $lg) {
+  main {
+    padding: 1rem;
+  }
+
+  #bot-section {
+    gap: 0.5rem;
+    padding: 0.5rem;
+
+    grid-template-rows:
+      minmax(0, 1fr)
+      minmax(0, 1.3fr)
+      minmax(0, 1.3fr)
+      minmax(0, 0.9fr);
+  }
+
+  h1 {
+    letter-spacing: 0.05rem;
+  }
+}
+@media (max-width: $md) {
+  #bot-section {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, minmax(0, 1fr));
+
+    grid-template-areas:
+      "top-left top-mid top-mid"
+      "top-left top-mid top-mid"
+      "top-top-right top-bot-right bot-top-left"
+      "bot-bot-left bot-mid-left bot-mid-right"
+      "bot-bot-left bot-right bot-right";
+  }
+
+  .top-mid {
+    flex-direction: column;
+
+    .div1,
+    .div2 {
       width: 100%;
-      height: 100%; /* height of background */
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1799 1799' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-      background-blend-mode: screen;
-      z-index: 3;
-      opacity: 0.2;
-    }
-
-    .bot-mid-left.moti-card {
-      grid-area: bot-mid-left;
-      border: 1px solid rgba(128, 128, 128, 0.417);
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      display: flex;
-      flex-direction: column-reverse;
-      justify-content: space-between;
-      padding: 10px;
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
-      .textdiv {
-        // background-color: red;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        overflow: hidden;
-
-        div {
-          h1,
-          h2 {
-            color: white;
-            font-family: Syne;
-            line-height: 1;
-            pointer-events: none;
-            white-space: normal;
-            word-break: break-word;
-            overflow-wrap: break-word;
-            text-transform: uppercase;
-          }
-          h1 {
-            font-size: 40px;
-          }
-          h2 {
-            font-size: 50px;
-          }
-        }
-        button {
-          height: 85%;
-          margin-right: 3px;
-          text-align: center;
-          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-            Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-            sans-serif;
-          text-transform: uppercase;
-          font-weight: bold;
-          padding: 10px;
-          color: white;
-          border-radius: 7px;
-          // margin-top: 10px;
-          background-color: rgba(135, 192, 209, 0.067);
-          border: none;
-          border: 1px solid rgba(128, 128, 128, 0.807);
-          backdrop-filter: blur(10px);
-          // pointer-events: none;
-          transition: all 0.5 ease;
-        }
-        button:hover {
-          background-color: rgba(101, 101, 101, 0.693);
-          transform: scale(0.99);
-        }
-      }
-      .imgdiv {
-        width: 100%;
-        height: 70%;
-        border-radius: 15px;
-        pointer-events: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.401);
-        overflow: hidden;
-        img {
-          height: 100%;
-          width: 100%;
-          object-fit: cover;
-          object-position: 50% 20%;
-          pointer-events: none;
-          filter: contrast(150%);
-        }
-      }
-    }
-    .moti-card:hover {
-      scale: 0.98;
-    }
-    .bot-mid-right.pomo-card {
-      grid-area: bot-mid-right;
-      border: 1px solid rgba(128, 128, 128, 0.417);
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      display: flex;
-      justify-content: space-between;
-      flex-direction: column-reverse;
-      padding: 10px;
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
-
-      .textdiv {
-        // background-color: red;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        overflow: hidden;
-        gap: 10px;
-        div {
-          h1,
-          h2 {
-            color: white;
-            font-family: Syne;
-            line-height: 1;
-            pointer-events: none;
-            white-space: normal;
-            word-break: break-word;
-            overflow-wrap: break-word;
-            text-transform: uppercase;
-          }
-          h1 {
-            font-size: 40px;
-          }
-          h2 {
-            font-size: 50px;
-          }
-        }
-        button {
-          height: 85%;
-          margin-right: 3px;
-          text-align: center;
-          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-            Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-            sans-serif;
-          text-transform: uppercase;
-          font-weight: bold;
-          padding: 10px;
-          color: white;
-          border-radius: 7px;
-          // margin-top: 10px;
-          background-color: rgba(135, 192, 209, 0.067);
-          border: none;
-          border: 1px solid rgba(128, 128, 128, 0.807);
-          backdrop-filter: blur(10px);
-          // pointer-events: none;
-          transition: all 0.5 ease;
-        }
-        button:hover {
-          background-color: rgba(101, 101, 101, 0.693);
-          transform: scale(0.99);
-        }
-      }
-      .imgdiv {
-        width: 100%;
-        height: 70%;
-        border-radius: 15px;
-        pointer-events: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.401);
-        overflow: hidden;
-        img {
-          height: 100%;
-          width: 100%;
-          object-fit: cover;
-          object-position: 50% 50%;
-          pointer-events: none;
-        }
-      }
-    }
-    .pomo-card:hover {
-      scale: 0.98;
-    }
-    .bot-right.kanban-card {
-      grid-area: bot-right;
-      border: 1px solid rgba(128, 128, 128, 0.417);
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      display: flex;
-      flex-direction: column-reverse;
-      justify-content: space-between;
-      padding: 10px;
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      transition: all 0.2s ease;
-      .textdiv {
-        // background-color: red;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        overflow: hidden;
-
-        div {
-          h1,
-          h2 {
-            color: white;
-            font-family: Syne;
-            line-height: 1;
-            pointer-events: none;
-            white-space: normal;
-            word-break: break-word;
-            overflow-wrap: break-word;
-            text-transform: uppercase;
-          }
-          h1 {
-            font-size: 40px;
-          }
-          h2 {
-            font-size: 50px;
-          }
-        }
-        button {
-          height: 85%;
-          margin-right: 3px;
-          text-align: center;
-          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-            Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-            sans-serif;
-          text-transform: uppercase;
-          font-weight: bold;
-          padding: 10px;
-          color: white;
-          border-radius: 7px;
-          // margin-top: 10px;
-          background-color: rgba(135, 192, 209, 0.067);
-          border: none;
-          border: 1px solid rgba(128, 128, 128, 0.807);
-          backdrop-filter: blur(10px);
-          // pointer-events: none;
-          transition: all 0.5 ease;
-        }
-        button:hover {
-          background-color: rgba(101, 101, 101, 0.693);
-          transform: scale(0.99);
-        }
-      }
-      .imgdiv {
-        width: 100%;
-        height: 70%;
-        border-radius: 15px;
-        pointer-events: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.401);
-        overflow: hidden;
-        img {
-          height: 100%;
-          width: 100%;
-          object-fit: cover;
-          object-position: 50% 20%;
-          pointer-events: none;
-        }
-      }
-    }
-    .kanban-card:hover {
-      scale: 0.98;
+      height: 50%;
     }
   }
-}
-@keyframes hero-gradient-animation {
-  0% {
-    --c-0: hsla(266.99999999999983, 1%, 12%, 1);
-    --s-start-0: 9%;
-    --s-end-0: 55%;
-    --y-0: 80%;
-    --x-0: 85%;
-    --x-1: 60%;
-    --c-1: hsla(335.9999999999997, 2%, 22%, 1);
-    --s-start-1: 5%;
-    --s-end-1: 72%;
-    --y-1: 24%;
-    --x-2: 13%;
-    --y-2: 82%;
-    --c-2: hsla(53.999999999999886, 0%, 0%, 0.49);
-    --s-start-2: 5%;
-    --s-end-2: 52%;
-    --c-3: hsla(299, 4%, 36%, 1);
-    --y-3: 7%;
-    --x-3: 24%;
-    --s-start-3: 13%;
-    --s-end-3: 68%;
+
+  .weather-sec1 h2 {
+    font-size: 6rem;
   }
 
-  100% {
-    --c-0: hsla(266.99999999999943, 0%, 12%, 1);
-    --s-start-0: 9%;
-    --s-end-0: 55%;
-    --y-0: 94%;
-    --x-0: 31%;
-    --x-1: 2%;
-    --c-1: hsla(0, 4%, 19%, 1);
-    --s-start-1: 5%;
-    --s-end-1: 72%;
-    --y-1: 25%;
-    --x-2: 98%;
-    --y-2: 20%;
-    --c-2: hsla(54.000000000000036, 0%, 0%, 0.49);
-    --s-start-2: 5%;
-    --s-end-2: 52%;
-    --c-3: hsla(298.99999999999994, 3%, 41%, 1);
-    --y-3: 92%;
-    --x-3: 95%;
-    --s-start-3: 13%;
-    --s-end-3: 68%;
+  .bot-bot-left.weather-sec3 h1 {
+    font-size: 4.5rem;
   }
 }
+// @media (max-width: 899px) {
+//   body {
+//     overflow: hidden;
+//   }
 
-@property --c-0 {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: hsla(266.99999999999983, 1%, 12%, 1);
-}
+//   main::before {
+//     content: "This dashboard is not available on mobile devices.";
+//     position: fixed;
+//     inset: 0;
+//     background: black;
+//     color: white;
+//     font-family: Syne, sans-serif;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     text-align: center;
+//     padding: 2rem;
+//     z-index: 9999;
+//   }
 
-@property --s-start-0 {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 9%;
-}
-
-@property --s-end-0 {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 55%;
-}
-
-@property --y-0 {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 80%;
-}
-
-@property --x-0 {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 85%;
-}
-
-@property --x-1 {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 60%;
-}
-
-@property --c-1 {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: hsla(335.9999999999997, 2%, 22%, 1);
-}
-
-@property --s-start-1 {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 5%;
-}
-
-@property --s-end-1 {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 72%;
-}
-
-@property --y-1 {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 24%;
-}
-
-@property --x-2 {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 13%;
-}
-
-@property --y-2 {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 82%;
-}
-
-@property --c-2 {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: hsla(53.999999999999886, 0%, 0%, 0.49);
-}
-
-@property --s-start-2 {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 5%;
-}
-
-@property --s-end-2 {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 52%;
-}
-
-@property --c-3 {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: hsla(299, 4%, 36%, 1);
-}
-
-@property --y-3 {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 7%;
-}
-
-@property --x-3 {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 24%;
-}
-
-@property --s-start-3 {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 13%;
-}
-
-@property --s-end-3 {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 68%;
+//   #container {
+//     display: none;
+//   }
+// }
+@media (max-width: $md) {
+  .weather-sec1::before,
+  .weather-sec2::before,
+  .weather-sec3::before {
+    opacity: 0.1;
+  }
 }
