@@ -237,9 +237,7 @@ main {
         overflow: hidden;
       }
 
-      // ==========================================
       // WEATHER SECTION 1
-      // ==========================================
       .top-left.weather-sec1 {
         @include glass-effect();
         @include noise-overlay();
@@ -295,9 +293,7 @@ main {
         }
       }
 
-      // ==========================================
       // TOP MID SECTION
-      // ==========================================
       .top-mid {
         grid-area: top-mid;
         @include flex-center(row, 0.625rem);
@@ -416,9 +412,7 @@ main {
         }
       }
 
-      // ==========================================
       // TODO CARD
-      // ==========================================
       .top-top-right.todo-card {
         @include glass-effect();
         @include card-hover();
@@ -459,9 +453,7 @@ main {
         }
       }
 
-      // ==========================================
       // DAILY PLANNER CARD
-      // ==========================================
       .top-bot-right.dailyplanner-card {
         @include glass-effect();
         @include card-hover();
@@ -501,10 +493,7 @@ main {
           }
         }
       }
-
-      // ==========================================
       // WEATHER SECTION 2
-      // ==========================================
       .bot-top-left.weather-sec2 {
         @include glass-effect();
         @include noise-overlay();
